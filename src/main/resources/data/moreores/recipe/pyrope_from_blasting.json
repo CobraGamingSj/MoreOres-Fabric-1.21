@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "ingredient": {
+    "item": "moreores:raw_pyrope"
+  },
+  "result": {
+    "id": "moreores:pyrope"
+  },
+  "experience": 0.5,
+  "cookingtime": 120
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "moreores:raw_ruby"
+  },
+  "result": {
+    "id": "moreores:ruby"
+  },
+  "experience": 0.6,
+  "cookingtime": 240
+}

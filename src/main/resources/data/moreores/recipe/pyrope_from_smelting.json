@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "moreores:raw_pyrope"
+  },
+  "result": {
+    "id": "moreores:pyrope"
+  },
+  "experience": 0.6,
+  "cookingtime": 240
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "ingredient": {
+    "item": "moreores:raw_green_garnet"
+  },
+  "result": {
+    "id": "moreores:green_garnet"
+  },
+  "experience": 0.5,
+  "cookingtime": 120
+}

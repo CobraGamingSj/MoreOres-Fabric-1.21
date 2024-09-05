@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "ingredient": {
+    "item": "moreores:raw_white_topaz"
+  },
+  "result": {
+    "id": "moreores:white_topaz"
+  },
+  "experience": 0.5,
+  "cookingtime": 120
+}

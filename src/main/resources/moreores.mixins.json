@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "net.moreores.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"ExampleMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

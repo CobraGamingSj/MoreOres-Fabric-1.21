@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_bars"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "pattern": [
+    "III",
+    "III",
+    "B B"
+  ],
+  "result": {
+    "count": 1,
+    "id": "moreores:gem_polisher_block"
+  }
+}

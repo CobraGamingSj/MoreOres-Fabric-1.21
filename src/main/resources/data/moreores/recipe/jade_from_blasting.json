@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "ingredient": {
+    "item": "moreores:raw_jade"
+  },
+  "result": {
+    "id": "moreores:jade"
+  },
+  "experience": 0.5,
+  "cookingtime": 120
+}

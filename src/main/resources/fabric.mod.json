@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "moreores",
+	"version": "${version}",
+	"name": "MoreOres+",
+	"description": "This mod adds new ores into your game.",
+	
+	"authors": [
+		"CobraGamingSJ"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/CobraGamingSj/MoreOres"
+	},
+	"license": "All Rights Reserved.",
+	"icon": "assets/moreores/pack_icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.moreores.MoreOres"
+		],
+		"client": [
+		"net.moreores.MoreOresClient"
+		],
+		"fabric-datagen": [
+			"net.moreores.MoreOresDataGenerator"
+		]
+	},
+	"mixins": [
+		"moreores.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.2",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "moreores:raw_peridot_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "moreores:raw_peridot"
+  }
+}
