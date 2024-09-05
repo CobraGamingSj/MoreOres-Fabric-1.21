@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
@@ -53,5 +54,15 @@ public class RecipeGen extends FabricRecipeProvider {
                 .criterion(hasItem(Blocks.IRON_BLOCK), conditionsFromItem(Blocks.IRON_BLOCK))
                 .criterion(hasItem(Blocks.IRON_BARS), conditionsFromItem(Blocks.IRON_BARS))
                 .offerTo(exporter, Identifier.of(getRecipeName(ModBlocks.GEM_POLISHER_BLOCK)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.RADIANT_SWORD, 1)
+                .pattern(" I ")
+                .pattern(" I ")
+                .pattern(" B ")
+                .input('I', ModItems.RADIANT)
+                .input('B', Items.STICK)
+                .criterion(hasItem(ModItems.RADIANT), conditionsFromItem(ModItems.RADIANT))
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+                .offerTo(exporter, Identifier.of(getRecipeName(ModItems.RADIANT_SWORD)));
     }
 }
