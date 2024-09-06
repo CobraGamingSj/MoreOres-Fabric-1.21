@@ -67,10 +67,6 @@ public class GemPolisherBlock extends BlockWithEntity implements BlockEntityProv
         }
     }
 
-//    protected ActionResult whenEntityStepped(BlockState state, BlockPos pos, LivingEntity entity) {
-//        return this.whenEntityStepped(state, pos, entity);
-//    }
-
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient()) {
