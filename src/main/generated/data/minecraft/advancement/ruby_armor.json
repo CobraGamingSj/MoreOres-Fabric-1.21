@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:a_gem",
   "criteria": {
-    "ruby": {
+    "ruby_armor": {
       "conditions": {
         "items": [
           {
@@ -37,7 +37,7 @@
   },
   "requirements": [
     [
-      "ruby"
+      "ruby_armor"
     ]
   ],
   "sends_telemetry_event": true

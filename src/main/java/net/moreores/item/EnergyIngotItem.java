@@ -34,12 +34,16 @@ public class EnergyIngotItem extends Item {
         World world = attacker.getWorld();
 
         if(!world.isClient()) {
+
+            if(!attacker.isInCreativeMode()) {
+                if (stack.getDamage() < stack.getMaxDamage()) {
+                    stack.setDamage(stack.getDamage() + 1);
+                }
+            }
+
             LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
             lightning.setPos(target.getX(), target.getY(), target.getZ());
             world.spawnEntity(lightning);
-            if (stack.getDamage() < stack.getMaxDamage()) {
-                stack.setDamage(stack.getDamage() + 1);
-            }
         }
 
         target.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 4800, 4));
@@ -59,8 +63,10 @@ public class EnergyIngotItem extends Item {
             user.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 9600, 4, false, false, false));
             user.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 9600, 4, false, false, false));
             user.addStatusEffect(new StatusEffectInstance(StatusEffects.LUCK, 9600, 4, false, false, false));
-            if (stack.getDamage() < stack.getMaxDamage()) {
-                stack.setDamage(stack.getDamage() + 1);
+            if(!user.isInCreativeMode()) {
+                if (stack.getDamage() < stack.getMaxDamage()) {
+                    stack.setDamage(stack.getDamage() + 1);
+                }
             }
         }else if(!world.isClient() && hand == Hand.OFF_HAND && Screen.hasControlDown()) {
             EntityType<LightningEntity> lightningType = EntityType.LIGHTNING_BOLT;
