@@ -1,16 +1,20 @@
 {
   "display": {
     "icon": {
-      "id": "moreores:radiant"
+      "id": "moreores:radiant_sword"
     },
-    "title": "advancement.moreores.radiant_sword",
-    "description": "advancement.moreores.radiant_sword.desc",
+    "title": {
+      "translate": "advancement.moreores.radiant_sword"
+    },
+    "description": {
+      "translate": "advancement.moreores.radiant_sword.desc"
+    },
     "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "moreores:a_gem",
+  "parent": "minecraft:gem",
   "criteria": {
     "sword": {
       "trigger": "minecraft:inventory_changed",
