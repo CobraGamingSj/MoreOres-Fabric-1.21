@@ -1,7 +1,7 @@
 package net.moreores.block.entity;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.minecraft.block.Block;
+import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,6 +25,7 @@ import net.moreores.block.data.GemPolisherData;
 import net.moreores.item.ModItems;
 import net.moreores.screen.GemPolisherScreenHandler;
 import org.jetbrains.annotations.Nullable;
+import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY); // Corrected size to 3
@@ -35,7 +36,14 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
-    private int maxProgress = 256;
+    private int maxProgress = 400;
+
+//    public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(100000, 32, 32) {
+//        @Override
+//        protected void onFinalCommit() {
+//            markDirty();
+//        }
+//    };
 
     public GemPolisherBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.GEM_POLISHER_BLOCK_ENTITY, pos, state);
@@ -94,6 +102,7 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         super.readNbt(nbt, registryLookup);
         Inventories.readNbt(nbt, inventory, registryLookup);
         progress = nbt.getInt("gem_polisher.progress");
+//        energyStorage.amount = nbt.getLong("gem_polisher.energy");
     }
 
     @Override
@@ -101,7 +110,12 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         super.writeNbt(nbt, registryLookup);
         Inventories.writeNbt(nbt, inventory, registryLookup);
         nbt.putInt("gem_polisher.progress", progress);
+//        nbt.putLong("gem_polisher.energy", energyStorage.amount);
     }
+
+//    public void setEnergyLevel(long energyLevel) {
+//        this.energyStorage.amount = energyLevel;
+//    }
 
     @Override
     public Object getScreenOpeningData(ServerPlayerEntity player) {
@@ -129,8 +143,16 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
             return;
         }
 
+//        if (hasEnergySource()) {
+//            try(Transaction transaction = Transaction.openOuter()) {
+//                energyStorage.insert(16, transaction);
+//                transaction.commit();
+//            }
+//        }
+
         if (isOutputSlotEmptyOrReceivable() && hasRecipe() && hasEnergySource()) {
             this.increaseCraftProgress();
+//            extractEnergy();
             if (hasCraftingFinished()) {
                 this.craftItem();
                 this.resetProgress();
@@ -141,6 +163,17 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
             markDirty(world, pos, state);
         }
     }
+
+//    private void extractEnergy() {
+//        try(Transaction transaction = Transaction.openOuter()) {
+//            energyStorage.extract(32, transaction);
+//            transaction.commit();
+//        }
+//    }
+//
+//    private boolean hasEnoughEnergy() {
+//        return energyStorage.amount >= 32;
+//    }
 
     private boolean hasEnergySource() {
         return getStack(ENERGY_SLOT).getItem() == ModItems.ENERGY_INGOT;

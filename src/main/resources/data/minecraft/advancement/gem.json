@@ -81,7 +81,7 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "ruby_armor": {
+    "ruby": {
       "conditions": {
         "items": [
           {

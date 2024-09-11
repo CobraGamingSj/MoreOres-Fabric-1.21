@@ -60,7 +60,7 @@ public class AdvancementGen extends FabricAdvancementProvider {
                         false
                 )
                 .parent(rubyGem)
-                .criterion("ruby", InventoryChangedCriterion.Conditions.items(ModItems.RUBY_HELMET, ModItems.RUBY_CHESTPLATE, ModItems.RUBY_LEGGINGS, ModItems.RUBY_BOOTS))
+                .criterion("ruby_armor", InventoryChangedCriterion.Conditions.items(ModItems.RUBY_HELMET, ModItems.RUBY_CHESTPLATE, ModItems.RUBY_LEGGINGS, ModItems.RUBY_BOOTS))
                 .build(consumer, "ruby_armor");
 
         AdvancementEntry radiant_sword = Advancement.Builder.create()

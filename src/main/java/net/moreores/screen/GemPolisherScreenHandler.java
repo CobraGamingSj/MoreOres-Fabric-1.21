@@ -17,8 +17,6 @@ import net.moreores.block.entity.GemPolisherBlockEntity;
 import java.util.stream.IntStream;
 
 public class GemPolisherScreenHandler extends ScreenHandler {
-//    public static final int INVENTORY_SIZE = 12;
-//    private Inventory blockInventory;
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
     public final GemPolisherBlockEntity blockEntity;
@@ -32,9 +30,6 @@ public class GemPolisherScreenHandler extends ScreenHandler {
         super(ModScreenHandlers.GEM_POLISHING_SCREEN_HANDLER, syncId);
         checkSize((Inventory) blockEntity, 3);
 
-//        Initialize blockInventory first to avoid NullPointerException
-//        this.blockInventory = new SimpleInventory(INVENTORY_SIZE);
-
         this.inventory = ((Inventory) blockEntity);
 
         // Now that blockInventory is initialized, we can safely call onOpen
@@ -45,15 +40,6 @@ public class GemPolisherScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(inventory, 0, 105, 13));
         this.addSlot(new Slot(inventory, 1, 105, 61));
         this.addSlot(new Slot(inventory, 2, 53, 36));
-
-//        Slots for the 12-slot grid (actual items)
-//        for (int i = 0; i < INVENTORY_SIZE; i++) {
-//            int x = 116 + (i % 3) * 18;
-//            int y = 5 + (i / 3) * 18;
-//            // Use `i` as the second parameter to ensure each slot has a unique inventory index
-//            this.addSlot(new Slot(blockInventory, i, x, y));
-//        }
-
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
