@@ -25,7 +25,6 @@ import net.moreores.block.data.GemPolisherData;
 import net.moreores.item.ModItems;
 import net.moreores.screen.GemPolisherScreenHandler;
 import org.jetbrains.annotations.Nullable;
-import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY); // Corrected size to 3

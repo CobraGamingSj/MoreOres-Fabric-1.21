@@ -64,5 +64,17 @@ public class RecipeGen extends FabricRecipeProvider {
                 .criterion(hasItem(ModItems.RADIANT), conditionsFromItem(ModItems.RADIANT))
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
                 .offerTo(exporter, Identifier.of(getRecipeName(ModItems.RADIANT_SWORD)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.RUBY_LAMP, 1)
+                .pattern("aba")
+                .pattern("bcb")
+                .pattern("aba")
+                .input('a', Items.REDSTONE)
+                .input('b', ModItems.RUBY)
+                .input('c', Blocks.GLOWSTONE)
+                .criterion(hasItem(Items.REDSTONE), conditionsFromItem(Items.REDSTONE))
+                .criterion(hasItem(ModItems.RUBY), conditionsFromItem(ModItems.RUBY))
+                .criterion(hasItem(Blocks.GLOWSTONE), conditionsFromItem(Blocks.GLOWSTONE))
+                .offerTo(exporter, Identifier.of(getRecipeName(ModBlocks.RUBY_LAMP)));
     }
 }

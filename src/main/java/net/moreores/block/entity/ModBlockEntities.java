@@ -6,7 +6,6 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.moreores.MoreOres;
 import net.moreores.block.ModBlocks;
-import team.reborn.energy.api.EnergyStorage;
 
 public class ModBlockEntities {
 
