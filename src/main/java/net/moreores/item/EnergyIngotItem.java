@@ -16,6 +16,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -49,6 +50,11 @@ public class EnergyIngotItem extends Item {
         target.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 4800, 4));
         attacker.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 40, 4));
         return super.postHit(stack, target, attacker);
+    }
+
+    @Override
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.BRUSH;
     }
 
     @Override

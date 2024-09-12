@@ -38,7 +38,6 @@ public class RubyLampBlock extends Block {
                     world.setBlockState(pos, (BlockState)state.cycle(LIT), 2);
                 }
             }
-
         }
     }
 
@@ -46,7 +45,6 @@ public class RubyLampBlock extends Block {
         if (state.get(LIT) && !world.isReceivingRedstonePower(pos)) {
             world.setBlockState(pos, (BlockState)state.cycle(LIT), 2);
         }
-
     }
 
     @Override

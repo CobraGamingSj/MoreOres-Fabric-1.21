@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 public class MoreOres implements ModInitializer {
 
 	public static final String MOD_ID = "moreores";
+	public static final String ID = "minecraft";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 
@@ -155,7 +156,8 @@ public class MoreOres implements ModInitializer {
 			Naturals.addBefore(Items.PUMPKIN_SEEDS, ModItems.PINEAPPLE_SEEDS);
 			Naturals.addAfter(Blocks.DEEPSLATE_DIAMOND_ORE, ModBlocks.RUBY_ORE);
 			Naturals.addAfter(ModBlocks.RUBY_ORE, ModBlocks.DEEPSLATE_RUBY_ORE);
-			Naturals.addAfter(ModBlocks.DEEPSLATE_RUBY_ORE, ModBlocks.SAPPHIRE_ORE);
+			Naturals.addAfter(ModBlocks.DEEPSLATE_RUBY_ORE, ModBlocks.DEEPSLATE_RADIANT_ORE);
+			Naturals.addAfter(ModBlocks.DEEPSLATE_RADIANT_ORE, ModBlocks.SAPPHIRE_ORE);
 			Naturals.addAfter(ModBlocks.SAPPHIRE_ORE, ModBlocks.DEEPSLATE_SAPPHIRE_ORE);
 			Naturals.addAfter(ModBlocks.DEEPSLATE_SAPPHIRE_ORE, ModBlocks.GREEN_SAPPHIRE_ORE);
 			Naturals.addAfter(ModBlocks.GREEN_SAPPHIRE_ORE, ModBlocks.DEEPSLATE_GREEN_SAPPHIRE_ORE);

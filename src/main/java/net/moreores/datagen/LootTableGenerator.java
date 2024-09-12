@@ -57,6 +57,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
 
         addDrop(ModBlocks.RUBY_ORE, oreDrops(ModBlocks.RUBY_ORE, ModItems.RAW_RUBY));
         addDrop(ModBlocks.DEEPSLATE_RUBY_ORE, oreDrops(ModBlocks.DEEPSLATE_RUBY_ORE, ModItems.RAW_RUBY));
+        addDrop(ModBlocks.DEEPSLATE_RADIANT_ORE, oreDrops(ModBlocks.DEEPSLATE_RADIANT_ORE, ModItems.RADIANT));
         addDrop(ModBlocks.SAPPHIRE_ORE, oreDrops(ModBlocks.SAPPHIRE_ORE, ModItems.RAW_SAPPHIRE));
         addDrop(ModBlocks.DEEPSLATE_SAPPHIRE_ORE, oreDrops(ModBlocks.DEEPSLATE_SAPPHIRE_ORE, ModItems.RAW_SAPPHIRE));
         addDrop(ModBlocks.GREEN_SAPPHIRE_ORE, oreDrops(ModBlocks.GREEN_SAPPHIRE_ORE, ModItems.RAW_GREEN_SAPPHIRE));

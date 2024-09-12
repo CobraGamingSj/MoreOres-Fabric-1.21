@@ -18,6 +18,8 @@ public class ModOrePlacedFeatures {
     public static final RegistryKey<PlacedFeature> ORE_RUBY = ModPlacedFeatures.of("ore_ruby");
     public static final RegistryKey<PlacedFeature> ORE_RUBY_MEDIUM = ModPlacedFeatures.of("ore_ruby_medium");
     public static final RegistryKey<PlacedFeature> ORE_RUBY_LARGE = ModPlacedFeatures.of("ore_ruby_large");
+    public static final RegistryKey<PlacedFeature> ORE_RADIANT_MEDIUM = ModPlacedFeatures.of("ore_radiant_medium");
+    public static final RegistryKey<PlacedFeature> ORE_RADIANT_LARGE = ModPlacedFeatures.of("ore_radiant_large");
     public static final RegistryKey<PlacedFeature> ORE_SAPPHIRE = ModPlacedFeatures.of("ore_sapphire");
     public static final RegistryKey<PlacedFeature> ORE_SAPPHIRE_MEDIUM = ModPlacedFeatures.of("ore_sapphire_medium");
     public static final RegistryKey<PlacedFeature> ORE_SAPPHIRE_LARGE = ModPlacedFeatures.of("ore_sapphire_large");
@@ -65,6 +67,8 @@ public class ModOrePlacedFeatures {
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry20 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_RUBY_SMALL);
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry21 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_RUBY_MEDIUM);
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry22 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_RUBY_LARGE);
+        RegistryEntry<ConfiguredFeature<?, ?>> registryEntryOre1 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_RADIANT_MEDIUM);
+        RegistryEntry<ConfiguredFeature<?, ?>> registryEntryOre2 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_RADIANT_LARGE);
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry23 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_SAPPHIRE_SMALL);
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry24 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_SAPPHIRE_MEDIUM);
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry25 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_SAPPHIRE_LARGE);
@@ -110,6 +114,15 @@ public class ModOrePlacedFeatures {
                 ORE_RUBY_LARGE,
                 registryEntry22,
                 modifiersWithRarity(13, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(63)))
+        );
+        PlacedFeatures.register(
+                placedFeatureRegisterable, ORE_RADIANT_MEDIUM, registryEntryOre1, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(-48), YOffset.fixed(-65)))
+        );
+        PlacedFeatures.register(
+                placedFeatureRegisterable,
+                ORE_RADIANT_LARGE,
+                registryEntryOre2,
+                modifiersWithRarity(1, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-45), YOffset.aboveBottom(-65)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,

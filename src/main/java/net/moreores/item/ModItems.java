@@ -1,16 +1,13 @@
 package net.moreores.item;
 
 import net.minecraft.item.*;
-import net.minecraft.item.Item;
 import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Rarity;
 import net.moreores.MoreOres;
 import net.moreores.block.ModBlocks;
 import net.moreores.block.jukebox.ModJukeboxSongs;
-import net.minecraft.util.Rarity;
 import net.moreores.registry.ModRegistry;
 
 import java.util.List;

@@ -21,6 +21,12 @@ public class WorldGeneration {
                 GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_RUBY_LARGE);
 
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_RADIANT_MEDIUM);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_RADIANT_LARGE);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_SAPPHIRE);
 
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
