@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import net.moreores.MoreOres;
 import net.moreores.block.ModBlocks;
 
-public class ModBlockEntities {
+public class ModBlockEntityType {
 
     public static BlockEntityType<GemPolisherBlockEntity> GEM_POLISHER_BLOCK_ENTITY;
 

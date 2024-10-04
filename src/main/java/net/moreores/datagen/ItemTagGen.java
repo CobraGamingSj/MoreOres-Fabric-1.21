@@ -29,6 +29,23 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.MUSIC_DISC_FEATHERFALL)
                 .add(ModItems.MUSIC_DISC_INFINITE_AMETHYST);
 
+        getOrCreateTagBuilder(ItemTags.TRIM_MATERIALS)
+                .add(ModItems.RUBY)
+                .add(ModItems.RADIANT)
+                .add(ModItems.SAPPHIRE)
+                .add(ModItems.GREEN_SAPPHIRE)
+                .add(ModItems.BLUE_GARNET)
+                .add(ModItems.PINK_GARNET)
+                .add(ModItems.GREEN_GARNET)
+                .add(ModItems.TOPAZ)
+                .add(ModItems.WHITE_TOPAZ)
+                .add(ModItems.PERIDOT)
+                .add(ModItems.JADE)
+                .add(ModItems.PYROPE);
+
+        getOrCreateTagBuilder(ItemTags.TRIM_TEMPLATES)
+                .add(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE);
+
         getOrCreateTagBuilder(ItemTags.VILLAGER_PLANTABLE_SEEDS)
                 .add(ModItems.TOMATO_SEEDS);
 
@@ -119,7 +136,11 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.RUBY_HELMET)
                 .add(ModItems.RUBY_CHESTPLATE)
                 .add(ModItems.RUBY_LEGGINGS)
-                .add(ModItems.RUBY_BOOTS);
+                .add(ModItems.RUBY_BOOTS)
+                .add(ModItems.SAPPHIRE_HELMET)
+                .add(ModItems.SAPPHIRE_CHESTPLATE)
+                .add(ModItems.SAPPHIRE_LEGGINGS)
+                .add(ModItems.SAPPHIRE_BOOTS);
 
         getOrCreateTagBuilder(ItemTags.ARMOR_ENCHANTABLE)
                 .forceAddTag(ItemTags.CHEST_ARMOR_ENCHANTABLE)

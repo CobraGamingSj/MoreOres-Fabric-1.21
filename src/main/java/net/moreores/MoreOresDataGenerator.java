@@ -6,6 +6,8 @@ import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
 import net.moreores.block.jukebox.ModJukeboxSongs;
 import net.moreores.datagen.*;
+import net.moreores.trim.ModArmorTrimMaterials;
+import net.moreores.trim.ModArmorTrimPatterns;
 import net.moreores.world.gen.feature.ModConfiguredFeatures;
 import net.moreores.world.gen.feature.ModPlacedFeatures;
 
@@ -29,5 +31,7 @@ public class MoreOresDataGenerator implements DataGeneratorEntrypoint {
 		registryBuilder.addRegistry(RegistryKeys.JUKEBOX_SONG, ModJukeboxSongs::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
+		registryBuilder.addRegistry(RegistryKeys.TRIM_MATERIAL, ModArmorTrimMaterials::bootstrap);
+		registryBuilder.addRegistry(RegistryKeys.TRIM_PATTERN, ModArmorTrimPatterns::bootstrap);
 	}
 }

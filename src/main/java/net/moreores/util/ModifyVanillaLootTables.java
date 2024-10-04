@@ -26,6 +26,8 @@ public class ModifyVanillaLootTables {
     private static final RegistryKey<LootTable> PLAINS_VILLAGE_TOOLSMITH_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of("minecraft", "chests/village/village_toolsmith"));
     private static final RegistryKey<LootTable> ANCIENT_CITY_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of("minecraft", "chests/village/ancient_city"));
     private static final RegistryKey<LootTable> CREEPER_SKELETON_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of("minecraft", "entities/creeper"));
+    private static final RegistryKey<LootTable> ELDER_GUARDIAN_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.ofVanilla("entities/elder_guardian"));
+    private static final RegistryKey<LootTable> WARDEN_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.ofVanilla("entities/warden"));
 
     public static void modifyVanillaLoot() {
 
@@ -37,6 +39,24 @@ public class ModifyVanillaLootTables {
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.5f)) //50% Chances
                         .with(ItemEntry.builder(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)));
+
+                tableBuilder.pool(poolBuilder);
+            }
+            if (WARDEN_KEY.equals(key)) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.005f)) //0.5% Chances
+                        .with(ItemEntry.builder(ModItems.MUSIC_DISC_DEEPER))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)));
+
+                tableBuilder.pool(poolBuilder);
+            }
+            if (ELDER_GUARDIAN_KEY.equals(key)) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.00025f)) //0.025% Chances
+                        .with(ItemEntry.builder(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)));
 
                 tableBuilder.pool(poolBuilder);

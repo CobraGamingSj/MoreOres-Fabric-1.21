@@ -14,7 +14,8 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.moreores.block.ModBlocks;
-import net.moreores.block.entity.ModBlockEntities;
+import net.moreores.block.entity.ModBlockEntityType;
+//import net.moreores.entity.ModEntityType;
 import net.moreores.item.ModItems;
 import net.moreores.registry.ModRegistry;
 import net.moreores.screen.ModScreenHandlers;
@@ -82,6 +83,7 @@ public class MoreOres implements ModInitializer {
 			items.addAfter(ModItems.RAW_PYROPE, ModItems.RAW_JADE);
 
 			items.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE);
+			items.addAfter(Items.SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE, ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE);
 			items.addBefore(Items.NETHERITE_INGOT, ModItems.ENERGY_INGOT);
 			items.addBefore(Items.COAL, ModItems.WOOD_PELLET);
 			items.addAfter(Items.NETHERITE_INGOT, ModItems.RADIANT);
@@ -156,8 +158,7 @@ public class MoreOres implements ModInitializer {
 			Naturals.addBefore(Items.PUMPKIN_SEEDS, ModItems.PINEAPPLE_SEEDS);
 			Naturals.addAfter(Blocks.DEEPSLATE_DIAMOND_ORE, ModBlocks.RUBY_ORE);
 			Naturals.addAfter(ModBlocks.RUBY_ORE, ModBlocks.DEEPSLATE_RUBY_ORE);
-			Naturals.addAfter(ModBlocks.DEEPSLATE_RUBY_ORE, ModBlocks.DEEPSLATE_RADIANT_ORE);
-			Naturals.addAfter(ModBlocks.DEEPSLATE_RADIANT_ORE, ModBlocks.SAPPHIRE_ORE);
+			Naturals.addAfter(ModBlocks.DEEPSLATE_RUBY_ORE, ModBlocks.SAPPHIRE_ORE);
 			Naturals.addAfter(ModBlocks.SAPPHIRE_ORE, ModBlocks.DEEPSLATE_SAPPHIRE_ORE);
 			Naturals.addAfter(ModBlocks.DEEPSLATE_SAPPHIRE_ORE, ModBlocks.GREEN_SAPPHIRE_ORE);
 			Naturals.addAfter(ModBlocks.GREEN_SAPPHIRE_ORE, ModBlocks.DEEPSLATE_GREEN_SAPPHIRE_ORE);
@@ -249,11 +250,15 @@ public class MoreOres implements ModInitializer {
 		ModifyVanillaLootTables.modifyVanillaLoot();
 
 
-		//ModBlockEntities Registry
-		ModBlockEntities.register();
+		//ModBlockEntityType Registry
+		ModBlockEntityType.register();
 
 
 		//ModScreenHandlers Registry
 		ModScreenHandlers.register();
+
+
+		//ModEntityType Registry
+//		ModEntityType.register();
 	}
 }

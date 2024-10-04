@@ -1,7 +1,6 @@
 package net.moreores.block.entity;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -45,7 +44,7 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 //    };
 
     public GemPolisherBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.GEM_POLISHER_BLOCK_ENTITY, pos, state);
+        super(ModBlockEntityType.GEM_POLISHER_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {

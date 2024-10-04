@@ -1,9 +1,14 @@
 package net.moreores.item;
 
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.moreores.MoreOres;
 import net.moreores.block.ModBlocks;
@@ -13,7 +18,8 @@ import net.moreores.registry.ModRegistry;
 import java.util.List;
 
 public class ModItems {
-    
+//    public static final Item CUSTOM_BUCKET = Registry.register(Registries.ITEM , Identifier.of("moreores", "custom_bucket"), new BucketItem(Fluids.WATER, new Item.Settings()));
+
     //Seeds
     public static final Item TOMATO_SEEDS = ModRegistry.ItemRegistry.register("tomato_seeds", new AliasedBlockItem(ModBlocks.TOMATO_CROP, new Item.Settings()));
     public static final Item PINEAPPLE_SEEDS = ModRegistry.ItemRegistry.register("pineapple_seeds", new AliasedBlockItem(ModBlocks.PINEAPPLE_CROP, new Item.Settings()));
@@ -205,24 +211,6 @@ public class ModItems {
     );
 
 
-    // Topaz Armor
-    public static final Item TOPAZ_HELMET = ModRegistry.ItemRegistry.register(
-            "topaz_helmet",
-            new ModArmorItem(ModArmorMaterials.TOPAZ, ArmorItem.Type.HELMET, new Item.Settings().fireproof().maxDamage(ArmorItem.Type.HELMET.getMaxDamage(40)))
-    );
-    public static final Item TOPAZ_CHESTPLATE = ModRegistry.ItemRegistry.register(
-            "topaz_chestplate",
-            new ModArmorItem(ModArmorMaterials.TOPAZ, ArmorItem.Type.CHESTPLATE, new Item.Settings().fireproof().maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(40)))
-    );
-    public static final Item TOPAZ_LEGGINGS = ModRegistry.ItemRegistry.register(
-            "topaz_leggings",
-            new ModArmorItem(ModArmorMaterials.TOPAZ, ArmorItem.Type.LEGGINGS, new Item.Settings().fireproof().maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(40)))
-    );
-    public static final Item TOPAZ_BOOTS = ModRegistry.ItemRegistry.register(
-            "topaz_boots",
-            new ModArmorItem(ModArmorMaterials.TOPAZ, ArmorItem.Type.BOOTS, new Item.Settings().fireproof().maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(40)))
-    );
-
     //    Sapphire Tools & Weapons
     public static final Item SAPPHIRE_SWORD = ModRegistry.ItemRegistry.register("sapphire_sword", new SwordItem(ModToolMaterials.SAPPHIRE, new Item.Settings().fireproof().attributeModifiers(SwordItem.createAttributeModifiers(ModToolMaterials.SAPPHIRE, 8, -2.0f))));
     public static final Item SAPPHIRE_PICKAXE = ModRegistry.ItemRegistry.register("sapphire_pickaxe", new PickaxeItem(ModToolMaterials.SAPPHIRE, new Item.Settings().fireproof().attributeModifiers(SwordItem.createAttributeModifiers(ModToolMaterials.SAPPHIRE, 4, -3.0f))));
@@ -237,6 +225,8 @@ public class ModItems {
 
     //    Smithing
     public static final Item RUBY_UPGRADE_SMITHING_TEMPLATE = ModRegistry.ItemRegistry.register("ruby_upgrade_smithing_template", RubyUpgradeSmithingTemplate.createRubyUpgrade());
+    public static final Item GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE = ModRegistry.ItemRegistry.register("guardian_armor_trim",
+            SmithingTemplateItem.of(Identifier.of(MoreOres.MOD_ID, "guardian"), FeatureFlags.VANILLA));
 
     public static void register() {
         MoreOres.LOGGER.info("Loading ModItems for " + MoreOres.MOD_ID + " mod.");

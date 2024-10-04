@@ -20,7 +20,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.moreores.block.entity.GemPolisherBlockEntity;
-import net.moreores.block.entity.ModBlockEntities;
+import net.moreores.block.entity.ModBlockEntityType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -83,7 +83,7 @@ public class GemPolisherBlock extends BlockWithEntity implements BlockEntityProv
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return validateTicker(type, ModBlockEntities.GEM_POLISHER_BLOCK_ENTITY, (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
+        return validateTicker(type, ModBlockEntityType.GEM_POLISHER_BLOCK_ENTITY, (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
     }
 
     @Override

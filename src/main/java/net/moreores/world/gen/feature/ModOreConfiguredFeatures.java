@@ -18,8 +18,6 @@ public class ModOreConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_RUBY_SMALL = ModConfiguredFeatures.of("ore_ruby_small");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_RUBY_MEDIUM = ModConfiguredFeatures.of("ore_ruby_medium");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_RUBY_LARGE = ModConfiguredFeatures.of("ore_ruby_large");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_RADIANT_MEDIUM = ModConfiguredFeatures.of("ore_radiant_medium");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_RADIANT_LARGE = ModConfiguredFeatures.of("ore_radiant_large");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_SAPPHIRE_SMALL = ModConfiguredFeatures.of("ore_sapphire_small");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_SAPPHIRE_MEDIUM = ModConfiguredFeatures.of("ore_sapphire_medium");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_SAPPHIRE_LARGE = ModConfiguredFeatures.of("ore_sapphire_large");
@@ -57,7 +55,6 @@ public class ModOreConfiguredFeatures {
         List<OreFeatureConfig.Target> list3 = List.of(
                 OreFeatureConfig.createTarget(ruleTest2, ModBlocks.RUBY_ORE.getDefaultState()),
                 OreFeatureConfig.createTarget(ruleTest3, ModBlocks.DEEPSLATE_RUBY_ORE.getDefaultState()),
-                OreFeatureConfig.createTarget(ruleTest3, ModBlocks.DEEPSLATE_RADIANT_ORE.getDefaultState()),
                 OreFeatureConfig.createTarget(ruleTest2, ModBlocks.SAPPHIRE_ORE.getDefaultState()),
                 OreFeatureConfig.createTarget(ruleTest3, ModBlocks.DEEPSLATE_SAPPHIRE_ORE.getDefaultState()),
                 OreFeatureConfig.createTarget(ruleTest2, ModBlocks.GREEN_SAPPHIRE_ORE.getDefaultState()),
@@ -82,8 +79,6 @@ public class ModOreConfiguredFeatures {
         ConfiguredFeatures.register(featureRegisterable, ORE_RUBY_SMALL, Feature.ORE, new OreFeatureConfig(list3, 4, 0.5F));
         ConfiguredFeatures.register(featureRegisterable, ORE_RUBY_LARGE, Feature.ORE, new OreFeatureConfig(list3, 12, 0.7F));
         ConfiguredFeatures.register(featureRegisterable, ORE_RUBY_MEDIUM, Feature.ORE, new OreFeatureConfig(list3, 8, 0.5F));
-        ConfiguredFeatures.register(featureRegisterable, ORE_RADIANT_LARGE, Feature.ORE, new OreFeatureConfig(list3, 5, 0.4F));
-        ConfiguredFeatures.register(featureRegisterable, ORE_RADIANT_MEDIUM, Feature.ORE, new OreFeatureConfig(list3, 2, 0.2F));
         ConfiguredFeatures.register(featureRegisterable, ORE_SAPPHIRE_SMALL, Feature.ORE, new OreFeatureConfig(list3, 5, 0.5F));
         ConfiguredFeatures.register(featureRegisterable, ORE_SAPPHIRE_LARGE, Feature.ORE, new OreFeatureConfig(list3, 13, 0.7F));
         ConfiguredFeatures.register(featureRegisterable, ORE_SAPPHIRE_MEDIUM, Feature.ORE, new OreFeatureConfig(list3, 8, 0.5F));
