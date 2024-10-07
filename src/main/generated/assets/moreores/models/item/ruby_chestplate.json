@@ -60,6 +60,12 @@
       "predicate": {
         "trim_type": 1.0
       }
+    },
+    {
+      "model": "moreores:item/ruby_chestplate_ruby_trim",
+      "predicate": {
+        "trim_type": 0.51
+      }
     }
   ],
   "textures": {

@@ -50,6 +50,7 @@ public class ModelGen extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(ModItems.MUSIC_DISC_DEEPER, Models.TEMPLATE_MUSIC_DISC);
         itemModelGenerator.register(ModItems.MUSIC_DISC_WATCHER, Models.TEMPLATE_MUSIC_DISC);
+
         itemModelGenerator.register(ModItems.RAW_RUBY, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_SAPPHIRE, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_GREEN_SAPPHIRE, Models.GENERATED);
@@ -61,7 +62,9 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RAW_PERIDOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_JADE, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_PYROPE, Models.GENERATED);
+
         itemModelGenerator.register(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE, Models.GENERATED);
+
         itemModelGenerator.registerArmor(((ArmorItem) ModItems.RUBY_CHESTPLATE));
         itemModelGenerator.registerArmor(((ArmorItem) ModItems.RUBY_HELMET));
         itemModelGenerator.registerArmor(((ArmorItem) ModItems.RUBY_LEGGINGS));

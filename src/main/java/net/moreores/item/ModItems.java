@@ -1,15 +1,10 @@
 package net.moreores.item;
 
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.resource.featuretoggle.FeatureFlag;
 import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.moreores.MoreOres;
 import net.moreores.block.ModBlocks;
