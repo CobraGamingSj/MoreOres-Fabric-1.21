@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.7-SNAPSHOT'
+	id 'fabric-loom' version '1.8-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -17,6 +17,7 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 		maven { url "https://maven.shedaniel.me" }
+//	    maven {url "https://jitpack.io"}
 
 }
 
@@ -25,8 +26,8 @@ fabricApi {
 }
 
 dependencies {
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:16.0.762"
-	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:16.0.762"
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:16.0.783"
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:16.0.783"
 
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -34,6 +35,7 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+//	mod "curse.maven:sodium-394468:5726291"
 	
 }
 

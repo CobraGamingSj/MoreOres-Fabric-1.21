@@ -5,14 +5,20 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.recipe.ShapedRecipe;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.SmeltingRecipe;
+import net.minecraft.recipe.book.CookingRecipeCategory;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
+import net.moreores.MoreOres;
 import net.moreores.block.ModBlocks;
 import net.moreores.item.ModItems;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class RecipeGen extends FabricRecipeProvider {
@@ -22,6 +28,10 @@ public class RecipeGen extends FabricRecipeProvider {
 
     @Override
     public void generate(RecipeExporter exporter) {
+        exporter.accept(Identifier.of(MoreOres.MOD_ID, "test_recipe"), new SmeltingRecipe("ruby", CookingRecipeCategory.MISC, Ingredient.ofItems(ModItems.RAW_RUBY),
+                new ItemStack(ModItems.RUBY, 5), 5f, 5), null);
+
+        offerSmithingTrimRecipe(exporter, ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE, Identifier.of(MoreOres.MOD_ID, "guardian"));
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_RUBY, RecipeCategory.DECORATIONS,
                 ModBlocks.RAW_RUBY_BLOCK);
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_SAPPHIRE, RecipeCategory.DECORATIONS,

@@ -24,15 +24,6 @@
       },
       {
         "state": {
-          "Name": "moreores:deepslate_radiant_ore"
-        },
-        "target": {
-          "predicate_type": "minecraft:tag_match",
-          "tag": "minecraft:deepslate_ore_replaceables"
-        }
-      },
-      {
-        "state": {
           "Name": "moreores:sapphire_ore"
         },
         "target": {

@@ -62,13 +62,13 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RAW_JADE, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_PYROPE, Models.GENERATED);
         itemModelGenerator.register(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE, Models.GENERATED);
-        itemModelGenerator.registerArmor((ArmorItem) ModItems.RUBY_CHESTPLATE);
-        itemModelGenerator.registerArmor((ArmorItem) ModItems.RUBY_HELMET);
-        itemModelGenerator.registerArmor((ArmorItem) ModItems.RUBY_LEGGINGS);
-        itemModelGenerator.registerArmor((ArmorItem) ModItems.RUBY_BOOTS);
-        itemModelGenerator.registerArmor((ArmorItem) ModItems.SAPPHIRE_HELMET);
-        itemModelGenerator.registerArmor((ArmorItem) ModItems.SAPPHIRE_CHESTPLATE);
-        itemModelGenerator.registerArmor((ArmorItem) ModItems.SAPPHIRE_LEGGINGS);
-        itemModelGenerator.registerArmor((ArmorItem) ModItems.SAPPHIRE_BOOTS);
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.RUBY_CHESTPLATE));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.RUBY_HELMET));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.RUBY_LEGGINGS));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.RUBY_BOOTS));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.SAPPHIRE_HELMET));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.SAPPHIRE_CHESTPLATE));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.SAPPHIRE_LEGGINGS));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.SAPPHIRE_BOOTS));
     }
 }

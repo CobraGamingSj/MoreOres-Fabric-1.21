@@ -125,5 +125,22 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
 
         getOrCreateTagBuilder(ModBlockTags.NEEDS_RUBY_TOOL)
                 ;
+
+        getOrCreateTagBuilder(ModBlockTags.RUBY_ORES)
+                .add(ModBlocks.RUBY_ORE)
+                .add(ModBlocks.DEEPSLATE_RUBY_ORE);
+
+        getOrCreateTagBuilder(ModBlockTags.SAPPHIRE_ORES)
+                .add(ModBlocks.SAPPHIRE_ORE)
+                .add(ModBlocks.DEEPSLATE_SAPPHIRE_ORE);
+
+        getOrCreateTagBuilder(ModBlockTags.GREEN_SAPPHIRE_ORES)
+                .add(ModBlocks.GREEN_SAPPHIRE_ORE)
+                .add(ModBlocks.DEEPSLATE_GREEN_SAPPHIRE_ORE);
+
+        getOrCreateTagBuilder(ModBlockTags.MOD_ORES)
+                .forceAddTag(ModBlockTags.RUBY_ORES)
+                .forceAddTag(ModBlockTags.SAPPHIRE_ORES)
+                .forceAddTag(ModBlockTags.GREEN_SAPPHIRE_ORES);
     }
 }

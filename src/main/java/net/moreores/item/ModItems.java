@@ -5,6 +5,7 @@ import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.resource.featuretoggle.FeatureFlag;
 import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -14,6 +15,7 @@ import net.moreores.MoreOres;
 import net.moreores.block.ModBlocks;
 import net.moreores.block.jukebox.ModJukeboxSongs;
 import net.moreores.registry.ModRegistry;
+import net.moreores.trim.ModArmorTrimPatterns;
 
 import java.util.List;
 
@@ -144,6 +146,7 @@ public class ModItems {
     public static final Item MUSIC_DISC_FEATHERFALL = ModRegistry.ItemRegistry.register("music_disc_featherfall", new Item(new Item.Settings().jukeboxPlayable(ModJukeboxSongs.FEATHERFALL).rarity(Rarity.RARE).maxCount(1)));
     public static final Item MUSIC_DISC_DEEPER = ModRegistry.ItemRegistry.register("music_disc_deeper", new Item(new Item.Settings().jukeboxPlayable(ModJukeboxSongs.DEEPER).rarity(Rarity.RARE).maxCount(1)));
     public static final Item MUSIC_DISC_WATCHER = ModRegistry.ItemRegistry.register("music_disc_watcher", new Item(new Item.Settings().jukeboxPlayable(ModJukeboxSongs.WATCHER).rarity(Rarity.RARE).maxCount(1)));
+//    public static final Item DISC = ModRegistry.ItemRegistry.register("disc", new MusicDiscItem(new Item.Settings(), ModJukeboxSongs.ARIA_MATH));
 
 
     //  Ruby Tools & Weapons
@@ -226,7 +229,7 @@ public class ModItems {
     //    Smithing
     public static final Item RUBY_UPGRADE_SMITHING_TEMPLATE = ModRegistry.ItemRegistry.register("ruby_upgrade_smithing_template", RubyUpgradeSmithingTemplate.createRubyUpgrade());
     public static final Item GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE = ModRegistry.ItemRegistry.register("guardian_armor_trim",
-            SmithingTemplateItem.of(Identifier.of(MoreOres.MOD_ID, "guardian"), FeatureFlags.VANILLA));
+            SmithingTemplateItem.of(ModArmorTrimPatterns.GUARDIAN, FeatureFlags.VANILLA));
 
     public static void register() {
         MoreOres.LOGGER.info("Loading ModItems for " + MoreOres.MOD_ID + " mod.");

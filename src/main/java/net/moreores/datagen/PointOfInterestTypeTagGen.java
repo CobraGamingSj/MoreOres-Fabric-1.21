@@ -11,7 +11,9 @@ import net.minecraft.world.poi.PointOfInterestType;
 import java.util.concurrent.CompletableFuture;
 
 public class PointOfInterestTypeTagGen extends TagProvider<PointOfInterestType> {
+    private static final String ID_VANILLA = "minecraft";
     private static final String ID = "moreores";
+    private static final String JEWEL_KEY = "jewel_poi";
 
     public PointOfInterestTypeTagGen(DataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookupFuture) {
         super(output, RegistryKeys.POINT_OF_INTEREST_TYPE, registryLookupFuture);
@@ -20,6 +22,6 @@ public class PointOfInterestTypeTagGen extends TagProvider<PointOfInterestType> 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup lookup) {
         this.getOrCreateTagBuilder(PointOfInterestTypeTags.ACQUIRABLE_JOB_SITE)
-                .addOptional(Identifier.of(ID, "jewel_poi"));
+                .addOptional(Identifier.of(ID, JEWEL_KEY));
     }
 }

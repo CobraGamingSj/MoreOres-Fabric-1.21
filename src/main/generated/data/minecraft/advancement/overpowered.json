@@ -1,35 +1,35 @@
 {
-  "display": {
-    "icon": {
-      "id": "moreores:radiant_sword"
-    },
-    "title": {
-      "translate": "advancement.moreores.radiant_sword"
-    },
-    "description": {
-      "translate": "advancement.moreores.radiant_sword.desc"
-    },
-    "frame": "challenge",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
-  "parent": "minecraft:gem",
+  "parent": "minecraft:a_gem",
   "criteria": {
-    "sword": {
-      "trigger": "minecraft:inventory_changed",
+    "radiant_sword": {
       "conditions": {
         "items": [
           {
             "items": "moreores:radiant_sword"
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "moreores:textures/gui/advancements/backgrounds/gems.png",
+    "description": {
+      "translate": "advancement.moreores.radiant_sword.desc"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "moreores:radiant_sword"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancement.moreores.radiant_sword"
     }
   },
   "requirements": [
     [
-      "sword"
+      "radiant_sword"
     ]
   ],
   "sends_telemetry_event": true

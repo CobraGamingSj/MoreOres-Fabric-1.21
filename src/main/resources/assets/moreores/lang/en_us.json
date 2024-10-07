@@ -85,6 +85,7 @@
   "block.moreores.deepslate_jade_ore": "Deepslate Jade Ore",
 
   "item.moreores.ruby_upgrade_smithing_template": "Smithing Template",
+  "item.moreores.guardian_armor_trim": "Smithing Template",
 
   "item.moreores.ruby_pickaxe": "Ruby Pickaxe",
   "item.moreores.ruby_sword": "Ruby Sword",
@@ -140,16 +141,14 @@
   "jukebox_song.moreores.deeper": "Lena Raine - Deeper",
   "jukebox_song.moreores.watcher": "Lena Raine - Watcher",
 
-  "tooltip.moreores.radioactive_ingot.tooltip": "Right Click to use",
-  "tooltip.moreores.energy_ingot.tooltip": "Press Control while holding in Off Hand to remove effects",
   "tooltip.moreores.energy_block": "Gives you Poison, Blindness and Levitation",
   "moreores.tooltip.gem": "Gem",
   "tooltip.moreores.gem_polisher": "Polish gemstones",
 
   "upgrade.moreores.ruby_upgrade": "Ruby Upgrade",
-  "item.moreores.smithing_template.applies_to": "Applies to",
+  "item.moreores.smithing_template.applies_to": "Applies to:",
   "item.moreores.smithing_template.ruby_upgrade.applies_to": "Netherite Equipment",
-  "item.moreores.smithing_template.ingredients": "Ingredients",
+  "item.moreores.smithing_template.ingredients": "Ingredients:",
   "item.moreores.smithing_template.ruby_upgrade.ingredients": "Ruby",
 
   "advancement.moreores.gems": "Is that a gem?",
@@ -159,7 +158,21 @@
   "advancement.moreores.radiant_sword": "Overpowered!",
   "advancement.moreores.radiant_sword.desc": "Get a Radiant Sword",
   "advancement.moreores.gems_all": "The gems?",
-  "advancement.moreores.gems_all.desc": "Collect every single gemstone",
+  "advancement.moreores.gems_all.desc": "Collect every gemstone",
 
-  "entity.minecraft.villager.jeweller": "Jeweller"
+  "entity.minecraft.villager.jeweller": "Jeweller",
+
+  "trim_pattern.moreores.guardian": "Guardian Armor Trim",
+  "trim_material.moreores.blue_garnet": "Blue Garnet Material",
+  "trim_material.moreores.green_garnet": "Green Garnet Material",
+  "trim_material.moreores.green_sapphire": "Green Sapphire Material",
+  "trim_material.moreores.sapphire": "Sapphire Material",
+  "trim_material.moreores.ruby": "Ruby Material",
+  "trim_material.moreores.radiant": "Radiant Material",
+  "trim_material.moreores.pyrope": "Pyrope Material",
+  "trim_material.moreores.jade": "Jade Material",
+  "trim_material.moreores.peridot": "Peridot Material",
+  "trim_material.moreores.topaz": "Topaz Material",
+  "trim_material.moreores.white_topaz": "White Topaz Material",
+  "trim_material.moreores.pink_garnet": "Pink Garnet Material"
 }

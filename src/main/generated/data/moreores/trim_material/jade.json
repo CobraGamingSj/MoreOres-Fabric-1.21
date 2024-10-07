@@ -1,0 +1,9 @@
+{
+  "asset_name": "jade",
+  "description": {
+    "color": "#A9FEAF",
+    "translate": "trim_material.moreores.jade"
+  },
+  "ingredient": "moreores:jade",
+  "item_model_index": 2.1
+}
