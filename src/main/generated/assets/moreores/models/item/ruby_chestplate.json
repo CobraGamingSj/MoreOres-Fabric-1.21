@@ -32,6 +32,18 @@
       }
     },
     {
+      "model": "moreores:item/ruby_chestplate_ruby_trim",
+      "predicate": {
+        "trim_type": 0.51
+      }
+    },
+    {
+      "model": "moreores:item/ruby_chestplate_radiant_trim",
+      "predicate": {
+        "trim_type": 0.52
+      }
+    },
+    {
       "model": "moreores:item/ruby_chestplate_gold_trim",
       "predicate": {
         "trim_type": 0.6
@@ -59,12 +71,6 @@
       "model": "moreores:item/ruby_chestplate_amethyst_trim",
       "predicate": {
         "trim_type": 1.0
-      }
-    },
-    {
-      "model": "moreores:item/ruby_chestplate_ruby_trim",
-      "predicate": {
-        "trim_type": 0.51
       }
     }
   ],

@@ -17,6 +17,7 @@ import net.moreores.block.ModBlocks;
 import net.moreores.block.entity.ModBlockEntityType;
 //import net.moreores.entity.ModEntityType;
 import net.moreores.item.ModItems;
+import net.moreores.recipe.ModRecipes;
 import net.moreores.registry.ModRegistry;
 import net.moreores.screen.ModScreenHandlers;
 import net.moreores.sound.ModBlockSoundGroup;
@@ -258,7 +259,7 @@ public class MoreOres implements ModInitializer {
 		ModScreenHandlers.register();
 
 
-		//ModEntityType Registry
-//		ModEntityType.register();
+		//ModRecipes Registry
+		ModRecipes.register();
 	}
 }

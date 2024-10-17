@@ -76,7 +76,6 @@ public class GemPolisherBlock extends BlockWithEntity implements BlockEntityProv
                 player.openHandledScreen(screenHandlerFactory);
             }
         }
-//        world.playSound(player, pos, SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 1f, 1f);
         return ActionResult.SUCCESS;
     }
 

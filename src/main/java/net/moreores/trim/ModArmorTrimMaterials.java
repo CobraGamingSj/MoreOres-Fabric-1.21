@@ -32,18 +32,18 @@ public class ModArmorTrimMaterials {
     public static final RegistryKey<ArmorTrimMaterial> PYROPE = of("pyrope");
 
     public static void bootstrap(Registerable<ArmorTrimMaterial> registerable) {
-        register(registerable, RUBY, Registries.ITEM.getEntry(ModItems.RUBY), Style.EMPTY.withColor(TextColor.fromRgb(16711680)), 1.1f);
-        register(registerable, RADIANT, Registries.ITEM.getEntry(ModItems.RADIANT), Style.EMPTY.withColor(TextColor.fromRgb(11730944)), 1.2f);
-        register(registerable, SAPPHIRE, Registries.ITEM.getEntry(ModItems.SAPPHIRE), Style.EMPTY.withColor(TextColor.fromRgb(6875)), 1.3f);
-        register(registerable, GREEN_SAPPHIRE, Registries.ITEM.getEntry(ModItems.GREEN_SAPPHIRE), Style.EMPTY.withColor(TextColor.fromRgb(2925312)), 1.4f);
-        register(registerable, BLUE_GARNET, Registries.ITEM.getEntry(ModItems.BLUE_GARNET), Style.EMPTY.withColor(TextColor.fromRgb(1507522)), 1.5f);
-        register(registerable, PINK_GARNET, Registries.ITEM.getEntry(ModItems.PINK_GARNET), Style.EMPTY.withColor(TextColor.fromRgb(16711927)), 1.6f);
-        register(registerable, GREEN_GARNET, Registries.ITEM.getEntry(ModItems.GREEN_GARNET), Style.EMPTY.withColor(TextColor.fromRgb(65331)), 1.7f);
-        register(registerable, TOPAZ, Registries.ITEM.getEntry(ModItems.TOPAZ), Style.EMPTY.withColor(TextColor.fromRgb(13713152)), 1.8f);
-        register(registerable, WHITE_TOPAZ, Registries.ITEM.getEntry(ModItems.WHITE_TOPAZ), Style.EMPTY.withColor(TextColor.fromRgb(15328482)), 1.9f);
-        register(registerable, PERIDOT, Registries.ITEM.getEntry(ModItems.PERIDOT), Style.EMPTY.withColor(TextColor.fromRgb(52238)), 2.0f);
-        register(registerable, JADE, Registries.ITEM.getEntry(ModItems.JADE), Style.EMPTY.withColor(TextColor.fromRgb(11140783)), 2.1f);
-        register(registerable, PYROPE, Registries.ITEM.getEntry(ModItems.PYROPE), Style.EMPTY.withColor(TextColor.fromRgb(12717839)), 2.2f);
+        register(registerable, RUBY, Registries.ITEM.getEntry(ModItems.RUBY), Style.EMPTY.withColor(TextColor.fromRgb(16711680)), 0.51f);
+        register(registerable, RADIANT, Registries.ITEM.getEntry(ModItems.RADIANT), Style.EMPTY.withColor(TextColor.fromRgb(11730944)), 0.52f);
+        register(registerable, SAPPHIRE, Registries.ITEM.getEntry(ModItems.SAPPHIRE), Style.EMPTY.withColor(TextColor.fromRgb(6875)), 0.53f);
+        register(registerable, GREEN_SAPPHIRE, Registries.ITEM.getEntry(ModItems.GREEN_SAPPHIRE), Style.EMPTY.withColor(TextColor.fromRgb(2925312)), 0.54f);
+        register(registerable, BLUE_GARNET, Registries.ITEM.getEntry(ModItems.BLUE_GARNET), Style.EMPTY.withColor(TextColor.fromRgb(1507522)), 0.55f);
+        register(registerable, PINK_GARNET, Registries.ITEM.getEntry(ModItems.PINK_GARNET), Style.EMPTY.withColor(TextColor.fromRgb(16711927)), 0.56f);
+        register(registerable, GREEN_GARNET, Registries.ITEM.getEntry(ModItems.GREEN_GARNET), Style.EMPTY.withColor(TextColor.fromRgb(65331)), 0.57f);
+        register(registerable, TOPAZ, Registries.ITEM.getEntry(ModItems.TOPAZ), Style.EMPTY.withColor(TextColor.fromRgb(13713152)), 0.58f);
+        register(registerable, WHITE_TOPAZ, Registries.ITEM.getEntry(ModItems.WHITE_TOPAZ), Style.EMPTY.withColor(TextColor.fromRgb(15328482)), 0.59f);
+        register(registerable, PERIDOT, Registries.ITEM.getEntry(ModItems.PERIDOT), Style.EMPTY.withColor(TextColor.fromRgb(52238)), 0.61f);
+        register(registerable, JADE, Registries.ITEM.getEntry(ModItems.JADE), Style.EMPTY.withColor(TextColor.fromRgb(11140783)), 0.62f);
+        register(registerable, PYROPE, Registries.ITEM.getEntry(ModItems.PYROPE), Style.EMPTY.withColor(TextColor.fromRgb(12717839)), 0.63f);
     }
 
     private static void register(Registerable<ArmorTrimMaterial> registerable, RegistryKey<ArmorTrimMaterial> armorTrimKey,

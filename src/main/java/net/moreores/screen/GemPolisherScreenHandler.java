@@ -28,18 +28,27 @@ public class GemPolisherScreenHandler extends ScreenHandler {
 
     public GemPolisherScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate propertyDelegate) {
         super(ModScreenHandlers.GEM_POLISHING_SCREEN_HANDLER, syncId);
-        checkSize((Inventory) blockEntity, 3);
+        checkSize((Inventory) blockEntity, 15);
 
         this.inventory = ((Inventory) blockEntity);
-
-        // Now that blockInventory is initialized, we can safely call onOpen
-//        this.blockInventory.onOpen(playerInventory.player);
         this.propertyDelegate = propertyDelegate;
         this.blockEntity = (GemPolisherBlockEntity) blockEntity;
 
-        this.addSlot(new Slot(inventory, 0, 105, 13));
-        this.addSlot(new Slot(inventory, 1, 105, 61));
-        this.addSlot(new Slot(inventory, 2, 53, 36));
+        this.addSlot(new Slot(inventory, 0, 83, 13));
+        this.addSlot(new Slot(inventory, 1, 83, 61));
+        this.addSlot(new Slot(inventory, 2, 39, 36));
+        this.addSlot(new Slot(inventory, 3, 150, 8));
+        this.addSlot(new Slot(inventory, 4, 150, 26));
+        this.addSlot(new Slot(inventory, 5, 150, 44));
+        this.addSlot(new Slot(inventory, 6, 150, 62));
+        this.addSlot(new Slot(inventory, 7, 132, 8));
+        this.addSlot(new Slot(inventory, 8, 132, 26));
+        this.addSlot(new Slot(inventory, 9, 132, 44));
+        this.addSlot(new Slot(inventory, 10, 132, 62));
+        this.addSlot(new Slot(inventory, 11, 114, 8));
+        this.addSlot(new Slot(inventory, 12, 114, 26));
+        this.addSlot(new Slot(inventory, 13, 114, 44));
+        this.addSlot(new Slot(inventory, 14, 114, 62));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);

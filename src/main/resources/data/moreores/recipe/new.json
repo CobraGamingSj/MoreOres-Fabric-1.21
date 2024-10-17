@@ -1,0 +1,9 @@
+{
+  "type": "moreores:gem_polishing",
+  "ingredient": {
+    "item": "moreores:raw_ruby"
+  },
+  "result": {
+    "id": "moreores:ruby"
+  }
+}

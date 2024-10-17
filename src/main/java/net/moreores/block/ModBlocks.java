@@ -84,6 +84,7 @@ public class ModBlocks {
     public static final Block DEEPSLATE_PYROPE_ORE = ModRegistry.BlockRegistry.register("deepslate_pyrope_ore", new ExperienceDroppingBlock(UniformIntProvider.create(3, 5), AbstractBlock.Settings.create().requiresTool().strength(10.0f, 10.0f).strength(11.0f).sounds(BlockSoundGroup.STONE).mapColor(MapColor.STONE_GRAY)));
     public static final Block JADE_ORE = ModRegistry.BlockRegistry.register("jade_ore", new ExperienceDroppingBlock(UniformIntProvider.create(3, 5), AbstractBlock.Settings.create().requiresTool().strength(10.0f, 10.0f).strength(11.0f).sounds(BlockSoundGroup.STONE).mapColor(MapColor.STONE_GRAY)));
     public static final Block DEEPSLATE_JADE_ORE = ModRegistry.BlockRegistry.register("deepslate_jade_ore", new ExperienceDroppingBlock(UniformIntProvider.create(3, 5), AbstractBlock.Settings.create().requiresTool().strength(10.5f, 10.5f).strength(11.5f).sounds(BlockSoundGroup.STONE).mapColor(MapColor.STONE_GRAY)));
+//    public static final Block EXAMPLE_BLOCK = ModRegistry.BlockRegistry.register("examole_block", new ExampleBlock(AbstractBlock.Settings.create()));
 
     public static void register() {
         MoreOres.LOGGER.info("Loading ModBlocks for " + MoreOres.MOD_ID + " mod.");
