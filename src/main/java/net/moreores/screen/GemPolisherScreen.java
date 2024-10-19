@@ -40,7 +40,7 @@ public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
 
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if(handler.isCrafting()) {
-            context.drawTexture(TEXTURE, x + 110, y + 31, 176, 0, 8, handler.getScaledProgress());
+            context.drawTexture(TEXTURE, x + 89, y + 31, 176, 0, 8, handler.getScaledProgress());
         }
     }
 

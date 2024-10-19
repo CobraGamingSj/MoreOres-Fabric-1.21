@@ -230,14 +230,9 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 
     private boolean hasRecipe() {
         Optional<RecipeEntry<GemPolisherRecipe>> recipe = getSlot1Recipe();
-        Optional<RecipeEntry<GemPolisherRecipe>> recipe1 = getSlot2Recipe();
 
-        return recipe.isPresent() && recipe1.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
+        return recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
                 && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
-    }
-
-    private Optional<RecipeEntry<GemPolisherRecipe>> getSlot2Recipe() {
-        return this.matchGetter.getFirstMatch(new SingleStackRecipeInput(this.getStack(ENERGY_SLOT)), this.world);
     }
 
     private Optional<RecipeEntry<GemPolisherRecipe>> getSlot1Recipe() {
