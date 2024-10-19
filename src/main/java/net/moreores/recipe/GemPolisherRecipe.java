@@ -60,14 +60,15 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
 
     public static class Type implements RecipeType<GemPolisherRecipe> {
         public static final Type INSTANCE = new Type();
-        public static final String ID = "gem_polishing";
+        public static final String ID = "gem_polishing"; //Recipe ID
     }
 
     public static class Serializer implements RecipeSerializer<GemPolisherRecipe> {
 
         public static final Serializer INSTANCE = new Serializer();
-        public static final String ID = "gem_polishing";
+        public static final String ID = "gem_polishing"; //Recipe ID
 
+        //CODEC
         public static final MapCodec<GemPolisherRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                 Ingredient.DISALLOW_EMPTY_CODEC.fieldOf("ingredient").forGetter(r -> r.ingredient),
                 ItemStack.VALIDATED_CODEC.fieldOf("result").forGetter(r -> r.output)

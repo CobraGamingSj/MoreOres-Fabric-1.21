@@ -6,7 +6,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -15,8 +14,6 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeManager;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.input.RecipeInput;
 import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
@@ -32,7 +29,6 @@ import net.moreores.recipe.GemPolisherRecipe;
 import net.moreores.screen.GemPolisherScreenHandler;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
 import java.util.Optional;
 
 public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
@@ -158,7 +154,7 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void craftItem() {
-        RecipeEntry<GemPolisherRecipe> recipe = getSlot1Recipe().orElseThrow();
+        RecipeEntry<GemPolisherRecipe> recipe = currentRecipe().orElseThrow();
         ItemStack energySlot = getStack(ENERGY_SLOT);
 
 
@@ -229,13 +225,13 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private boolean hasRecipe() {
-        Optional<RecipeEntry<GemPolisherRecipe>> recipe = getSlot1Recipe();
+        Optional<RecipeEntry<GemPolisherRecipe>> recipe = currentRecipe();
 
         return recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
                 && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
     }
 
-    private Optional<RecipeEntry<GemPolisherRecipe>> getSlot1Recipe() {
+    private Optional<RecipeEntry<GemPolisherRecipe>> currentRecipe() {
         return this.matchGetter.getFirstMatch(new SingleStackRecipeInput(this.getStack(INPUT_SLOT)), this.world);
     }
 
