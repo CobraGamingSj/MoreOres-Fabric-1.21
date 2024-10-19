@@ -32,11 +32,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(15, ItemStack.EMPTY); // Corrected size to 15
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(15, ItemStack.EMPTY); // Changed size to 15(3 existing slots, 12 new slots added)
 
-    public static final int INPUT_SLOT = 0;
-    public static final int OUTPUT_SLOT = 1;
-    public static final int ENERGY_SLOT = 2;
+    public static final int ITEM_INPUT_SLOT = 0;
+    public static final int ITEM_OUTPUT_SLOT = 1;
+    public static final int ENERGY_SOURCE_SLOT = 2;
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
@@ -71,11 +71,12 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         };
     }
 
+    //Renamed method form getRenderStack to getStackRenderer
     public ItemStack getRenderStack() {
-        if (this.getStack(OUTPUT_SLOT).isEmpty()) {
-            return this.getStack(INPUT_SLOT);
+        if (this.getStack(ITEM_OUTPUT_SLOT).isEmpty()) {
+            return this.getStack(ITEM_INPUT_SLOT);
         } else {
-            return this.getStack(OUTPUT_SLOT);
+            return this.getStack(ITEM_OUTPUT_SLOT);
         }
     }
 
@@ -137,9 +138,9 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         }
 
         if (isOutputSlotEmptyOrReceivable() && hasRecipe()) {
-            this.increaseCraftProgress();
-            if (hasCraftingFinished()) {
-                this.craftItem();
+            this.increaseProgress();
+            if (hasPolishingFinished()) {
+                this.craftResultItem();
                 this.resetProgress();
             }
             markDirty(world, pos, state);
@@ -153,23 +154,24 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         this.progress = 0;
     }
 
-    private void craftItem() {
+    //Renamed method from craftItem to craftResultItem
+    private void craftResultItem() {
         RecipeEntry<GemPolisherRecipe> recipe = currentRecipe().orElseThrow();
-        ItemStack energySlot = getStack(ENERGY_SLOT);
+        ItemStack energySlot = getStack(ENERGY_SOURCE_SLOT);
 
 
-        this.removeStack(INPUT_SLOT, 1);
+        this.removeStack(ITEM_INPUT_SLOT, 1);
         if (energySlot.getItem() == ModItems.ENERGY_INGOT) {
             if (energySlot.getDamage() < energySlot.getMaxDamage()) {
                 energySlot.setDamage(energySlot.getDamage() + 5);
             }
         }else {
-            this.removeStack(ENERGY_SLOT);
+            this.removeStack(ENERGY_SOURCE_SLOT);
         }
 
 
-        this.setStack(OUTPUT_SLOT, new ItemStack(recipe.value().getResult(null).getItem(),
-                getStack(OUTPUT_SLOT).getCount() + recipe.value().getResult(null).getCount()));
+        this.setStack(ITEM_OUTPUT_SLOT, new ItemStack(recipe.value().getResult(null).getItem(),
+                getStack(ITEM_OUTPUT_SLOT).getCount() + recipe.value().getResult(null).getCount()));
     }
 
 //    private void craftItem() {
@@ -216,11 +218,13 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 //        this.setStack(OUTPUT_SLOT, new ItemStack(result.getItem(), getStack(OUTPUT_SLOT).getCount() + result.getCount()));
 //    }
 
-    private boolean hasCraftingFinished() {
+    //Renamed method from hasCraftingFinished to hasPolishingFinished
+    private boolean hasPolishingFinished() {
         return progress >= maxProgress;
     }
 
-    private void increaseCraftProgress() {
+    //Renamed method from increaseCraftProgress to increaseProgress
+    private void increaseProgress() {
         progress++;
     }
 
@@ -231,8 +235,9 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
                 && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
     }
 
+    //Renamed method from getCurrentRecipe to currentRecipe
     private Optional<RecipeEntry<GemPolisherRecipe>> currentRecipe() {
-        return this.matchGetter.getFirstMatch(new SingleStackRecipeInput(this.getStack(INPUT_SLOT)), this.world);
+        return this.matchGetter.getFirstMatch(new SingleStackRecipeInput(this.getStack(ITEM_INPUT_SLOT)), this.world);
     }
 
 //    private boolean hasRecipe() {
@@ -268,14 +273,14 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 //    }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {
-        return this.getStack(OUTPUT_SLOT).getItem() == item || this.getStack(OUTPUT_SLOT).isEmpty();
+        return this.getStack(ITEM_OUTPUT_SLOT).getItem() == item || this.getStack(ITEM_OUTPUT_SLOT).isEmpty();
     }
 
     private boolean canInsertAmountIntoOutputSlot(ItemStack result) {
-        return this.getStack(OUTPUT_SLOT).getCount() + result.getCount() <= getStack(OUTPUT_SLOT).getMaxCount();
+        return this.getStack(ITEM_OUTPUT_SLOT).getCount() + result.getCount() <= getStack(ITEM_OUTPUT_SLOT).getMaxCount();
     }
 
     private boolean isOutputSlotEmptyOrReceivable() {
-        return this.getStack(OUTPUT_SLOT).isEmpty() || this.getStack(OUTPUT_SLOT).getCount() < this.getStack(OUTPUT_SLOT).getMaxCount();
+        return this.getStack(ITEM_OUTPUT_SLOT).isEmpty() || this.getStack(ITEM_OUTPUT_SLOT).getCount() < this.getStack(ITEM_OUTPUT_SLOT).getMaxCount();
     }
 }

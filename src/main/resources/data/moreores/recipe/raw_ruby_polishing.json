@@ -1,5 +1,5 @@
 {
-  "type": "moreores:gem_polishing",
+  "type": "moreores:polish_gem",
   "ingredient": {
     "item": "moreores:raw_ruby"
   },

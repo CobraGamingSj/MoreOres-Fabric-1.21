@@ -60,13 +60,13 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
 
     public static class Type implements RecipeType<GemPolisherRecipe> {
         public static final Type INSTANCE = new Type();
-        public static final String ID = "gem_polishing"; //Recipe ID
+        public static final String ID = "polish_gem"; //Recipe ID
     }
 
     public static class Serializer implements RecipeSerializer<GemPolisherRecipe> {
 
         public static final Serializer INSTANCE = new Serializer();
-        public static final String ID = "gem_polishing"; //Recipe ID
+        public static final String ID = "polish_gem"; //Recipe ID
 
         //CODEC
         public static final MapCodec<GemPolisherRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
