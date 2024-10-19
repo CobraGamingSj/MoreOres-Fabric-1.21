@@ -1,0 +1,10 @@
+{
+  "type": "moreores:polish_gem",
+  "ingredient": {
+    "item": "moreores:raw_pyrope"
+  },
+  "result": {
+    "count": 1,
+    "id": "moreores:pyrope"
+  }
+}

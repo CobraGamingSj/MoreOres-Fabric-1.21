@@ -5,16 +5,12 @@ import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.AdvancementRequirements;
 import net.minecraft.advancement.AdvancementRewards;
 import net.minecraft.advancement.criterion.RecipeUnlockedCriterion;
-import net.minecraft.data.server.recipe.CraftingRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.SmithingTransformRecipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.util.Identifier;
 import net.moreores.recipe.GemPolisherRecipe;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -22,19 +18,17 @@ import java.util.Map;
 public class GemPolishingRecipeJsonBuilder {
     private final ItemStack output;
     private final Ingredient ingredient;
-    private final Ingredient energySource;
     private final RecipeCategory category;
     private final Map<String, AdvancementCriterion<?>> criterion = new LinkedHashMap<>();
 
-    public GemPolishingRecipeJsonBuilder(Ingredient ingredient, Ingredient energySource, ItemStack output, RecipeCategory category) {
+    public GemPolishingRecipeJsonBuilder(Ingredient ingredient, ItemStack output, RecipeCategory category) {
         this.output = output;
         this.ingredient = ingredient;
-        this.energySource = energySource;
         this.category = category;
     }
 
-    public static GemPolishingRecipeJsonBuilder create(Ingredient ingredient, Ingredient energySource, ItemStack result, RecipeCategory category) {
-        return new GemPolishingRecipeJsonBuilder(ingredient, energySource, result, category);
+    public static GemPolishingRecipeJsonBuilder create(Ingredient ingredient, ItemStack result, RecipeCategory category) {
+        return new GemPolishingRecipeJsonBuilder(ingredient, result, category);
     }
 
     public GemPolishingRecipeJsonBuilder criterion(String name, AdvancementCriterion<?> criterion) {

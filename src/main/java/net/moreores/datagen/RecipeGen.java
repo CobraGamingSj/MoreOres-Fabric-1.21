@@ -53,10 +53,70 @@ public class RecipeGen extends FabricRecipeProvider {
                 ModBlocks.RAW_PYROPE_BLOCK);
 
         GemPolishingRecipeJsonBuilder.create(
-                Ingredient.ofItems(ModItems.RAW_RUBY), energy, new ItemStack(ModItems.RUBY), RecipeCategory.MISC
+                Ingredient.ofItems(ModItems.RAW_RUBY), new ItemStack(ModItems.RUBY), RecipeCategory.MISC
         )
-                .criterion("input", conditionsFromItem(ModItems.RAW_RUBY))
-                .offerTo(exporter, "item");
+         .criterion(hasItem(ModItems.RAW_RUBY), conditionsFromItem(ModItems.RAW_RUBY))
+         .offerTo(exporter, Identifier.of(getRecipeName(ModItems.RUBY) + "_polishing"));
+
+        GemPolishingRecipeJsonBuilder.create(
+                        Ingredient.ofItems(ModItems.RAW_SAPPHIRE), new ItemStack(ModItems.SAPPHIRE), RecipeCategory.MISC
+        )
+         .criterion(hasItem(ModItems.RAW_SAPPHIRE), conditionsFromItem(ModItems.RAW_SAPPHIRE))
+         .offerTo(exporter, Identifier.of(getRecipeName(ModItems.SAPPHIRE) + "_polishing"));
+
+        GemPolishingRecipeJsonBuilder.create(
+                        Ingredient.ofItems(ModItems.RAW_GREEN_SAPPHIRE), new ItemStack(ModItems.GREEN_SAPPHIRE), RecipeCategory.MISC
+                )
+                .criterion(hasItem(ModItems.RAW_GREEN_SAPPHIRE), conditionsFromItem(ModItems.RAW_GREEN_SAPPHIRE))
+                .offerTo(exporter, Identifier.of(getRecipeName(ModItems.GREEN_SAPPHIRE) + "_polishing"));
+
+        GemPolishingRecipeJsonBuilder.create(
+                        Ingredient.ofItems(ModItems.RAW_BLUE_GARNET), new ItemStack(ModItems.BLUE_GARNET), RecipeCategory.MISC
+                )
+                .criterion(hasItem(ModItems.RAW_BLUE_GARNET), conditionsFromItem(ModItems.RAW_BLUE_GARNET))
+                .offerTo(exporter, Identifier.of(getRecipeName(ModItems.BLUE_GARNET) + "_polishing"));
+
+        GemPolishingRecipeJsonBuilder.create(
+                        Ingredient.ofItems(ModItems.RAW_PINK_GARNET), new ItemStack(ModItems.PINK_GARNET), RecipeCategory.MISC
+                )
+                .criterion(hasItem(ModItems.RAW_PINK_GARNET), conditionsFromItem(ModItems.RAW_PINK_GARNET))
+                .offerTo(exporter, Identifier.of(getRecipeName(ModItems.PINK_GARNET) + "_polishing"));
+
+        GemPolishingRecipeJsonBuilder.create(
+                        Ingredient.ofItems(ModItems.RAW_GREEN_GARNET), new ItemStack(ModItems.GREEN_GARNET), RecipeCategory.MISC
+                )
+                .criterion(hasItem(ModItems.RAW_GREEN_GARNET), conditionsFromItem(ModItems.RAW_GREEN_GARNET))
+                .offerTo(exporter, Identifier.of(getRecipeName(ModItems.GREEN_GARNET) + "_polishing"));
+
+        GemPolishingRecipeJsonBuilder.create(
+                        Ingredient.ofItems(ModItems.RAW_TOPAZ), new ItemStack(ModItems.TOPAZ), RecipeCategory.MISC
+                )
+                .criterion(hasItem(ModItems.RAW_TOPAZ), conditionsFromItem(ModItems.RAW_TOPAZ))
+                .offerTo(exporter, Identifier.of(getRecipeName(ModItems.TOPAZ) + "_polishing"));
+
+        GemPolishingRecipeJsonBuilder.create(
+                        Ingredient.ofItems(ModItems.RAW_WHITE_TOPAZ), new ItemStack(ModItems.WHITE_TOPAZ), RecipeCategory.MISC
+                )
+                .criterion(hasItem(ModItems.RAW_WHITE_TOPAZ), conditionsFromItem(ModItems.RAW_WHITE_TOPAZ))
+                .offerTo(exporter, Identifier.of(getRecipeName(ModItems.WHITE_TOPAZ) + "_polishing"));
+
+        GemPolishingRecipeJsonBuilder.create(
+                        Ingredient.ofItems(ModItems.RAW_PERIDOT), new ItemStack(ModItems.PERIDOT), RecipeCategory.MISC
+                )
+                .criterion(hasItem(ModItems.RAW_PERIDOT), conditionsFromItem(ModItems.RAW_PERIDOT))
+                .offerTo(exporter, Identifier.of(getRecipeName(ModItems.PERIDOT) + "_polishing"));
+
+        GemPolishingRecipeJsonBuilder.create(
+                        Ingredient.ofItems(ModItems.RAW_JADE), new ItemStack(ModItems.JADE), RecipeCategory.MISC
+                )
+                .criterion(hasItem(ModItems.RAW_JADE), conditionsFromItem(ModItems.RAW_JADE))
+                .offerTo(exporter, Identifier.of(getRecipeName(ModItems.JADE) + "_polishing"));
+
+        GemPolishingRecipeJsonBuilder.create(
+                        Ingredient.ofItems(ModItems.RAW_PYROPE), new ItemStack(ModItems.PYROPE), RecipeCategory.MISC
+                )
+                .criterion(hasItem(ModItems.RAW_PYROPE), conditionsFromItem(ModItems.RAW_PYROPE))
+                .offerTo(exporter, Identifier.of(getRecipeName(ModItems.PYROPE) + "_polishing"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.GEM_POLISHER_BLOCK, 1)
                 .pattern("III")

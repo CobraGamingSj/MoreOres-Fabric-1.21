@@ -1,0 +1,10 @@
+{
+  "type": "moreores:polish_gem",
+  "ingredient": {
+    "item": "moreores:raw_pink_garnet"
+  },
+  "result": {
+    "count": 1,
+    "id": "moreores:pink_garnet"
+  }
+}

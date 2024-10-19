@@ -1,0 +1,10 @@
+{
+  "type": "moreores:polish_gem",
+  "ingredient": {
+    "item": "moreores:raw_sapphire"
+  },
+  "result": {
+    "count": 1,
+    "id": "moreores:sapphire"
+  }
+}
