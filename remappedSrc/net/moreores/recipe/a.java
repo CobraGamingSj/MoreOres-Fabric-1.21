@@ -1,4 +1,4 @@
-package net.moreores.recipe;//package net.moreores.recipe;
+package net.cobra.moreores.recipe;//package net.cobra.moreores.recipe;
 //
 //import com.google.common.base.Suppliers;
 //import net.minecraft.block.Block;
@@ -6,7 +6,7 @@ package net.moreores.recipe;//package net.moreores.recipe;
 //import net.minecraft.recipe.Ingredient;
 //import net.minecraft.registry.tag.BlockTags;
 //import net.minecraft.registry.tag.TagKey;
-//import net.moreores.item.ModItems;
+//import net.cobra.moreores.item.ModItems;
 //
 //import java.util.function.Supplier;
 //public enum a implements ToolMaterial {

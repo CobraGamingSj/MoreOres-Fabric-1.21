@@ -1,4 +1,4 @@
-package net.moreores.item;
+package net.cobra.moreores.item;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

@@ -1,4 +1,4 @@
-package net.moreores.datagen;
+package net.cobra.moreores.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -13,9 +13,9 @@ import net.minecraft.recipe.book.CookingRecipeCategory;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
-import net.moreores.MoreOres;
-import net.moreores.block.ModBlocks;
-import net.moreores.item.ModItems;
+import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 

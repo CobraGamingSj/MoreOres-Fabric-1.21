@@ -1,4 +1,4 @@
-package net.moreores;
+package net.cobra.moreores;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -6,11 +6,11 @@ import net.fabricmc.fabric.impl.client.model.loading.ModelLoadingEventDispatcher
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.moreores.block.ModBlocks;
-import net.moreores.block.entity.ModBlockEntityType;
-import net.moreores.client.render.block.entity.GemPolisherBlockEntityRenderer;
-import net.moreores.screen.GemPolisherScreen;
-import net.moreores.screen.ModScreenHandlers;
+import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.block.entity.ModBlockEntityType;
+import net.cobra.moreores.client.render.block.entity.GemPolisherBlockEntityRenderer;
+import net.cobra.moreores.screen.GemPolisherScreen;
+import net.cobra.moreores.screen.ModScreenHandlers;
 
 public class MoreOresClient implements ClientModInitializer {
     @Override

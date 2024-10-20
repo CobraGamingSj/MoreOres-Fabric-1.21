@@ -1,9 +1,9 @@
-package net.moreores.recipe;//package net.moreores.recipe;
+package net.cobra.moreores.recipe;//package net.cobra.moreores.recipe;
 //
 //import net.minecraft.registry.Registries;
 //import net.minecraft.registry.Registry;
 //import net.minecraft.util.Identifier;
-//import net.moreores.MoreOres;
+//import net.cobra.moreores.MoreOres;
 //
 //import javax.sound.sampled.EnumControl;
 //

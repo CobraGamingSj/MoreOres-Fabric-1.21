@@ -1,4 +1,4 @@
-package net.moreores.item;
+package net.cobra.moreores.item;
 
 import com.google.common.base.Suppliers;
 import java.util.function.Supplier;
@@ -8,7 +8,7 @@ import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
-import net.moreores.registry.ModBlockTags;
+import net.cobra.moreores.registry.ModBlockTags;
 
 public enum ModToolMaterials implements ToolMaterial
 {

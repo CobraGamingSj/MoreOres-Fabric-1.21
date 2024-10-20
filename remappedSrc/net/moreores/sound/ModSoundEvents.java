@@ -1,4 +1,4 @@
-package net.moreores.sound;
+package net.cobra.moreores.sound;
 
 import net.minecraft.block.jukebox.JukeboxSong;
 import net.minecraft.registry.Registries;
@@ -8,7 +8,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.moreores.MoreOres;
+import net.cobra.moreores.MoreOres;
 
 public class ModSoundEvents {
 

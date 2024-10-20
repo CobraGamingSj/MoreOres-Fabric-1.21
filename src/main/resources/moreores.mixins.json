@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "net.moreores.mixin",
+	"package": "net.cobra.moreores.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 		"ExampleMixin"

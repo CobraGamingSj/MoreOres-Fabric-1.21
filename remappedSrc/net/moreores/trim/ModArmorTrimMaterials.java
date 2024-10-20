@@ -1,4 +1,4 @@
-package net.moreores.trim;
+package net.cobra.moreores.trim;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.trim.ArmorTrimMaterial;
@@ -12,8 +12,8 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
-import net.moreores.MoreOres;
-import net.moreores.item.ModItems;
+import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.item.ModItems;
 
 import java.util.Map;
 

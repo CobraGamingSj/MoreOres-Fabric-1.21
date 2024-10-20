@@ -1,4 +1,4 @@
-package net.moreores.datagen;
+package net.cobra.moreores.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -6,10 +6,10 @@ import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
 import net.minecraft.item.ArmorItem;
-import net.moreores.block.ModBlocks;
-import net.moreores.block.PineappleCropBlock;
-import net.moreores.block.TomatoCropBlock;
-import net.moreores.item.ModItems;
+import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.block.PineappleCropBlock;
+import net.cobra.moreores.block.TomatoCropBlock;
+import net.cobra.moreores.item.ModItems;
 
 public class ModelGen extends FabricModelProvider {
     public ModelGen(FabricDataOutput output) {

@@ -1,4 +1,4 @@
-package net.moreores;
+package net.cobra.moreores;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -13,18 +13,18 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.moreores.block.ModBlocks;
-import net.moreores.block.entity.ModBlockEntityType;
-//import net.moreores.entity.ModEntityType;
-import net.moreores.item.ModItems;
-import net.moreores.registry.ModRegistry;
-import net.moreores.screen.ModScreenHandlers;
-import net.moreores.sound.ModBlockSoundGroup;
-import net.moreores.sound.ModSoundEvents;
-import net.moreores.util.CustomTrades;
-import net.moreores.util.ModifyVanillaLootTables;
-import net.moreores.village.ModVillagerProfessions;
-import net.moreores.world.gen.WorldGeneration;
+import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.block.entity.ModBlockEntityType;
+//import net.cobra.moreores.entity.ModEntityType;
+import net.cobra.moreores.item.ModItems;
+import net.cobra.moreores.registry.ModRegistry;
+import net.cobra.moreores.screen.ModScreenHandlers;
+import net.cobra.moreores.sound.ModBlockSoundGroup;
+import net.cobra.moreores.sound.ModSoundEvents;
+import net.cobra.moreores.util.CustomTrades;
+import net.cobra.moreores.util.ModifyVanillaLootTables;
+import net.cobra.moreores.village.ModVillagerProfessions;
+import net.cobra.moreores.world.gen.WorldGeneration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

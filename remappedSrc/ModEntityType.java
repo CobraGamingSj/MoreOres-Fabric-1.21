@@ -1,12 +1,12 @@
-//package net.moreores.entity;
+//package net.cobra.moreores.entity;
 //
 //import net.minecraft.entity.EntityType;
 //import net.minecraft.entity.SpawnGroup;
 //import net.minecraft.registry.Registries;
 //import net.minecraft.registry.Registry;
 //import net.minecraft.util.Identifier;
-//import net.moreores.MoreOres;
-//import net.moreores.entity.mob.ThunderEntity;
+//import net.cobra.moreores.MoreOres;
+//import net.cobra.moreores.entity.mob.ThunderEntity;
 //
 //public class ModEntityType {
 //

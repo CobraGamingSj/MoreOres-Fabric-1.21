@@ -1,4 +1,4 @@
-package net.moreores.recipe;//package net.moreores.recipe;
+package net.cobra.moreores.recipe;//package net.cobra.moreores.recipe;
 //
 //import com.mojang.serialization.Codec;
 //import com.mojang.serialization.DataResult;
@@ -16,7 +16,7 @@ package net.moreores.recipe;//package net.moreores.recipe;
 //import net.minecraft.registry.RegistryWrapper;
 //import net.minecraft.util.collection.DefaultedList;
 //import net.minecraft.world.World;
-//import net.moreores.block.entity.GemPolisherBlockEntity;
+//import net.cobra.moreores.block.entity.GemPolisherBlockEntity;
 //
 //import java.util.List;
 //

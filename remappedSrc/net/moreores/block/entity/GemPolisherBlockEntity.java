@@ -1,4 +1,4 @@
-package net.moreores.block.entity;
+package net.cobra.moreores.block.entity;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -20,9 +20,9 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.moreores.block.data.GemPolisherData;
-import net.moreores.item.ModItems;
-import net.moreores.screen.GemPolisherScreenHandler;
+import net.cobra.moreores.block.data.GemPolisherData;
+import net.cobra.moreores.item.ModItems;
+import net.cobra.moreores.screen.GemPolisherScreenHandler;
 import org.jetbrains.annotations.Nullable;
 
 public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {

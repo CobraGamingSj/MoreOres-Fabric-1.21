@@ -1,4 +1,4 @@
-package net.moreores.block;
+package net.cobra.moreores.block;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -10,9 +10,9 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.moreores.MoreOres;
-import net.moreores.registry.ModRegistry;
-import net.moreores.sound.ModBlockSoundGroup;
+import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.registry.ModRegistry;
+import net.cobra.moreores.sound.ModBlockSoundGroup;
 
 public class ModBlocks {
 

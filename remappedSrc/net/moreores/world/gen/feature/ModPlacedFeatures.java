@@ -1,4 +1,4 @@
-package net.moreores.world.gen.feature;
+package net.cobra.moreores.world.gen.feature;
 
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
-import net.moreores.MoreOres;
+import net.cobra.moreores.MoreOres;
 
 import java.util.List;
 

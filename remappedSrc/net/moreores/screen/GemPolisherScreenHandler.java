@@ -1,4 +1,4 @@
-package net.moreores.screen;
+package net.cobra.moreores.screen;
 
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,8 +11,8 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.Direction;
-import net.moreores.block.data.GemPolisherData;
-import net.moreores.block.entity.GemPolisherBlockEntity;
+import net.cobra.moreores.block.data.GemPolisherData;
+import net.cobra.moreores.block.entity.GemPolisherBlockEntity;
 
 import java.util.stream.IntStream;
 

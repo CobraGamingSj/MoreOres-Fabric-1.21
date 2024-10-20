@@ -1,4 +1,4 @@
-package net.moreores.item;
+package net.cobra.moreores.item;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.Entity;

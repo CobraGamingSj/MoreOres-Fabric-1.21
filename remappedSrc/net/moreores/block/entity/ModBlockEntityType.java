@@ -1,11 +1,11 @@
-package net.moreores.block.entity;
+package net.cobra.moreores.block.entity;
 
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.moreores.MoreOres;
-import net.moreores.block.ModBlocks;
+import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.block.ModBlocks;
 
 public class ModBlockEntityType {
 

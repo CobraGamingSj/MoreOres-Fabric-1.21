@@ -1,4 +1,4 @@
-//package net.moreores.entity.mob;
+//package net.cobra.moreores.entity.mob;
 //
 //import net.minecraft.entity.EntityType;
 //import net.minecraft.entity.LivingEntity;

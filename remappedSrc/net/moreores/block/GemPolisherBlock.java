@@ -1,4 +1,4 @@
-package net.moreores.block;
+package net.cobra.moreores.block;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
@@ -19,8 +19,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.moreores.block.entity.GemPolisherBlockEntity;
-import net.moreores.block.entity.ModBlockEntityType;
+import net.cobra.moreores.block.entity.GemPolisherBlockEntity;
+import net.cobra.moreores.block.entity.ModBlockEntityType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
