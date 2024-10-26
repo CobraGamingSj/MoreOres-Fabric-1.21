@@ -1,5 +1,6 @@
 package net.cobra.moreores.block.entity;
 
+import net.cobra.moreores.world.ModGameRules;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -14,6 +15,7 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeManager;
+import net.minecraft.recipe.ServerRecipeManager;
 import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
@@ -31,6 +33,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
+import static net.cobra.moreores.world.ModGameRules.getMaxPolishingSpeed;
+
 public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(15, ItemStack.EMPTY); // Changed size to 15(3 existing slots, 12 new slots added)
 
@@ -41,11 +45,11 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
     private int maxProgress = 400;
-    private final RecipeManager.MatchGetter<SingleStackRecipeInput, GemPolisherRecipe> matchGetter;
+    private final ServerRecipeManager.MatchGetter<SingleStackRecipeInput, GemPolisherRecipe> matchGetter;
 
     public GemPolisherBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntityType.GEM_POLISHER_BLOCK_ENTITY, pos, state);
-        this.matchGetter = RecipeManager.createCachedMatchGetter(GemPolisherRecipe.Type.INSTANCE);
+        this.matchGetter = ServerRecipeManager.createCachedMatchGetter(GemPolisherRecipe.Type.INSTANCE);
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
@@ -137,8 +141,9 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
             return;
         }
 
-        if (isOutputSlotEmptyOrReceivable() && hasRecipe()) {
-            this.increaseProgress();
+        if (isOutputSlotEmptyOrReceivable() && hasRecipe() && hasEnergySource()) {
+            int maxPolishingSpeed = getMaxPolishingSpeed(this.world);
+            this.increaseProgress(maxPolishingSpeed);
             if (hasPolishingFinished()) {
                 this.craftResultItem();
                 this.resetProgress();
@@ -157,18 +162,8 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     //Renamed method from craftItem to craftResultItem
     private void craftResultItem() {
         RecipeEntry<GemPolisherRecipe> recipe = currentRecipe().orElseThrow();
-        ItemStack energySlot = getStack(ENERGY_SOURCE_SLOT);
-
 
         this.removeStack(ITEM_INPUT_SLOT, 1);
-        if (energySlot.getItem() == ModItems.ENERGY_INGOT) {
-            if (energySlot.getDamage() < energySlot.getMaxDamage()) {
-                energySlot.setDamage(energySlot.getDamage() + 5);
-            }
-        }else {
-            this.removeStack(ENERGY_SOURCE_SLOT);
-        }
-
 
         this.setStack(ITEM_OUTPUT_SLOT, new ItemStack(recipe.value().getResult(null).getItem(),
                 getStack(ITEM_OUTPUT_SLOT).getCount() + recipe.value().getResult(null).getCount()));
@@ -224,8 +219,8 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     //Renamed method from increaseCraftProgress to increaseProgress
-    private void increaseProgress() {
-        progress++;
+    private void increaseProgress(int polishingSpeed) {
+        progress += polishingSpeed;
     }
 
     private boolean hasRecipe() {
@@ -233,6 +228,10 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 
         return recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
                 && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
+    }
+
+    private boolean hasEnergySource() {
+        return this.getStack(ENERGY_SOURCE_SLOT).isOf(ModItems.ENERGY_INGOT);
     }
 
     //Renamed method from getCurrentRecipe to currentRecipe

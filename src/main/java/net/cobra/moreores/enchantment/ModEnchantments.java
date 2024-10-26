@@ -1,14 +1,22 @@
 //package net.cobra.moreores.enchantment;
 //
 //import net.minecraft.block.Block;
+//import net.minecraft.component.EnchantmentEffectComponentTypes;
 //import net.minecraft.component.type.AttributeModifierSlot;
 //import net.minecraft.enchantment.Enchantment;
+//import net.minecraft.enchantment.effect.AllOfEnchantmentEffects;
+//import net.minecraft.enchantment.effect.EnchantmentEffectTarget;
+//import net.minecraft.enchantment.effect.entity.SummonEntityEnchantmentEffect;
+//import net.minecraft.entity.EntityType;
 //import net.minecraft.entity.damage.DamageType;
 //import net.minecraft.item.Item;
+//import net.minecraft.loot.condition.AllOfLootCondition;
+//import net.minecraft.loot.condition.LootConditionTypes;
 //import net.minecraft.registry.Registerable;
 //import net.minecraft.registry.RegistryEntryLookup;
 //import net.minecraft.registry.RegistryKey;
 //import net.minecraft.registry.RegistryKeys;
+//import net.minecraft.registry.entry.RegistryEntryList;
 //import net.minecraft.registry.tag.ItemTags;
 //import net.minecraft.util.Identifier;
 //import net.cobra.moreores.MoreOres;
@@ -31,7 +39,14 @@
 //                        8,
 //                        AttributeModifierSlot.MAINHAND
 //                )
-//        ));
+//        ).addEffect(EnchantmentEffectComponentTypes.POST_ATTACK, EnchantmentEffectTarget.ATTACKER, EnchantmentEffectTarget.VICTIM,
+//                AllOfEnchantmentEffects.allOf(
+//                        new SummonEntityEnchantmentEffect(RegistryEntryList.of(EntityType.LIGHTNING_BOLT.getRegistryEntry()), false)
+//                ),
+//                AllOfLootCondition.builder(
+//                        LootConditionTypes.ANY_OF
+//                ))
+//        );
 //    }
 //
 //    private static void register(Registerable<Enchantment> registry, RegistryKey<Enchantment> key, Enchantment.Builder builder) {

@@ -5,10 +5,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.*;
+import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.world.World;
@@ -56,6 +54,16 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
     @Override
     public RecipeType<?> getType() {
         return Type.INSTANCE;
+    }
+
+    @Override
+    public IngredientPlacement getIngredientPlacement() {
+        return null;
+    }
+
+    @Override
+    public RecipeBookCategory getRecipeBookCategory() {
+        return null;
     }
 
     public static class Type implements RecipeType<GemPolisherRecipe> {

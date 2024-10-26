@@ -1,5 +1,7 @@
 package net.cobra.moreores;
 
+import net.cobra.moreores.component.type.ModConsumableComponents;
+import net.cobra.moreores.world.ModGameRules;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -263,5 +265,13 @@ public class MoreOres implements ModInitializer {
 		//ModRecipes Registry
 		ModRecipeType.register();
 		ModRecipeSerializer.register();
+
+
+		//ModGameRules Registry
+		ModGameRules.register();
+
+
+		//ModConsumableComponents Registry
+		ModConsumableComponents.register();
 	}
 }

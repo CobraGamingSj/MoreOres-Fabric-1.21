@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 import net.cobra.moreores.MoreOres;
 
 public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
-    private static final Identifier TEXTURE = Identifier.of(MoreOres.MOD_ID, "textures/gui/gem_polisher_gui.png");
+    private static final Identifier TEXTURE = Identifier.of(MoreOres.MOD_ID, "textures/gui/container/gem_polisher_gui.png");
 
     public GemPolisherScreen(GemPolisherScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -22,7 +22,6 @@ public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
         titleY = 1000;
         playerInventoryTitleY = 1000;
     }
-
 
 
     @Override
@@ -40,7 +39,7 @@ public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
 
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if(handler.isCrafting()) {
-            context.drawTexture(TEXTURE, x + 89, y + 31, 176, 0, 8, handler.getScaledProgress());
+            context.drawTexture(TEXTURE, x + 88, y + 31, 176, 0, 8, handler.getScaledProgress());
         }
     }
 

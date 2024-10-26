@@ -9,8 +9,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 
-public enum ModToolMaterials implements ToolMaterial
-{
+public class ModToolMaterials implements ToolMaterial {
     RUBY(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 2652, 14.0f, 8.0f, 15, () ->
             Ingredient.ofItems(ModItems.RUBY)),
     SAPPHIRE(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 3021, 16f, 10.0f, 16, () ->

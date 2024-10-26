@@ -1,29 +1,20 @@
 package net.cobra.moreores.item;
 
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.item.consume.UseAction;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
-import java.util.function.Predicate;
 
 public class EnergyIngotItem extends Item {
     public EnergyIngotItem(Settings settings) {
@@ -102,7 +93,7 @@ public class EnergyIngotItem extends Item {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+    public ActionResult use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
 
         if (!world.isClient() && hand == Hand.MAIN_HAND) {
@@ -136,67 +127,67 @@ public class EnergyIngotItem extends Item {
         return super.use(world, user, hand);
     }
 
-    private static void knockbackNearbyEntities(World world, PlayerEntity player, Entity attacked) {
-        world.syncWorldEvent(2013, attacked.getSteppingPos(), 750);
-        world.getEntitiesByClass(LivingEntity.class, attacked.getBoundingBox().expand(3.5), getKnockbackPredicate(player, attacked)).forEach((entity) -> {
-            Vec3d vec3d = entity.getPos().subtract(attacked.getPos());
-            double d = getKnockback(player, entity, vec3d);
-            Vec3d vec3d2 = vec3d.normalize().multiply(d);
-            if (d > 0.0) {
-                entity.addVelocity(vec3d2.x, 0.699999988079071, vec3d2.z);
-                if (entity instanceof ServerPlayerEntity) {
-                    ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)entity;
-                    serverPlayerEntity.networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(serverPlayerEntity));
-                }
-            }
+//    private static void knockbackNearbyEntities(World world, PlayerEntity player, Entity attacked) {
+//        world.syncWorldEvent(2013, attacked.getSteppingPos(), 750);
+//        world.getEntitiesByClass(LivingEntity.class, attacked.getBoundingBox().expand(3.5), getKnockbackPredicate(player, attacked)).forEach((entity) -> {
+//            Vec3d vec3d = entity.getPos().subtract(attacked.getPos());
+//            double d = getKnockback(player, entity, vec3d);
+//            Vec3d vec3d2 = vec3d.normalize().multiply(d);
+//            if (d > 0.0) {
+//                entity.addVelocity(vec3d2.x, 0.699999988079071, vec3d2.z);
+//                if (entity instanceof ServerPlayerEntity) {
+//                    ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)entity;
+//                    serverPlayerEntity.networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(serverPlayerEntity));
+//                }
+//            }
+//
+//        });
+//    }
 
-        });
-    }
+//    private static Predicate<LivingEntity> getKnockbackPredicate(PlayerEntity player, Entity attacked) {
+//        return (entity) -> {
+//            boolean var10000;
+//            boolean bl;
+//            boolean bl2;
+//            boolean bl3;
+//            label62: {
+//                bl = !entity.isSpectator();
+//                bl2 = entity != player && entity != attacked;
+//                bl3 = !player.isTeammate(entity);
+//                if (entity instanceof TameableEntity tameableEntity) {
+//                    if (tameableEntity.isTamed() && player.getUuid().equals(tameableEntity.getOwnerUuid())) {
+//                        var10000 = true;
+//                        break label62;
+//                    }
+//                }
+//
+//                var10000 = false;
+//            }
+//
+//            boolean bl4;
+//            label55: {
+//                bl4 = !var10000;
+//                if (entity instanceof ArmorStandEntity armorStandEntity) {
+//                    if (armorStandEntity.isMarker()) {
+//                        var10000 = false;
+//                        break label55;
+//                    }
+//                }
+//
+//                var10000 = true;
+//            }
+//
+//            boolean bl5 = var10000;
+//            boolean bl6 = attacked.squaredDistanceTo(entity) <= Math.pow(3.5, 2.0);
+//            return bl && bl2 && bl3 && bl4 && bl5 && bl6;
+//        };
+//    }
 
-    private static Predicate<LivingEntity> getKnockbackPredicate(PlayerEntity player, Entity attacked) {
-        return (entity) -> {
-            boolean var10000;
-            boolean bl;
-            boolean bl2;
-            boolean bl3;
-            label62: {
-                bl = !entity.isSpectator();
-                bl2 = entity != player && entity != attacked;
-                bl3 = !player.isTeammate(entity);
-                if (entity instanceof TameableEntity tameableEntity) {
-                    if (tameableEntity.isTamed() && player.getUuid().equals(tameableEntity.getOwnerUuid())) {
-                        var10000 = true;
-                        break label62;
-                    }
-                }
-
-                var10000 = false;
-            }
-
-            boolean bl4;
-            label55: {
-                bl4 = !var10000;
-                if (entity instanceof ArmorStandEntity armorStandEntity) {
-                    if (armorStandEntity.isMarker()) {
-                        var10000 = false;
-                        break label55;
-                    }
-                }
-
-                var10000 = true;
-            }
-
-            boolean bl5 = var10000;
-            boolean bl6 = attacked.squaredDistanceTo(entity) <= Math.pow(3.5, 2.0);
-            return bl && bl2 && bl3 && bl4 && bl5 && bl6;
-        };
-    }
-
-    private static double getKnockback(PlayerEntity player, LivingEntity attacked, Vec3d distance) {
-        return (3.5 - distance.length()) * 0.699999988079071 * (double)(player.fallDistance > 5.0F ? 2 : 1) * (1.0 - attacked.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
-    }
-
-   public static boolean shouldDealAdditionalDamage(LivingEntity attacker) {
-        return attacker.fallDistance > 1.5F && !attacker.isFallFlying();
-    }
+//    private static double getKnockback(PlayerEntity player, LivingEntity attacked, Vec3d distance) {
+//        return (3.5 - distance.length()) * 0.699999988079071 * (double)(player.fallDistance > 5.0F ? 2 : 1) * (1.0 - attacked.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
+//    }
+//
+//   public static boolean shouldDealAdditionalDamage(LivingEntity attacker) {
+//        return attacker.fallDistance > 1.5F && !attacker.isFallFlying();
+//    }
 }
