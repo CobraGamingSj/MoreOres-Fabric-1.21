@@ -12,9 +12,41 @@ import net.cobra.moreores.MoreOres;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.item.ModItems;
 
+import java.util.function.Function;
+
 public class ModRegistry {
 
     public static class ItemRegistry {
+
+
+        public static Item register(String id, Function<Item.Settings, Item> factory) {
+            return register(keyOf(id), factory, new Item.Settings());
+        }
+
+        public static Item register(String id, Function<Item.Settings, Item> factory, Item.Settings settings) {
+            return register(keyOf(id), factory, settings);
+        }
+
+        public static Item register(String id, Item.Settings settings) {
+            return register(keyOf(id), Item::new, settings);
+        }
+
+        public static Item register(String id) {
+            return register(keyOf(id), Item::new, new Item.Settings());
+        }
+
+        public static Item register(RegistryKey<Item> key, Function<Item.Settings, Item> factory) {
+            return register(key, factory, new Item.Settings());
+        }
+
+        public static Item register(RegistryKey<Item> key, Function<Item.Settings, Item> factory, Item.Settings settings) {
+            Item item = (Item)factory.apply(settings.registryKey(key));
+            if (item instanceof BlockItem blockItem) {
+                blockItem.appendBlocks(Item.BLOCK_ITEMS, item);
+            }
+
+            return Registry.register(Registries.ITEM, key, item);
+        }
 
 
         //Items Registry

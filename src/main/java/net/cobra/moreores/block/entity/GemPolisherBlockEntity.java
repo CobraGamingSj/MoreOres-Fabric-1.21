@@ -21,6 +21,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -236,7 +237,8 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 
     //Renamed method from getCurrentRecipe to currentRecipe
     private Optional<RecipeEntry<GemPolisherRecipe>> currentRecipe() {
-        return this.matchGetter.getFirstMatch(new SingleStackRecipeInput(this.getStack(ITEM_INPUT_SLOT)), this.world);
+        ServerWorld server = world.getServer().getOverworld();
+        return this.matchGetter.getFirstMatch(new SingleStackRecipeInput(this.getStack(ITEM_INPUT_SLOT)), server);
     }
 
 //    private boolean hasRecipe() {
