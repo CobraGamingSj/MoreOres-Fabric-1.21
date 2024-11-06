@@ -1,6 +1,9 @@
 package net.cobra.moreores.block.entity;
 
-import net.cobra.moreores.world.ModGameRules;
+import net.cobra.moreores.block.data.GemPolisherData;
+import net.cobra.moreores.item.ModItems;
+import net.cobra.moreores.recipe.GemPolisherRecipe;
+import net.cobra.moreores.screen.GemPolisherScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -14,7 +17,6 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.recipe.RecipeEntry;
-import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.ServerRecipeManager;
 import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
@@ -26,15 +28,9 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.cobra.moreores.block.data.GemPolisherData;
-import net.cobra.moreores.item.ModItems;
-import net.cobra.moreores.recipe.GemPolisherRecipe;
-import net.cobra.moreores.screen.GemPolisherScreenHandler;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
-
-import static net.cobra.moreores.world.ModGameRules.getMaxPolishingSpeed;
 
 public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(15, ItemStack.EMPTY); // Changed size to 15(3 existing slots, 12 new slots added)
@@ -50,7 +46,7 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 
     public GemPolisherBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntityType.GEM_POLISHER_BLOCK_ENTITY, pos, state);
-        this.matchGetter = ServerRecipeManager.createCachedMatchGetter(GemPolisherRecipe.Type.INSTANCE);
+        this.matchGetter = ServerRecipeManager.createCachedMatchGetter(GemPolisherRecipe.Type.GEM_POLISHING);
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
@@ -141,10 +137,8 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         if (world.isClient()) {
             return;
         }
-
         if (isOutputSlotEmptyOrReceivable() && hasRecipe() && hasEnergySource()) {
-            int maxPolishingSpeed = getMaxPolishingSpeed(this.world);
-            this.increaseProgress(maxPolishingSpeed);
+            this.increaseProgress();
             if (hasPolishingFinished()) {
                 this.craftResultItem();
                 this.resetProgress();
@@ -157,12 +151,21 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void resetProgress() {
-        this.progress = 0;
+        this.set(0);
     }
 
     //Renamed method from craftItem to craftResultItem
     private void craftResultItem() {
         RecipeEntry<GemPolisherRecipe> recipe = currentRecipe().orElseThrow();
+
+        ItemStack stack = getStack(ENERGY_SOURCE_SLOT);
+        if (!stack.isEmpty()) {
+            if (stack.getDamage() < stack.getMaxDamage()) {
+                stack.setDamage(stack.getDamage() + 5);
+            }
+        }else {
+            this.removeStack(ENERGY_SOURCE_SLOT);
+        }
 
         this.removeStack(ITEM_INPUT_SLOT, 1);
 
@@ -214,14 +217,18 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 //        this.setStack(OUTPUT_SLOT, new ItemStack(result.getItem(), getStack(OUTPUT_SLOT).getCount() + result.getCount()));
 //    }
 
+    private void set(int value) {
+        this.set(value);
+    }
+
     //Renamed method from hasCraftingFinished to hasPolishingFinished
     private boolean hasPolishingFinished() {
         return progress >= maxProgress;
     }
 
     //Renamed method from increaseCraftProgress to increaseProgress
-    private void increaseProgress(int polishingSpeed) {
-        progress += polishingSpeed;
+    private void increaseProgress() {
+        progress ++;
     }
 
     private boolean hasRecipe() {

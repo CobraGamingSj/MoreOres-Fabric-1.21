@@ -16,7 +16,7 @@ import net.cobra.moreores.block.ModBlocks;
 
 public class ModVillagerProfessions {
     public static final RegistryKey<PointOfInterestType> JEWEL_POI = poiKey("jewel_poi");
-    public static final PointOfInterestType JEWEL = registerPoi("jewel_poi", ModBlocks.GEM_POLISHER_BLOCK);
+    public static final PointOfInterestType JEWEL = registerPoi("jewel_poi", ModBlocks.RUBY_BLOCK);
 
     public static final VillagerProfession JEWELLER = registerProfession("jeweller", JEWEL_POI);
 

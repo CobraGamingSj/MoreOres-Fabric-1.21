@@ -2,10 +2,9 @@ package net.cobra.moreores.item;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.equipment.trim.ArmorTrimPattern;
 import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.item.trim.ArmorTrimPattern;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.resource.featuretoggle.FeatureFlag;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -16,8 +15,8 @@ import java.util.List;
 
 public class RubyUpgradeSmithingTemplate extends Item {
 
-    public RubyUpgradeSmithingTemplate(Text appliesToText, Text ingredientsText, Text titleText, Text baseSlotDescriptionText, Text additionsSlotDescriptionText, List<Identifier> emptyBaseSlotTextures, List<Identifier> emptyAdditionsSlotTextures, FeatureFlag ... requiredFeatures) {
-        super(new Settings().requires(requiredFeatures));
+    public RubyUpgradeSmithingTemplate(Text appliesToText, Text ingredientsText, Text titleText, Text baseSlotDescriptionText, Text additionsSlotDescriptionText, List<Identifier> emptyBaseSlotTextures, List<Identifier> emptyAdditionsSlotTextures, Item.Settings settings) {
+        super(settings);
         this.appliesToText = appliesToText;
         this.ingredientsText = ingredientsText;
         this.titleText = titleText;
@@ -63,22 +62,29 @@ public class RubyUpgradeSmithingTemplate extends Item {
     private final List<Identifier> emptyBaseSlotTextures;
     private final List<Identifier> emptyAdditionsSlotTextures;
 
-    public static RubyUpgradeSmithingTemplate of(RegistryKey<ArmorTrimPattern> trimPattern, FeatureFlag ... requiredFeatures) {
-        return RubyUpgradeSmithingTemplate.of(trimPattern.getValue(), requiredFeatures);
+    public static RubyUpgradeSmithingTemplate of(RegistryKey<ArmorTrimPattern> trimPattern) {
+        return RubyUpgradeSmithingTemplate.of(trimPattern.getValue());
     }
 
-    public static RubyUpgradeSmithingTemplate of(Identifier trimPatternIn, FeatureFlag ... requiredFeatures) {
-        return new RubyUpgradeSmithingTemplate(ARMOR_TRIM_APPLIES_TO_TEXT, ARMOR_TRIM_INGREDIENTS_TEXT, Text.translatable(Util.createTranslationKey("trim_pattern", trimPatternIn)).formatted(TITLE_FORMATTING), ARMOR_TRIM_BASE_SLOT_DESCRIPTION_TEXT, ARMOR_TRIM_ADDITIONS_SLOT_DESCRIPTION_TEXT, RubyUpgradeSmithingTemplate.getArmorTrimEmptyBaseSlotTextures(), RubyUpgradeSmithingTemplate.getArmorTrimEmptyAdditionsSlotTextures(), requiredFeatures);
+    public static RubyUpgradeSmithingTemplate of(Identifier trimPatternIn) {
+        return new RubyUpgradeSmithingTemplate(ARMOR_TRIM_APPLIES_TO_TEXT, ARMOR_TRIM_INGREDIENTS_TEXT, Text.translatable(Util.createTranslationKey("trim_pattern", trimPatternIn)).formatted(TITLE_FORMATTING), ARMOR_TRIM_BASE_SLOT_DESCRIPTION_TEXT, ARMOR_TRIM_ADDITIONS_SLOT_DESCRIPTION_TEXT, RubyUpgradeSmithingTemplate.getArmorTrimEmptyBaseSlotTextures(), RubyUpgradeSmithingTemplate.getArmorTrimEmptyAdditionsSlotTextures(), new Settings());
     }
 
     private static List<Identifier> getArmorTrimEmptyBaseSlotTextures() {
         return List.of(EMPTY_ARMOR_SLOT_HELMET_TEXTURE, EMPTY_ARMOR_SLOT_CHESTPLATE_TEXTURE, EMPTY_ARMOR_SLOT_LEGGINGS_TEXTURE, EMPTY_ARMOR_SLOT_BOOTS_TEXTURE);
     }
 
-    public static RubyUpgradeSmithingTemplate createRubyUpgrade() {
-        return new RubyUpgradeSmithingTemplate(RUBY_UPGRADE_APPLIES_TO_TEXT, RUBY_UPGRADE_INGREDIENTS_TEXT, RUBY_UPGRADE_TEXT, RUBY_UPGRADE_BASE_SLOT_DESCRIPTION_TEXT, RUBY_UPGRADE_ADDITIONS_SLOT_DESCRIPTION_TEXT, RubyUpgradeSmithingTemplate.getRubyUpgradeEmptyBaseSlotTextures(), RubyUpgradeSmithingTemplate.getRubyUpgradeEmptyAdditionsSlotTextures(), new FeatureFlag[0]);
+    public static RubyUpgradeSmithingTemplate createRubyUpgrade(Item.Settings settings) {
+        return new RubyUpgradeSmithingTemplate(
+                RUBY_UPGRADE_APPLIES_TO_TEXT,
+                RUBY_UPGRADE_INGREDIENTS_TEXT,
+                RUBY_UPGRADE_TEXT,
+                RUBY_UPGRADE_BASE_SLOT_DESCRIPTION_TEXT,
+                RUBY_UPGRADE_ADDITIONS_SLOT_DESCRIPTION_TEXT,
+                getRubyUpgradeEmptyBaseSlotTextures(),
+                getRubyUpgradeEmptyAdditionsSlotTextures(),
+                settings);
     }
-
 
     public static List<Identifier> getArmorTrimEmptyAdditionsSlotTextures() {
         return List.of(EMPTY_SLOT_INGOT_TEXTURE, EMPTY_SLOT_REDSTONE_DUST_TEXTURE, EMPTY_SLOT_LAPIS_LAZULI_TEXTURE, EMPTY_SLOT_QUARTZ_TEXTURE, EMPTY_SLOT_DIAMOND_TEXTURE, EMPTY_SLOT_EMERALD_TEXTURE, EMPTY_SLOT_AMETHYST_SHARD_TEXTURE);

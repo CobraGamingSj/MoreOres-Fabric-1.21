@@ -1,7 +1,9 @@
 package net.cobra.moreores.trim;
 
+import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.item.ModItems;
 import net.minecraft.item.Item;
-import net.minecraft.item.trim.ArmorTrimMaterial;
+import net.minecraft.item.equipment.trim.ArmorTrimMaterial;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
@@ -12,8 +14,6 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
-import net.cobra.moreores.MoreOres;
-import net.cobra.moreores.item.ModItems;
 
 import java.util.Map;
 

@@ -127,15 +127,15 @@ public class ModifyVanillaLootTables {
             tableBuilder.pool(poolBuilder5);
             tableBuilder.pool(poolBuilder6);
         }
-        if (CREEPER_SKELETON_KEY.equals(key)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.create().type(EntityType.SKELETON)))
-                        .with(TagEntry.builder(ItemTags.CREEPER_DROP_MUSIC_DISCS))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f)));
-
-                tableBuilder.pool(poolBuilder);
-            }
+//        if (CREEPER_SKELETON_KEY.equals(key)) {
+//                LootPool.Builder poolBuilder = LootPool.builder()
+//                        .rolls(ConstantLootNumberProvider.create(1))
+//                        .conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.create().type(EntityType.SKELETON)))
+//                        .with(TagEntry.builder(ItemTags.CREEPER_DROP_MUSIC_DISCS))
+//                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f)));
+//
+//                tableBuilder.pool(poolBuilder);
+//            }
         });
     }
 

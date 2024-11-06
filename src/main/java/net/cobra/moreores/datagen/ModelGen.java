@@ -1,20 +1,29 @@
 package net.cobra.moreores.datagen;
 
+import net.cobra.moreores.MoreOres;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.PineappleCropBlock;
 import net.cobra.moreores.block.TomatoCropBlock;
 import net.cobra.moreores.item.ModItems;
+import net.minecraft.item.Item;
+import net.minecraft.item.equipment.EquipmentModel;
+import net.minecraft.item.equipment.EquipmentModels;
+import net.minecraft.util.Identifier;
 
 public class ModelGen extends FabricModelProvider {
     public ModelGen(FabricDataOutput output) {
         super(output);
     }
+
+    public static final Identifier TEXTURE_RUBY = Identifier.of(MoreOres.MOD_ID,"ruby");
+    public static final Identifier TEXTURE_SAPPHIRE = Identifier.of(MoreOres.MOD_ID,"sapphire");
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
@@ -51,6 +60,8 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.register(ModItems.MUSIC_DISC_DEEPER, Models.TEMPLATE_MUSIC_DISC);
         itemModelGenerator.register(ModItems.MUSIC_DISC_WATCHER, Models.TEMPLATE_MUSIC_DISC);
 
+
+
         itemModelGenerator.register(ModItems.RAW_RUBY, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_SAPPHIRE, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_GREEN_SAPPHIRE, Models.GENERATED);
@@ -65,13 +76,13 @@ public class ModelGen extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE, Models.GENERATED);
 
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.RUBY_CHESTPLATE));
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.RUBY_HELMET));
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.RUBY_LEGGINGS));
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.RUBY_BOOTS));
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.SAPPHIRE_HELMET));
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.SAPPHIRE_CHESTPLATE));
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.SAPPHIRE_LEGGINGS));
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.SAPPHIRE_BOOTS));
+        itemModelGenerator.registerArmor((ModItems.RUBY_CHESTPLATE), TEXTURE_RUBY, EquipmentModel.builder().addHumanoidLayers(TEXTURE_RUBY).build(), EquipmentSlot.CHEST);
+        itemModelGenerator.registerArmor(ModItems.RUBY_HELMET, TEXTURE_RUBY, EquipmentModel.builder().addHumanoidLayers(TEXTURE_RUBY).build(), EquipmentSlot.HEAD);
+        itemModelGenerator.registerArmor(ModItems.RUBY_LEGGINGS, TEXTURE_RUBY, EquipmentModel.builder().addHumanoidLayers(TEXTURE_RUBY).build(), EquipmentSlot.LEGS);
+        itemModelGenerator.registerArmor(ModItems.RUBY_BOOTS, TEXTURE_RUBY, EquipmentModel.builder().addHumanoidLayers(TEXTURE_RUBY).build(), EquipmentSlot.FEET);
+        itemModelGenerator.registerArmor((ModItems.SAPPHIRE_CHESTPLATE), TEXTURE_SAPPHIRE, EquipmentModel.builder().addHumanoidLayers(TEXTURE_SAPPHIRE).build(), EquipmentSlot.CHEST);
+        itemModelGenerator.registerArmor(ModItems.SAPPHIRE_HELMET, TEXTURE_SAPPHIRE, EquipmentModel.builder().addHumanoidLayers(TEXTURE_SAPPHIRE).build(), EquipmentSlot.HEAD);
+        itemModelGenerator.registerArmor(ModItems.SAPPHIRE_LEGGINGS, TEXTURE_SAPPHIRE, EquipmentModel.builder().addHumanoidLayers(TEXTURE_SAPPHIRE).build(), EquipmentSlot.LEGS);
+        itemModelGenerator.registerArmor(ModItems.SAPPHIRE_BOOTS, TEXTURE_SAPPHIRE, EquipmentModel.builder().addHumanoidLayers(TEXTURE_SAPPHIRE).build(), EquipmentSlot.FEET);
     }
 }

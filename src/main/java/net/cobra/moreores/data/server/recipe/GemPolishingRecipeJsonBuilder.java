@@ -8,7 +8,9 @@ import net.minecraft.advancement.criterion.RecipeUnlockedCriterion;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.cobra.moreores.recipe.GemPolisherRecipe;
 
@@ -36,11 +38,7 @@ public class GemPolishingRecipeJsonBuilder {
         return this;
     }
 
-    public void offerTo(RecipeExporter exporter, String recipeId) {
-        this.offerTo(exporter, Identifier.of(recipeId));
-    }
-
-    public void offerTo(RecipeExporter exporter, Identifier recipeId) {
+    public void offerTo(RecipeExporter exporter, RegistryKey<Recipe<?>> recipeId) {
         this.validate(recipeId);
         Advancement.Builder builder = exporter.getAdvancementBuilder()
                 .criterion("has_the_recipe", RecipeUnlockedCriterion.create(recipeId))
@@ -48,10 +46,10 @@ public class GemPolishingRecipeJsonBuilder {
                 .criteriaMerger(AdvancementRequirements.CriterionMerger.OR);
         this.criterion.forEach(builder::criterion);
         GemPolisherRecipe gemPolishingRecipe = new GemPolisherRecipe(this.ingredient, this.output);
-        exporter.accept(recipeId, gemPolishingRecipe, builder.build(recipeId.withPrefixedPath("recipes/" + this.category.getName() + "/")));
+        exporter.accept(recipeId, gemPolishingRecipe, builder.build(recipeId.getValue().withPrefixedPath("recipes/" + this.category.getName() + "/")));
     }
 
-    private void validate(Identifier recipeId) {
+    private void validate(RegistryKey recipeId) {
         if (this.criterion.isEmpty()) {
             throw new IllegalStateException("No way of obtaining recipe " + recipeId);
         }

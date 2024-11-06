@@ -1,11 +1,23 @@
 package net.cobra.moreores;
 
+import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.component.type.ModConsumableComponents;
-import net.cobra.moreores.world.ModGameRules;
+import net.cobra.moreores.item.ModItems;
+import net.cobra.moreores.recipe.ModRecipeSerializer;
+import net.cobra.moreores.recipe.ModRecipeType;
+import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
+import net.cobra.moreores.screen.ModScreenHandlers;
+import net.cobra.moreores.sound.ModBlockSoundGroup;
+import net.cobra.moreores.sound.ModSoundEvents;
+import net.cobra.moreores.util.CustomTrades;
+import net.cobra.moreores.util.ModifyVanillaLootTables;
+import net.cobra.moreores.village.ModVillagerProfessions;
+import net.cobra.moreores.world.gen.WorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
@@ -15,20 +27,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.entity.ModBlockEntityType;
-//import net.cobra.moreores.entity.ModEntityType;
-import net.cobra.moreores.item.ModItems;
-import net.cobra.moreores.recipe.ModRecipeSerializer;
-import net.cobra.moreores.recipe.ModRecipeType;
-import net.cobra.moreores.registry.ModRegistry;
-import net.cobra.moreores.screen.ModScreenHandlers;
-import net.cobra.moreores.sound.ModBlockSoundGroup;
-import net.cobra.moreores.sound.ModSoundEvents;
-import net.cobra.moreores.util.CustomTrades;
-import net.cobra.moreores.util.ModifyVanillaLootTables;
-import net.cobra.moreores.village.ModVillagerProfessions;
-import net.cobra.moreores.world.gen.WorldGeneration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,9 +65,11 @@ public class MoreOres implements ModInitializer {
 
 
 		// Fuel Registry
-		FuelRegistry.INSTANCE.add(ModItems.WOOD_PELLET, 2000);
-		FuelRegistry.INSTANCE.add(ModItems.ENERGY_INGOT, 25000);
-		FuelRegistry.INSTANCE.add(ModBlocks.ENERGY_BLOCK, 24500);
+		FuelRegistryEvents.BUILD.register(((builder, context) -> {
+			builder.add(ModItems.WOOD_PELLET, 2000);
+			builder.add(ModItems.ENERGY_INGOT, 25000);
+			builder.add(ModBlocks.ENERGY_BLOCK, 24500);
+		}));
 
 
 		// Gemstones & Ingots Registry
@@ -158,8 +158,8 @@ public class MoreOres implements ModInitializer {
 			Naturals.addAfter(ModBlocks.RAW_WHITE_TOPAZ_BLOCK, ModBlocks.RAW_PERIDOT_BLOCK);
 			Naturals.addAfter(ModBlocks.RAW_PERIDOT_BLOCK, ModBlocks.RAW_PYROPE_BLOCK);
 			Naturals.addAfter(ModBlocks.RAW_PYROPE_BLOCK, ModBlocks.RAW_JADE_BLOCK);
-			Naturals.addBefore(Items.TORCHFLOWER_SEEDS, ModItems.TOMATO_SEEDS);
-			Naturals.addBefore(Items.PUMPKIN_SEEDS, ModItems.PINEAPPLE_SEEDS);
+//			Naturals.addBefore(Items.TORCHFLOWER_SEEDS, ModItems.TOMATO_SEEDS);
+//			Naturals.addBefore(Items.PUMPKIN_SEEDS, ModItems.PINEAPPLE_SEEDS);
 			Naturals.addAfter(Blocks.DEEPSLATE_DIAMOND_ORE, ModBlocks.RUBY_ORE);
 			Naturals.addAfter(ModBlocks.RUBY_ORE, ModBlocks.DEEPSLATE_RUBY_ORE);
 			Naturals.addAfter(ModBlocks.DEEPSLATE_RUBY_ORE, ModBlocks.SAPPHIRE_ORE);
@@ -225,12 +225,12 @@ public class MoreOres implements ModInitializer {
 		});
 
 
-		// ModItems Class Registry
-		ModRegistry.ItemRegistry.register();
+		// ModItems Registry
+		ModItems.register();
 
 
-		// ModBlocks Class Registry
-		ModRegistry.BlockRegistry.register();
+		// ModBlocks Registry
+		ModBlocks.register();
 
 
 		// ModSounds & ModBlockSoundGroups Class Registry
@@ -268,10 +268,14 @@ public class MoreOres implements ModInitializer {
 
 
 		//ModGameRules Registry
-		ModGameRules.register();
+//		ModGameRules.register();
 
 
 		//ModConsumableComponents Registry
 		ModConsumableComponents.register();
+
+
+		//ModRecipeBookCategories Registry
+		ModRecipeBookCategories.register();
 	}
 }

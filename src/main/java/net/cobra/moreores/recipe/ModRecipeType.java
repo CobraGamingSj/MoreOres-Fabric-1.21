@@ -8,7 +8,7 @@ import net.cobra.moreores.MoreOres;
 public class ModRecipeType {
 
     public static void register() {
-        Registry.register(Registries.RECIPE_TYPE, Identifier.of(MoreOres.MOD_ID, GemPolisherRecipe.Type.ID), GemPolisherRecipe.Type.INSTANCE);
+        Registry.register(Registries.RECIPE_TYPE, Identifier.of(MoreOres.MOD_ID, GemPolisherRecipe.Type.ID), GemPolisherRecipe.Type.GEM_POLISHING);
     }
 
 }

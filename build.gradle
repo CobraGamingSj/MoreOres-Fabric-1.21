@@ -1,7 +1,6 @@
 plugins {
 	id 'fabric-loom' version '1.8-SNAPSHOT'
 	id 'maven-publish'
-    id 'org.jetbrains.kotlin.jvm'
 }
 
 version = project.mod_version
@@ -12,15 +11,13 @@ base {
 }
 
 repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
 		maven { url "https://maven.shedaniel.me" }
-    mavenCentral()
-//	    maven {url "https://jitpack.io"}
+        mavenCentral()
 
+}
+
+loom {
+	accessWidenerPath = file("src/main/resources/moreores.accesswidener")
 }
 
 fabricApi {
@@ -28,8 +25,8 @@ fabricApi {
 }
 
 dependencies {
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:16.0.783"
-	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:16.0.783"
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:17.0.789"
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:17.0.789"
 
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -37,7 +34,6 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 	
 }
 
@@ -83,7 +79,4 @@ publishing {
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
 	}
-}
-kotlin {
-    jvmToolchain(21)
 }

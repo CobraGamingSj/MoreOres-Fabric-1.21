@@ -21,18 +21,22 @@
 			"net.cobra.moreores.MoreOres"
 		],
 		"client": [
-		"net.cobra.moreores.MoreOresClient"
+			"net.cobra.moreores.MoreOresClient"
 		],
 		"fabric-datagen": [
 			"net.cobra.moreores.MoreOresDataGenerator"
 		]
 	},
 
+	"accessWidener": "moreores.accesswidener",
+
 	"mixins": [
 		"moreores.mixins.json"
 	],
 	"depends": {
 		"fabricloader": [
+			"0.16.9",
+			"0.16.8",
 			"0.16.7",
 			"0.16.6",
 			"0.16.5",
@@ -61,6 +65,8 @@
 		],
 		"java": ">=21",
 		"fabric-api": [
+			"0.107.0+1.21.3",
+			"0.107.0+1.21.1",
 			"0.106.1+1.21.3",
 			"0.106.1+1.21.2",
 			"0.106.0+1.21.2",

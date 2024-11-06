@@ -20,7 +20,6 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-                .add(ModBlocks.GEM_POLISHER_BLOCK)
                 .add(ModBlocks.ENERGY_BLOCK)
                 .add(ModBlocks.RUBY_BLOCK)
                 .add(ModBlocks.RADIANT_BLOCK)
@@ -75,7 +74,6 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
         ;
 
         getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
-                .add(ModBlocks.GEM_POLISHER_BLOCK)
                 .add(ModBlocks.ENERGY_BLOCK)
                 .add(ModBlocks.RUBY_BLOCK)
                 .add(ModBlocks.RADIANT_BLOCK)

@@ -1,8 +1,0 @@
-{
-  "asset_id": "moreores:guardian",
-  "decal": false,
-  "description": {
-    "translate": "trim_pattern.moreores.guardian"
-  },
-  "template_item": "moreores:guardian_armor_trim"
-}

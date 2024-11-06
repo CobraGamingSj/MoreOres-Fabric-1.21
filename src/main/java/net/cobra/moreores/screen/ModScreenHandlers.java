@@ -1,12 +1,12 @@
 package net.cobra.moreores.screen;
 
+import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.block.data.GemPolisherData;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
-import net.cobra.moreores.MoreOres;
-import net.cobra.moreores.block.data.GemPolisherData;
 
 public class ModScreenHandlers {
 
