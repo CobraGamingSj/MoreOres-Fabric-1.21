@@ -151,7 +151,7 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void resetProgress() {
-        this.set(0);
+        this.maxProgress = 0;
     }
 
     //Renamed method from craftItem to craftResultItem
@@ -169,8 +169,8 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 
         this.removeStack(ITEM_INPUT_SLOT, 1);
 
-        this.setStack(ITEM_OUTPUT_SLOT, new ItemStack(recipe.value().getResult(null).getItem(),
-                getStack(ITEM_OUTPUT_SLOT).getCount() + recipe.value().getResult(null).getCount()));
+        this.setStack(ITEM_OUTPUT_SLOT, new ItemStack(recipe.value().output.getItem(),
+                getStack(ITEM_OUTPUT_SLOT).getCount() + recipe.value().output.getCount()));
     }
 
 //    private void craftItem() {
@@ -217,10 +217,6 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 //        this.setStack(OUTPUT_SLOT, new ItemStack(result.getItem(), getStack(OUTPUT_SLOT).getCount() + result.getCount()));
 //    }
 
-    private void set(int value) {
-        this.set(value);
-    }
-
     //Renamed method from hasCraftingFinished to hasPolishingFinished
     private boolean hasPolishingFinished() {
         return progress >= maxProgress;
@@ -234,8 +230,8 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     private boolean hasRecipe() {
         Optional<RecipeEntry<GemPolisherRecipe>> recipe = currentRecipe();
 
-        return recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
-                && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
+        return recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().output)
+                && canInsertItemIntoOutputSlot(recipe.get().value().output.getItem());
     }
 
     private boolean hasEnergySource() {

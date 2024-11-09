@@ -11,7 +11,6 @@ import net.minecraft.world.poi.PointOfInterestType;
 import java.util.concurrent.CompletableFuture;
 
 public class PointOfInterestTypeTagGen extends TagProvider<PointOfInterestType> {
-//    private static final String ID_VANILLA = "minecraft";
     private static final String ID = "moreores";
     private static final String JEWEL_KEY = "jewel_poi";
 

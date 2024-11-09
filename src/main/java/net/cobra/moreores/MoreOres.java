@@ -158,8 +158,8 @@ public class MoreOres implements ModInitializer {
 			Naturals.addAfter(ModBlocks.RAW_WHITE_TOPAZ_BLOCK, ModBlocks.RAW_PERIDOT_BLOCK);
 			Naturals.addAfter(ModBlocks.RAW_PERIDOT_BLOCK, ModBlocks.RAW_PYROPE_BLOCK);
 			Naturals.addAfter(ModBlocks.RAW_PYROPE_BLOCK, ModBlocks.RAW_JADE_BLOCK);
-//			Naturals.addBefore(Items.TORCHFLOWER_SEEDS, ModItems.TOMATO_SEEDS);
-//			Naturals.addBefore(Items.PUMPKIN_SEEDS, ModItems.PINEAPPLE_SEEDS);
+			Naturals.addBefore(Items.TORCHFLOWER_SEEDS, ModItems.TOMATO_SEEDS);
+			Naturals.addBefore(Items.PUMPKIN_SEEDS, ModItems.PINEAPPLE_SEEDS);
 			Naturals.addAfter(Blocks.DEEPSLATE_DIAMOND_ORE, ModBlocks.RUBY_ORE);
 			Naturals.addAfter(ModBlocks.RUBY_ORE, ModBlocks.DEEPSLATE_RUBY_ORE);
 			Naturals.addAfter(ModBlocks.DEEPSLATE_RUBY_ORE, ModBlocks.SAPPHIRE_ORE);

@@ -4,30 +4,27 @@ import net.cobra.moreores.MoreOres;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.jukebox.ModJukeboxSongs;
 import net.cobra.moreores.component.type.ModConsumableComponents;
-import net.cobra.moreores.trim.ModArmorTrimPatterns;
-import net.minecraft.block.Block;
 import net.minecraft.item.*;
 import net.minecraft.item.equipment.EquipmentType;
-import net.minecraft.item.equipment.trim.ArmorTrimPatterns;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class ModItems {
 
 
     //Seeds
-    public static final Item TOMATO_SEEDS = register("tomato_seeds", createBlockItemWithUniqueName(ModBlocks.TOMATO_CROP));
-    public static final Item PINEAPPLE_SEEDS = register("pineapple_seeds", createBlockItemWithUniqueName(ModBlocks.PINEAPPLE_CROP));
+    public static final Item TOMATO_SEEDS = register("tomato_seeds", AliasedBlockItem.of("tomato_seeds", ModBlocks.TOMATO_CROP));
+    public static final Item PINEAPPLE_SEEDS = register("pineapple_seeds", AliasedBlockItem.of("pineapple_seeds", ModBlocks.PINEAPPLE_CROP));
 
 
     //Foods
@@ -214,8 +211,14 @@ public class ModItems {
     public static final Item GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE = register("guardian_armor_trim_smithing_template",
             SmithingTemplateItem.of(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MoreOres.MOD_ID, "guardian_armor_trim_smithing_template")))));
 
-    private static Item createBlockItemWithUniqueName(Block block) {
-        return new BlockItem(block, new Item.Settings().useItemPrefixedTranslationKey());
+    private static Item register(String id, Function<Item.Settings, Item> function) {
+        Identifier ID = Identifier.of(MoreOres.MOD_ID, id);
+        return Registry.register(Registries.ITEM, ID, function.apply(new Item.Settings().registryKey(keyOf(id))));
+    }
+
+    private static RegistryKey<Item> keyOf(String id) {
+        Identifier ID = Identifier.of(MoreOres.MOD_ID, id);
+        return RegistryKey.of(RegistryKeys.ITEM, ID);
     }
 
     public static Item register(String id, Item item) {

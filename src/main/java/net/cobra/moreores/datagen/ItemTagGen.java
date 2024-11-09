@@ -182,5 +182,17 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.MUSIC_DISC_INFINITE_AMETHYST)
                 .add(ModItems.MUSIC_DISC_DEEPER)
                 .add(ModItems.MUSIC_DISC_WATCHER);
+
+        getOrCreateTagBuilder(ModItemTags.REPAIRS_RUBY_ARMOR)
+                .add(ModItems.RUBY);
+
+        getOrCreateTagBuilder(ModItemTags.REPAIRS_SAPPHIRE_ARMOR)
+                .add(ModItems.SAPPHIRE);
+
+        getOrCreateTagBuilder(ModItemTags.RUBY_TOOL_MATERIALS)
+                .add(ModItems.RUBY);
+
+        getOrCreateTagBuilder(ModItemTags.SAPPHIRE_TOOL_MATERIALS)
+                .add(ModItems.SAPPHIRE);
     }
 }

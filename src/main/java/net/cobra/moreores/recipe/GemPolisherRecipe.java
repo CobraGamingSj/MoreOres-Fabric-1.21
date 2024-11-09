@@ -2,20 +2,25 @@ package net.cobra.moreores.recipe;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
+import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.recipe.*;
 import net.minecraft.recipe.book.RecipeBookCategory;
+import net.minecraft.recipe.display.RecipeDisplay;
+import net.minecraft.recipe.display.SlotDisplay;
 import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Optional;
 
 public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
-    private final ItemStack output;
+    public final ItemStack output;
     private final Ingredient ingredient;
 
     public GemPolisherRecipe(Ingredient ingredient, ItemStack result) {
@@ -44,14 +49,20 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
         return Type.GEM_POLISHING;
     }
 
-//    @Override
-    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
-        return output;
+    @Override
+    public List<RecipeDisplay> getDisplays() {
+        return List.of(
+               new GemPolishingRecipeDisplay(
+                       Ingredient.toDisplay(Optional.of(this.ingredient)),
+                       new SlotDisplay.StackSlotDisplay(this.output),
+                       new SlotDisplay.ItemSlotDisplay(ModBlocks.GEM_POLISHER_BLOCK.asItem())
+               )
+        );
     }
 
     @Override
     public IngredientPlacement getIngredientPlacement() {
-        return IngredientPlacement.forMultipleSlots(List.of());
+        return IngredientPlacement.NONE;
     }
 
     @Override
@@ -87,7 +98,7 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
 
         private static void write(RegistryByteBuf buf, GemPolisherRecipe recipe) {
             Ingredient.PACKET_CODEC.encode(buf, recipe.ingredient);
-            ItemStack.PACKET_CODEC.encode(buf, recipe.getResult(null));
+            ItemStack.PACKET_CODEC.encode(buf, recipe.output);
         }
 
         private static GemPolisherRecipe read(RegistryByteBuf buf) {
