@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#minecraft:ruby_tool_materials",
+  "base": "minecraft:netherite_boots",
+  "result": {
+    "count": 1,
+    "id": "moreores:ruby_boots"
+  },
+  "template": "moreores:ruby_upgrade_smithing_template"
+}

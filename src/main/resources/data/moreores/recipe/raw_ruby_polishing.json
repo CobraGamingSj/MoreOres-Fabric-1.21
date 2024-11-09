@@ -1,9 +1,0 @@
-{
-  "type": "moreores:polish_gem",
-  "ingredient": {
-    "item": "moreores:raw_ruby"
-  },
-  "result": {
-    "id": "moreores:ruby"
-  }
-}

@@ -1,0 +1,8 @@
+{
+  "type": "moreores:polish_gem",
+  "ingredient": "moreores:raw_jade",
+  "result": {
+    "count": 1,
+    "id": "moreores:jade"
+  }
+}

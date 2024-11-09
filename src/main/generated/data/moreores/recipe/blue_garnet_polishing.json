@@ -1,0 +1,8 @@
+{
+  "type": "moreores:polish_gem",
+  "ingredient": "moreores:raw_blue_garnet",
+  "result": {
+    "count": 1,
+    "id": "moreores:blue_garnet"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "moreores:polish_gem",
+  "ingredient": "moreores:raw_topaz",
+  "result": {
+    "count": 1,
+    "id": "moreores:topaz"
+  }
+}
