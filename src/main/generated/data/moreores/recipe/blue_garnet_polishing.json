@@ -1,5 +1,6 @@
 {
   "type": "moreores:polish_gem",
+  "energySource": "moreores:energy_ingot",
   "ingredient": "moreores:raw_blue_garnet",
   "result": {
     "count": 1,

@@ -1,5 +1,6 @@
 {
   "type": "moreores:polish_gem",
+  "energySource": "moreores:energy_ingot",
   "ingredient": "moreores:raw_white_topaz",
   "result": {
     "count": 1,
