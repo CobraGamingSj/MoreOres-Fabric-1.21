@@ -1,32 +1,27 @@
 package net.cobra.moreores.datagen;
 
-import net.cobra.moreores.MoreOres;
-import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.data.server.recipe.GemPolishingRecipeJsonBuilder;
+import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeGenerator;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class RecipeGen extends FabricRecipeProvider {
     public RecipeGen(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -38,6 +33,7 @@ public class RecipeGen extends FabricRecipeProvider {
         return new RecipeGenerator(wrapperLookup, recipeExporter) {
             @Override
             public void generate() {
+                Ingredient ENERGY_ITEM = Ingredient.ofItem(ModItems.ENERGY_INGOT);
                 List<ItemConvertible> RUBY_SMELTABLES = List.of(ModBlocks.RUBY_ORE, ModBlocks.DEEPSLATE_RUBY_ORE, ModItems.RAW_RUBY);
                 List<ItemConvertible> SAPPHIRE_SMELTABLES = List.of(ModBlocks.SAPPHIRE_ORE, ModBlocks.DEEPSLATE_SAPPHIRE_ORE, ModItems.RAW_SAPPHIRE);
                 List<ItemConvertible> GREEN_SAPPHIRE_SMELTABLES = List.of(ModBlocks.GREEN_SAPPHIRE_ORE, ModBlocks.DEEPSLATE_GREEN_SAPPHIRE_ORE, ModItems.RAW_GREEN_SAPPHIRE);
@@ -81,7 +77,7 @@ public class RecipeGen extends FabricRecipeProvider {
                                 Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
                                 Ingredient.ofItem(Items.NETHERITE_HELMET),
                                 this.ingredientFromTag(ModItemTags.RUBY_TOOL_MATERIALS),
-                                RecipeCategory.MISC, ModItems.RUBY_HELMET
+                                RecipeCategory.COMBAT, ModItems.RUBY_HELMET
                         )
                         .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
                         .offerTo(exporter, getItemPath(ModItems.RUBY_HELMET) + "_smithing");
@@ -90,7 +86,7 @@ public class RecipeGen extends FabricRecipeProvider {
                                 Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
                                 Ingredient.ofItem(Items.NETHERITE_CHESTPLATE),
                                 this.ingredientFromTag(ModItemTags.RUBY_TOOL_MATERIALS),
-                                RecipeCategory.MISC, ModItems.RUBY_CHESTPLATE
+                                RecipeCategory.COMBAT, ModItems.RUBY_CHESTPLATE
                         )
                         .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
                         .offerTo(exporter, getItemPath(ModItems.RUBY_CHESTPLATE) + "_smithing");
@@ -99,7 +95,7 @@ public class RecipeGen extends FabricRecipeProvider {
                                 Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
                                 Ingredient.ofItem(Items.NETHERITE_LEGGINGS),
                                 this.ingredientFromTag(ModItemTags.RUBY_TOOL_MATERIALS),
-                                RecipeCategory.MISC, ModItems.RUBY_LEGGINGS
+                                RecipeCategory.COMBAT, ModItems.RUBY_LEGGINGS
                         )
                         .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
                         .offerTo(exporter, getItemPath(ModItems.RUBY_LEGGINGS) + "_smithing");
@@ -108,7 +104,7 @@ public class RecipeGen extends FabricRecipeProvider {
                                 Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
                                 Ingredient.ofItem(Items.NETHERITE_BOOTS),
                                 this.ingredientFromTag(ModItemTags.RUBY_TOOL_MATERIALS),
-                                RecipeCategory.MISC, ModItems.RUBY_BOOTS
+                                RecipeCategory.COMBAT, ModItems.RUBY_BOOTS
                         )
                         .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
                         .offerTo(exporter, getItemPath(ModItems.RUBY_BOOTS) + "_smithing");
@@ -118,7 +114,7 @@ public class RecipeGen extends FabricRecipeProvider {
                                 Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
                                 Ingredient.ofItem(Items.NETHERITE_SWORD),
                                 this.ingredientFromTag(ModItemTags.RUBY_TOOL_MATERIALS),
-                                RecipeCategory.MISC, ModItems.RUBY_SWORD
+                                RecipeCategory.COMBAT, ModItems.RUBY_SWORD
                         )
                         .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
                         .offerTo(exporter, getItemPath(ModItems.RUBY_SWORD) + "_smithing");
@@ -127,7 +123,7 @@ public class RecipeGen extends FabricRecipeProvider {
                                 Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
                                 Ingredient.ofItem(Items.NETHERITE_PICKAXE),
                                 this.ingredientFromTag(ModItemTags.RUBY_TOOL_MATERIALS),
-                                RecipeCategory.MISC, ModItems.RUBY_PICKAXE
+                                RecipeCategory.TOOLS, ModItems.RUBY_PICKAXE
                         )
                         .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
                         .offerTo(exporter, getItemPath(ModItems.RUBY_PICKAXE) + "_smithing");
@@ -136,7 +132,7 @@ public class RecipeGen extends FabricRecipeProvider {
                                 Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
                                 Ingredient.ofItem(Items.NETHERITE_AXE),
                                 this.ingredientFromTag(ModItemTags.RUBY_TOOL_MATERIALS),
-                                RecipeCategory.MISC, ModItems.RUBY_AXE
+                                RecipeCategory.TOOLS, ModItems.RUBY_AXE
                         )
                         .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
                         .offerTo(exporter, getItemPath(ModItems.RUBY_AXE) + "_smithing");
@@ -145,7 +141,7 @@ public class RecipeGen extends FabricRecipeProvider {
                                 Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
                                 Ingredient.ofItem(Items.NETHERITE_SHOVEL),
                                 this.ingredientFromTag(ModItemTags.RUBY_TOOL_MATERIALS),
-                                RecipeCategory.MISC, ModItems.RUBY_SHOVEL
+                                RecipeCategory.TOOLS, ModItems.RUBY_SHOVEL
                         )
                         .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
                         .offerTo(exporter, getItemPath(ModItems.RUBY_SHOVEL) + "_smithing");
@@ -154,7 +150,7 @@ public class RecipeGen extends FabricRecipeProvider {
                                 Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
                                 Ingredient.ofItem(Items.NETHERITE_HOE),
                                 this.ingredientFromTag(ModItemTags.RUBY_TOOL_MATERIALS),
-                                RecipeCategory.MISC, ModItems.RUBY_HOE
+                                RecipeCategory.TOOLS, ModItems.RUBY_HOE
                         )
                         .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
                         .offerTo(exporter, getItemPath(ModItems.RUBY_HOE) + "_smithing");
@@ -211,67 +207,67 @@ public class RecipeGen extends FabricRecipeProvider {
                         ModBlocks.RAW_PYROPE_BLOCK);
 
                 GemPolishingRecipeJsonBuilder.create(
-                                Ingredient.ofItems(ModItems.RAW_RUBY), new ItemStack(ModItems.RUBY), RecipeCategory.MISC
+                                Ingredient.ofItems(ModItems.RAW_RUBY), ENERGY_ITEM, new ItemStack(ModItems.RUBY), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_RUBY), conditionsFromItem(ModItems.RAW_RUBY))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RUBY) + "_polishing")));
 
                 GemPolishingRecipeJsonBuilder.create(
-                                Ingredient.ofItems(ModItems.RAW_SAPPHIRE), new ItemStack(ModItems.SAPPHIRE), RecipeCategory.MISC
+                                Ingredient.ofItems(ModItems.RAW_SAPPHIRE), ENERGY_ITEM, new ItemStack(ModItems.SAPPHIRE), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_SAPPHIRE), conditionsFromItem(ModItems.RAW_SAPPHIRE))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE) + "_polishing")));
 
                 GemPolishingRecipeJsonBuilder.create(
-                                Ingredient.ofItems(ModItems.RAW_GREEN_SAPPHIRE), new ItemStack(ModItems.GREEN_SAPPHIRE), RecipeCategory.MISC
+                                Ingredient.ofItems(ModItems.RAW_GREEN_SAPPHIRE), ENERGY_ITEM, new ItemStack(ModItems.GREEN_SAPPHIRE), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_GREEN_SAPPHIRE), conditionsFromItem(ModItems.RAW_GREEN_SAPPHIRE))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.GREEN_SAPPHIRE) + "_polishing")));
 
                 GemPolishingRecipeJsonBuilder.create(
-                                Ingredient.ofItems(ModItems.RAW_BLUE_GARNET), new ItemStack(ModItems.BLUE_GARNET), RecipeCategory.MISC
+                                Ingredient.ofItems(ModItems.RAW_BLUE_GARNET), ENERGY_ITEM, new ItemStack(ModItems.BLUE_GARNET), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_BLUE_GARNET), conditionsFromItem(ModItems.RAW_BLUE_GARNET))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.BLUE_GARNET) + "_polishing")));
 
                 GemPolishingRecipeJsonBuilder.create(
-                                Ingredient.ofItems(ModItems.RAW_PINK_GARNET), new ItemStack(ModItems.PINK_GARNET), RecipeCategory.MISC
+                                Ingredient.ofItems(ModItems.RAW_PINK_GARNET), ENERGY_ITEM, new ItemStack(ModItems.PINK_GARNET), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_PINK_GARNET), conditionsFromItem(ModItems.RAW_PINK_GARNET))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.PINK_GARNET) + "_polishing")));
 
                 GemPolishingRecipeJsonBuilder.create(
-                                Ingredient.ofItems(ModItems.RAW_GREEN_GARNET), new ItemStack(ModItems.GREEN_GARNET), RecipeCategory.MISC
+                                Ingredient.ofItems(ModItems.RAW_GREEN_GARNET), ENERGY_ITEM, new ItemStack(ModItems.GREEN_GARNET), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_GREEN_GARNET), conditionsFromItem(ModItems.RAW_GREEN_GARNET))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.GREEN_GARNET) + "_polishing")));
 
                 GemPolishingRecipeJsonBuilder.create(
-                                Ingredient.ofItems(ModItems.RAW_TOPAZ), new ItemStack(ModItems.TOPAZ), RecipeCategory.MISC
+                                Ingredient.ofItems(ModItems.RAW_TOPAZ), ENERGY_ITEM, new ItemStack(ModItems.TOPAZ), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_TOPAZ), conditionsFromItem(ModItems.RAW_TOPAZ))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.TOPAZ) + "_polishing")));
 
                 GemPolishingRecipeJsonBuilder.create(
-                                Ingredient.ofItems(ModItems.RAW_WHITE_TOPAZ), new ItemStack(ModItems.WHITE_TOPAZ), RecipeCategory.MISC
+                                Ingredient.ofItems(ModItems.RAW_WHITE_TOPAZ), ENERGY_ITEM, new ItemStack(ModItems.WHITE_TOPAZ), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_WHITE_TOPAZ), conditionsFromItem(ModItems.RAW_WHITE_TOPAZ))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.WHITE_TOPAZ) + "_polishing")));
 
                 GemPolishingRecipeJsonBuilder.create(
-                                Ingredient.ofItems(ModItems.RAW_PERIDOT), new ItemStack(ModItems.PERIDOT), RecipeCategory.MISC
+                                Ingredient.ofItems(ModItems.RAW_PERIDOT), ENERGY_ITEM, new ItemStack(ModItems.PERIDOT), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_PERIDOT), conditionsFromItem(ModItems.RAW_PERIDOT))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.PERIDOT) + "_polishing")));
 
                 GemPolishingRecipeJsonBuilder.create(
-                                Ingredient.ofItems(ModItems.RAW_JADE), new ItemStack(ModItems.JADE), RecipeCategory.MISC
+                                Ingredient.ofItems(ModItems.RAW_JADE), ENERGY_ITEM, new ItemStack(ModItems.JADE), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_JADE), conditionsFromItem(ModItems.RAW_JADE))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.JADE) + "_polishing")));
 
                 GemPolishingRecipeJsonBuilder.create(
-                                Ingredient.ofItems(ModItems.RAW_PYROPE), new ItemStack(ModItems.PYROPE), RecipeCategory.MISC
+                                Ingredient.ofItems(ModItems.RAW_PYROPE), ENERGY_ITEM, new ItemStack(ModItems.PYROPE), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_PYROPE), conditionsFromItem(ModItems.RAW_PYROPE))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.PYROPE) + "_polishing")));

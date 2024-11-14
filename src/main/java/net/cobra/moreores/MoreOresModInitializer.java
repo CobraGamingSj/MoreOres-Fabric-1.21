@@ -3,6 +3,7 @@ package net.cobra.moreores;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.component.type.ModConsumableComponents;
+import net.cobra.moreores.enchantment.ModEnchantments;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.recipe.ModRecipeSerializer;
 import net.cobra.moreores.recipe.ModRecipeType;
@@ -30,7 +31,7 @@ import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MoreOres implements ModInitializer {
+public class MoreOresModInitializer implements ModInitializer {
 
 	public static final String MOD_ID = "moreores";
 	public static final String ID = "minecraft";
@@ -41,19 +42,19 @@ public class MoreOres implements ModInitializer {
 	private static final ItemGroup GEMSTONES = FabricItemGroup.builder()
 			.icon(() -> new ItemStack(ModItems.RUBY))
 			.displayName(Text.translatable("itemGroup.moreores.gemstones"))
-			.entries((context, gemstones) -> {
-				gemstones.add(ModItems.RUBY);
-				gemstones.add(ModItems.RADIANT);
-				gemstones.add(ModItems.SAPPHIRE);
-				gemstones.add(ModItems.GREEN_SAPPHIRE);
-				gemstones.add(ModItems.BLUE_GARNET);
-				gemstones.add(ModItems.PINK_GARNET);
-				gemstones.add(ModItems.GREEN_GARNET);
-				gemstones.add(ModItems.TOPAZ);
-				gemstones.add(ModItems.WHITE_TOPAZ);
-				gemstones.add(ModItems.PERIDOT);
-				gemstones.add(ModItems.PYROPE);
-				gemstones.add(ModItems.JADE);
+			.entries((context, entries) -> {
+				entries.add(ModItems.RUBY);
+				entries.add(ModItems.RADIANT);
+				entries.add(ModItems.SAPPHIRE);
+				entries.add(ModItems.GREEN_SAPPHIRE);
+				entries.add(ModItems.BLUE_GARNET);
+				entries.add(ModItems.PINK_GARNET);
+				entries.add(ModItems.GREEN_GARNET);
+				entries.add(ModItems.TOPAZ);
+				entries.add(ModItems.WHITE_TOPAZ);
+				entries.add(ModItems.PERIDOT);
+				entries.add(ModItems.PYROPE);
+				entries.add(ModItems.JADE);
 			}).build();
 
 	@Override
@@ -277,5 +278,9 @@ public class MoreOres implements ModInitializer {
 
 		//ModRecipeBookCategories Registry
 		ModRecipeBookCategories.register();
+
+
+		//ModEnchantments Registry
+		ModEnchantments.register();
 	}
 }

@@ -6,8 +6,8 @@ import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
 import net.cobra.moreores.block.jukebox.ModJukeboxSongs;
 import net.cobra.moreores.datagen.*;
-import net.cobra.moreores.trim.ModArmorTrimMaterials;
-import net.cobra.moreores.trim.ModArmorTrimPatterns;
+import net.cobra.moreores.item.equipment.trim.ModArmorTrimMaterials;
+import net.cobra.moreores.item.equipment.trim.ModArmorTrimPatterns;
 import net.cobra.moreores.world.gen.feature.ModConfiguredFeatures;
 import net.cobra.moreores.world.gen.feature.ModPlacedFeatures;
 

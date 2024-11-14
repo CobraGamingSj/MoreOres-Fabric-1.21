@@ -3,13 +3,13 @@ package net.cobra.moreores.world.gen;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.world.gen.GenerationStep;
-import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.world.gen.feature.ModOrePlacedFeatures;
 
 public class WorldGeneration {
     public static void generateOres() {
 
-        MoreOres.LOGGER.info("Setting Up world generation for Custom Ores for " + MoreOres.MOD_ID + " mod.");
+        MoreOresModInitializer.LOGGER.info("Setting Up world generation for Custom Ores for " + MoreOresModInitializer.MOD_ID + " mod.");
 
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_RUBY);

@@ -49,6 +49,8 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ItemTags.VILLAGER_PLANTABLE_SEEDS)
                 .add(ModItems.TOMATO_SEEDS);
 
+        getOrCreateTagBuilder(ModItemTags.ARCSHAPERS);
+
         getOrCreateTagBuilder(ItemTags.SWORDS)
                 .add(ModItems.RUBY_SWORD)
                 .add(ModItems.SAPPHIRE_SWORD)

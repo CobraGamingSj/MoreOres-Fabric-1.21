@@ -4,7 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.MoreOresModInitializer;
 
 public class ModItemTags {
 
@@ -23,8 +23,10 @@ public class ModItemTags {
     public static final TagKey<Item> SAPPHIRE_TOOL_MATERIALS = ofVanilla("sapphire_tool_materials");
     public static final TagKey<Item> RADIANT_TOOL_MATERIALS = ofVanilla("radiant_tool_materials");
 
+    public static final TagKey<Item> ARCSHAPERS = ofVanilla("arcshapers");
+
     private static TagKey<Item> of(String id) {
-        return TagKey.of(RegistryKeys.ITEM, Identifier.of(MoreOres.MOD_ID, id));
+        return TagKey.of(RegistryKeys.ITEM, Identifier.of(MoreOresModInitializer.MOD_ID, id));
     }
     private static TagKey<Item> ofVanilla(String id) {
         return TagKey.of(RegistryKeys.ITEM, Identifier.of(MINECRAFT, id));

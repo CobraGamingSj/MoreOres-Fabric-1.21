@@ -1,5 +1,6 @@
 package net.cobra.moreores.data.server.recipe;
 
+import net.cobra.moreores.recipe.GemPolisherRecipe;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.AdvancementRequirements;
@@ -11,21 +12,19 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.util.Identifier;
-import net.cobra.moreores.recipe.GemPolisherRecipe;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class GemPolishingRecipeJsonBuilder {
-    private final ItemStack output;
     private final Ingredient ingredient;
+    private final ItemStack output;
     private final RecipeCategory category;
     private final Map<String, AdvancementCriterion<?>> criterion = new LinkedHashMap<>();
 
     public GemPolishingRecipeJsonBuilder(Ingredient ingredient, ItemStack output, RecipeCategory category) {
-        this.output = output;
         this.ingredient = ingredient;
+        this.output = output;
         this.category = category;
     }
 
@@ -49,7 +48,7 @@ public class GemPolishingRecipeJsonBuilder {
         exporter.accept(recipeId, gemPolishingRecipe, builder.build(recipeId.getValue().withPrefixedPath("recipes/" + this.category.getName() + "/")));
     }
 
-    private void validate(RegistryKey recipeId) {
+    private void validate(RegistryKey<Recipe<?>> recipeId) {
         if (this.criterion.isEmpty()) {
             throw new IllegalStateException("No way of obtaining recipe " + recipeId);
         }

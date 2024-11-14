@@ -1,23 +1,17 @@
 package net.cobra.moreores.util;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
-import net.minecraft.entity.EntityType;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.condition.EntityPropertiesLootCondition;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
-import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.entry.TagEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
-import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.item.ModItems;
 
 public class ModifyVanillaLootTables {
@@ -31,7 +25,7 @@ public class ModifyVanillaLootTables {
 
     public static void modifyVanillaLoot() {
 
-        MoreOres.LOGGER.info("Modifying VanillaLootTables for " + MoreOres.MOD_ID + " mod.");
+        MoreOresModInitializer.LOGGER.info("Modifying VanillaLootTables for " + MoreOresModInitializer.MOD_ID + " mod.");
 
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             if (JUNGLE_PYRAMID_KEY.equals(key)) {

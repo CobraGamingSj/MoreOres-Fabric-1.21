@@ -1,18 +1,17 @@
 package net.cobra.moreores.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.client.gl.ShaderProgramKeys;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
-    private static final Identifier TEXTURE = Identifier.of(MoreOres.MOD_ID, "textures/gui/container/gem_polisher_gui.png");
+    private static final Identifier TEXTURE = Identifier.of(MoreOresModInitializer.MOD_ID, "textures/gui/container/gem_polisher_gui.png");
 
     public GemPolisherScreen(GemPolisherScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);

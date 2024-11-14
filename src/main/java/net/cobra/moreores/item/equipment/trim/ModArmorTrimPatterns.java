@@ -1,4 +1,4 @@
-package net.cobra.moreores.trim;
+package net.cobra.moreores.item.equipment.trim;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.equipment.trim.ArmorTrimPattern;
@@ -9,7 +9,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
-import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.item.ModItems;
 
 public class ModArmorTrimPatterns {
@@ -27,7 +27,7 @@ public class ModArmorTrimPatterns {
     }
 
     private static RegistryKey<ArmorTrimPattern> of(String id) {
-        Identifier ID = Identifier.of(MoreOres.MOD_ID, id);
+        Identifier ID = Identifier.of(MoreOresModInitializer.MOD_ID, id);
         return RegistryKey.of(RegistryKeys.TRIM_PATTERN, ID);
     }
 }

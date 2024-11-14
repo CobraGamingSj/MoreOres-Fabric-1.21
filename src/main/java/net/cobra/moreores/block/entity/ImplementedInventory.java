@@ -24,7 +24,7 @@ import java.util.List;
  * @author Juuz
  */
 @FunctionalInterface
-public interface ImplementedInventory extends SidedInventory {
+public interface ImplementedInventory extends SidedInventory{
     /**
      * Gets the item list of this inventory.
      * Must return the same instance every time it's called.
@@ -131,6 +131,22 @@ public interface ImplementedInventory extends SidedInventory {
 
         return true;
     }
+
+    /**
+    * @return true is this inventory has full stack, false otherwise
+     */
+
+     default boolean isFull() {
+         for (int i  = 0; i < size(); i++) {
+             ItemStack stack = getStack(i);
+             if (!stack.isEmpty()) {
+                 return true;
+             }
+         }
+
+         return false;
+     }
+
 
     /**
      * Gets the item in the slot.

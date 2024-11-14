@@ -158,47 +158,56 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     private void craftResultItem() {
         RecipeEntry<GemPolisherRecipe> recipe = currentRecipe().orElseThrow();
 
-        ItemStack stack = getStack(ENERGY_SOURCE_SLOT);
-        if (!stack.isEmpty()) {
-            if (stack.getDamage() < stack.getMaxDamage()) {
-                stack.setDamage(stack.getDamage() + 5);
-            }
-        }else {
+//        if (currentRecipe().isEmpty() || getEnergySlot().isEmpty()) {
+//            return;
+//        }
+
+        ItemStack energyStack = getStack(ENERGY_SOURCE_SLOT);
+        if (!energyStack.isEmpty() && energyStack.getDamage() < energyStack.getMaxDamage()) {
+            energyStack.setDamage(energyStack.getDamage() + 5);
+        } else {
+            // Remove the stack from the energy slot if it’s empty or maxed out on damage
             this.removeStack(ENERGY_SOURCE_SLOT);
         }
 
-        this.removeStack(ITEM_INPUT_SLOT, 1);
+        // Set the result in the output slot, adjusting for existing items
+        ItemStack outputStack = this.getStack(ITEM_OUTPUT_SLOT);
+        int newCount = outputStack.getCount() + recipe.value().output.getCount();
 
-        this.setStack(ITEM_OUTPUT_SLOT, new ItemStack(recipe.value().output.getItem(),
-                getStack(ITEM_OUTPUT_SLOT).getCount() + recipe.value().output.getCount()));
+        if (newCount <= outputStack.getMaxCount()) {
+            this.setStack(ITEM_OUTPUT_SLOT, new ItemStack(recipe.value().output.getItem(), newCount));
+        } else {
+            // Handle overflow if needed (adjust this as per your mod’s design)
+            outputStack.setCount(outputStack.getMaxCount());
+        }
     }
 
 //    private void craftItem() {
 //        ItemStack inputStack = getStack(INPUT_SLOT);
-//        ItemStack result;
+//        ItemStack energySource;
 //
 //        if (inputStack.getItem() == ModItems.RAW_RUBY) {
-//            result = new ItemStack(ModItems.RUBY);
+//            energySource = new ItemStack(ModItems.RUBY);
 //        } else if (inputStack.getItem() == ModItems.RAW_SAPPHIRE) {
-//            result = new ItemStack(ModItems.SAPPHIRE);
+//            energySource = new ItemStack(ModItems.SAPPHIRE);
 //        } else if (inputStack.getItem() == ModItems.RAW_GREEN_SAPPHIRE) {
-//            result = new ItemStack(ModItems.GREEN_SAPPHIRE);
+//            energySource = new ItemStack(ModItems.GREEN_SAPPHIRE);
 //        } else if (inputStack.getItem() == ModItems.RAW_BLUE_GARNET) {
-//            result = new ItemStack(ModItems.BLUE_GARNET);
+//            energySource = new ItemStack(ModItems.BLUE_GARNET);
 //        } else if (inputStack.getItem() == ModItems.RAW_PINK_GARNET) {
-//            result = new ItemStack(ModItems.PINK_GARNET);
+//            energySource = new ItemStack(ModItems.PINK_GARNET);
 //        } else if (inputStack.getItem() == ModItems.RAW_GREEN_GARNET) {
-//            result = new ItemStack(ModItems.GREEN_GARNET);
+//            energySource = new ItemStack(ModItems.GREEN_GARNET);
 //        } else if (inputStack.getItem() == ModItems.RAW_TOPAZ) {
-//            result = new ItemStack(ModItems.TOPAZ);
+//            energySource = new ItemStack(ModItems.TOPAZ);
 //        } else if (inputStack.getItem() == ModItems.RAW_WHITE_TOPAZ) {
-//            result = new ItemStack(ModItems.WHITE_TOPAZ);
+//            energySource = new ItemStack(ModItems.WHITE_TOPAZ);
 //        } else if (inputStack.getItem() == ModItems.RAW_PERIDOT) {
-//            result = new ItemStack(ModItems.PERIDOT);
+//            energySource = new ItemStack(ModItems.PERIDOT);
 //        } else if (inputStack.getItem() == ModItems.RAW_JADE) {
-//            result = new ItemStack(ModItems.JADE);
+//            energySource = new ItemStack(ModItems.JADE);
 //        } else if (inputStack.getItem() == ModItems.RAW_PYROPE) {
-//            result = new ItemStack(ModItems.PYROPE);
+//            energySource = new ItemStack(ModItems.PYROPE);
 //        } else {
 //            return; // No valid input, so don't craft anything
 //        }
@@ -214,7 +223,7 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 //            }
 //        }
 //
-//        this.setStack(OUTPUT_SLOT, new ItemStack(result.getItem(), getStack(OUTPUT_SLOT).getCount() + result.getCount()));
+//        this.setStack(OUTPUT_SLOT, new ItemStack(energySource.getItem(), getStack(OUTPUT_SLOT).getCount() + energySource.getCount()));
 //    }
 
     //Renamed method from hasCraftingFinished to hasPolishingFinished
@@ -229,6 +238,7 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 
     private boolean hasRecipe() {
         Optional<RecipeEntry<GemPolisherRecipe>> recipe = currentRecipe();
+//        Optional<RecipeEntry<GemPolisherRecipe>> energySlot = getEnergySlot();
 
         return recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().output)
                 && canInsertItemIntoOutputSlot(recipe.get().value().output.getItem());
@@ -244,36 +254,41 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         return this.matchGetter.getFirstMatch(new SingleStackRecipeInput(this.getStack(ITEM_INPUT_SLOT)), server);
     }
 
+//    private Optional<RecipeEntry<GemPolisherRecipe>> getEnergySlot() {
+//        ServerWorld serverWorld = world.getServer().getOverworld();
+//        return this.matchGetter.getFirstMatch(new SingleStackRecipeInput(this.getStack(ENERGY_SOURCE_SLOT)), serverWorld);
+//    }
+
 //    private boolean hasRecipe() {
 //
 //        ItemStack hasInput = getStack(INPUT_SLOT);
-//        ItemStack result = null;
+//        ItemStack energySource = null;
 //
 //        if (hasInput.getItem() == ModItems.RAW_RUBY) {
-//            result = new ItemStack(ModItems.RUBY);
+//            energySource = new ItemStack(ModItems.RUBY);
 //        } else if (hasInput.getItem() == ModItems.RAW_SAPPHIRE) {
-//            result = new ItemStack(ModItems.SAPPHIRE);
+//            energySource = new ItemStack(ModItems.SAPPHIRE);
 //        } else if (hasInput.getItem() == ModItems.RAW_GREEN_SAPPHIRE) {
-//            result = new ItemStack(ModItems.GREEN_SAPPHIRE);
+//            energySource = new ItemStack(ModItems.GREEN_SAPPHIRE);
 //        } else if (hasInput.getItem() == ModItems.RAW_BLUE_GARNET) {
-//            result = new ItemStack(ModItems.BLUE_GARNET);
+//            energySource = new ItemStack(ModItems.BLUE_GARNET);
 //        } else if (hasInput.getItem() == ModItems.RAW_PINK_GARNET) {
-//            result = new ItemStack(ModItems.PINK_GARNET);
+//            energySource = new ItemStack(ModItems.PINK_GARNET);
 //        } else if (hasInput.getItem() == ModItems.RAW_GREEN_GARNET) {
-//            result = new ItemStack(ModItems.GREEN_GARNET);
+//            energySource = new ItemStack(ModItems.GREEN_GARNET);
 //        } else if (hasInput.getItem() == ModItems.RAW_TOPAZ) {
-//            result = new ItemStack(ModItems.TOPAZ);
+//            energySource = new ItemStack(ModItems.TOPAZ);
 //        } else if (hasInput.getItem() == ModItems.RAW_WHITE_TOPAZ) {
-//            result = new ItemStack(ModItems.WHITE_TOPAZ);
+//            energySource = new ItemStack(ModItems.WHITE_TOPAZ);
 //        } else if (hasInput.getItem() == ModItems.RAW_PERIDOT) {
-//            result = new ItemStack(ModItems.PERIDOT);
+//            energySource = new ItemStack(ModItems.PERIDOT);
 //        } else if (hasInput.getItem() == ModItems.RAW_JADE) {
-//            result = new ItemStack(ModItems.JADE);
+//            energySource = new ItemStack(ModItems.JADE);
 //        } else if (hasInput.getItem() == ModItems.RAW_PYROPE) {
-//            result = new ItemStack(ModItems.PYROPE);
+//            energySource = new ItemStack(ModItems.PYROPE);
 //        }
 //
-//        return result != null && canInsertAmountIntoOutputSlot(result) && canInsertItemIntoOutputSlot(result.getItem());
+//        return energySource != null && canInsertAmountIntoOutputSlot(energySource) && canInsertItemIntoOutputSlot(energySource.getItem());
 //    }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {

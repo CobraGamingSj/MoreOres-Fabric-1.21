@@ -1,6 +1,6 @@
 package net.cobra.moreores.block.jukebox;
 
-import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.sound.ModSoundEvents;
 import net.minecraft.block.jukebox.JukeboxSong;
 import net.minecraft.registry.Registerable;
@@ -24,7 +24,7 @@ public interface ModJukeboxSongs{
      RegistryKey<JukeboxSong> WATCHER = ModJukeboxSongs.of("watcher");
 
     private static RegistryKey<JukeboxSong> of(String id) {
-        return RegistryKey.of(RegistryKeys.JUKEBOX_SONG, Identifier.of(MoreOres.MOD_ID, id));
+        return RegistryKey.of(RegistryKeys.JUKEBOX_SONG, Identifier.of(MoreOresModInitializer.MOD_ID, id));
     }
 
     private static void register(Registerable<JukeboxSong> jukeboxSongRegisterable, RegistryKey<JukeboxSong> jukeboxSongRegistryKey, RegistryEntry.Reference<SoundEvent> soundEventReference, int lengthInSeconds, int comparatorOutput) {

@@ -1,6 +1,6 @@
-package net.cobra.moreores.trim;
+package net.cobra.moreores.item.equipment.trim;
 
-import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.item.ModItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.equipment.trim.ArmorTrimMaterial;
@@ -32,18 +32,18 @@ public class ModArmorTrimMaterials {
     public static final RegistryKey<ArmorTrimMaterial> PYROPE = of("pyrope");
 
     public static void bootstrap(Registerable<ArmorTrimMaterial> registerable) {
-        register(registerable, RUBY, Registries.ITEM.getEntry(ModItems.RUBY), Style.EMPTY.withColor(TextColor.fromRgb(16711680)), 0.51f);
-        register(registerable, RADIANT, Registries.ITEM.getEntry(ModItems.RADIANT), Style.EMPTY.withColor(TextColor.fromRgb(11730944)), 0.52f);
-        register(registerable, SAPPHIRE, Registries.ITEM.getEntry(ModItems.SAPPHIRE), Style.EMPTY.withColor(TextColor.fromRgb(6875)), 0.53f);
-        register(registerable, GREEN_SAPPHIRE, Registries.ITEM.getEntry(ModItems.GREEN_SAPPHIRE), Style.EMPTY.withColor(TextColor.fromRgb(2925312)), 0.54f);
-        register(registerable, BLUE_GARNET, Registries.ITEM.getEntry(ModItems.BLUE_GARNET), Style.EMPTY.withColor(TextColor.fromRgb(1507522)), 0.55f);
-        register(registerable, PINK_GARNET, Registries.ITEM.getEntry(ModItems.PINK_GARNET), Style.EMPTY.withColor(TextColor.fromRgb(16711927)), 0.56f);
-        register(registerable, GREEN_GARNET, Registries.ITEM.getEntry(ModItems.GREEN_GARNET), Style.EMPTY.withColor(TextColor.fromRgb(65331)), 0.57f);
-        register(registerable, TOPAZ, Registries.ITEM.getEntry(ModItems.TOPAZ), Style.EMPTY.withColor(TextColor.fromRgb(13713152)), 0.58f);
-        register(registerable, WHITE_TOPAZ, Registries.ITEM.getEntry(ModItems.WHITE_TOPAZ), Style.EMPTY.withColor(TextColor.fromRgb(15328482)), 0.59f);
-        register(registerable, PERIDOT, Registries.ITEM.getEntry(ModItems.PERIDOT), Style.EMPTY.withColor(TextColor.fromRgb(52238)), 0.61f);
-        register(registerable, JADE, Registries.ITEM.getEntry(ModItems.JADE), Style.EMPTY.withColor(TextColor.fromRgb(11140783)), 0.62f);
-        register(registerable, PYROPE, Registries.ITEM.getEntry(ModItems.PYROPE), Style.EMPTY.withColor(TextColor.fromRgb(12717839)), 0.63f);
+        register(registerable, RUBY, Registries.ITEM.getEntry(ModItems.RUBY), Style.EMPTY.withColor(TextColor.fromRgb(16711680)), 0.4f);
+        register(registerable, RADIANT, Registries.ITEM.getEntry(ModItems.RADIANT), Style.EMPTY.withColor(TextColor.fromRgb(11730944)), 0.4f);
+        register(registerable, SAPPHIRE, Registries.ITEM.getEntry(ModItems.SAPPHIRE), Style.EMPTY.withColor(TextColor.fromRgb(6875)), 0.9f);
+        register(registerable, GREEN_SAPPHIRE, Registries.ITEM.getEntry(ModItems.GREEN_SAPPHIRE), Style.EMPTY.withColor(TextColor.fromRgb(2925312)), 0.7f);
+        register(registerable, BLUE_GARNET, Registries.ITEM.getEntry(ModItems.BLUE_GARNET), Style.EMPTY.withColor(TextColor.fromRgb(1507522)), 1.0f);
+        register(registerable, PINK_GARNET, Registries.ITEM.getEntry(ModItems.PINK_GARNET), Style.EMPTY.withColor(TextColor.fromRgb(16711927)), 1.0f);
+        register(registerable, GREEN_GARNET, Registries.ITEM.getEntry(ModItems.GREEN_GARNET), Style.EMPTY.withColor(TextColor.fromRgb(65331)), 0.7f);
+        register(registerable, TOPAZ, Registries.ITEM.getEntry(ModItems.TOPAZ), Style.EMPTY.withColor(TextColor.fromRgb(13713152)), 0.5f);
+        register(registerable, WHITE_TOPAZ, Registries.ITEM.getEntry(ModItems.WHITE_TOPAZ), Style.EMPTY.withColor(TextColor.fromRgb(15328482)), 0.1f);
+        register(registerable, PERIDOT, Registries.ITEM.getEntry(ModItems.PERIDOT), Style.EMPTY.withColor(TextColor.fromRgb(52238)), 0.7f);
+        register(registerable, JADE, Registries.ITEM.getEntry(ModItems.JADE), Style.EMPTY.withColor(TextColor.fromRgb(11140783)), 0.7f);
+        register(registerable, PYROPE, Registries.ITEM.getEntry(ModItems.PYROPE), Style.EMPTY.withColor(TextColor.fromRgb(12717839)), 0.4f);
     }
 
     private static void register(Registerable<ArmorTrimMaterial> registerable, RegistryKey<ArmorTrimMaterial> armorTrimKey,
@@ -55,7 +55,7 @@ public class ModArmorTrimMaterials {
     }
 
     private static RegistryKey<ArmorTrimMaterial> of(String id) {
-        Identifier ID = Identifier.of(MoreOres.MOD_ID, id);
+        Identifier ID = Identifier.of(MoreOresModInitializer.MOD_ID, id);
         return RegistryKey.of(RegistryKeys.TRIM_MATERIAL, ID);
     }
 }

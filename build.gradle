@@ -25,8 +25,8 @@ fabricApi {
 }
 
 dependencies {
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:17.0.789"
-	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:17.0.789"
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"

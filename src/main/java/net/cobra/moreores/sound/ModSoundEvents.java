@@ -5,7 +5,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.MoreOresModInitializer;
 
 public class ModSoundEvents {
 
@@ -24,7 +24,7 @@ public class ModSoundEvents {
     }
 
     private static SoundEvent register(String id) {
-        Identifier ID = Identifier.of(MoreOres.MOD_ID, id);
+        Identifier ID = Identifier.of(MoreOresModInitializer.MOD_ID, id);
         return ModSoundEvents.register(ID);
     }
 
@@ -33,7 +33,7 @@ public class ModSoundEvents {
     }
 
     private static RegistryEntry.Reference<SoundEvent> registerReference(String id) {
-        Identifier ID = Identifier.of(MoreOres.MOD_ID, id);
+        Identifier ID = Identifier.of(MoreOresModInitializer.MOD_ID, id);
         return ModSoundEvents.registerReference(ID);
     }
 

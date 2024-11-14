@@ -1,5 +1,5 @@
-//package net.cobra.moreores.enchantment;
-//
+package net.cobra.moreores.enchantment;
+
 //import net.minecraft.block.Block;
 //import net.minecraft.component.EnchantmentEffectComponentTypes;
 //import net.minecraft.component.type.AttributeModifierSlot;
@@ -20,8 +20,10 @@
 //import net.minecraft.registry.tag.ItemTags;
 //import net.minecraft.util.Identifier;
 //import net.cobra.moreores.MoreOres;
-//
-//public class ModEnchantments {
+
+import net.cobra.moreores.MoreOresModInitializer;
+
+public class ModEnchantments {
 //    public static final RegistryKey<Enchantment> THUNDER_STRIKER = of("thunder_striker");
 //
 //    public static void bootstrap(Registerable<Enchantment> context) {
@@ -58,4 +60,8 @@
 //        return RegistryKey.of(RegistryKeys.ENCHANTMENT, ID);
 //    }
 //
-//}
+    public static void register() {
+        MoreOresModInitializer.LOGGER.info("Loading ModEnchantments for " + MoreOresModInitializer.MOD_ID + " mod.");
+    }
+
+}

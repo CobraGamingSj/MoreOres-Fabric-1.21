@@ -46,15 +46,15 @@ public class AdvancementGen extends FabricAdvancementProvider {
                 .criterion("peridot", InventoryChangedCriterion.Conditions.items(ModItems.PERIDOT))
                 .criterion("jade", InventoryChangedCriterion.Conditions.items(ModItems.JADE))
                 .criterion("pyrope", InventoryChangedCriterion.Conditions.items(ModItems.PYROPE))
-                .build(consumer, "a_gem");
+                .build(consumer, "is_that_a_gem");
 
         AdvancementEntry ruby_armor = Advancement.Builder.create()
                 .display(
                         ModItems.RUBY_CHESTPLATE,
-                        Text.translatable("advancement.moreores.ruby_armor").formatted(Formatting.DARK_RED),
+                        Text.translatable("advancement.moreores.ruby_armor").formatted(Formatting.DARK_AQUA),
                         Text.translatable("advancement.moreores.ruby_armor.desc"),
                         Identifier.of("moreores"),
-                        AdvancementFrame.TASK,
+                        AdvancementFrame.GOAL,
                         true,
                         true,
                         false

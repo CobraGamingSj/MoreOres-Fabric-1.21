@@ -11,7 +11,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.poi.PointOfInterestType;
-import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.ModBlocks;
 
 public class ModVillagerProfessions {
@@ -22,20 +22,20 @@ public class ModVillagerProfessions {
 
 
     private static VillagerProfession registerProfession(String name, RegistryKey<PointOfInterestType> type) {
-        return Registry.register(Registries.VILLAGER_PROFESSION, Identifier.of(MoreOres.MOD_ID, name),
+        return Registry.register(Registries.VILLAGER_PROFESSION, Identifier.of(MoreOresModInitializer.MOD_ID, name),
                 new VillagerProfession(name, entry -> entry.matchesKey(type), entry -> entry.matchesKey(type),
                         ImmutableSet.of(), ImmutableSet.of(), SoundEvents.ENTITY_VILLAGER_WORK_SHEPHERD));
     }
 
     private static PointOfInterestType registerPoi(String name, Block block) {
-        return PointOfInterestHelper.register(Identifier.of(MoreOres.MOD_ID, name), 1, 1, block);
+        return PointOfInterestHelper.register(Identifier.of(MoreOresModInitializer.MOD_ID, name), 1, 1, block);
     }
 
     private static RegistryKey<PointOfInterestType> poiKey(String name) {
-        return RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE, Identifier.of(MoreOres.MOD_ID, name));
+        return RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, name));
     }
 
     public static void register() {
-        MoreOres.LOGGER.info("Loading ModVillagerProfessions for " + MoreOres.MOD_ID + " mod.");
+        MoreOresModInitializer.LOGGER.info("Loading ModVillagerProfessions for " + MoreOresModInitializer.MOD_ID + " mod.");
     }
 }

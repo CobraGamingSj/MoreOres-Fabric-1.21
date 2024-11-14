@@ -5,7 +5,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.MoreOresModInitializer;
 
 public class ModConfiguredFeatures {
 
@@ -14,6 +14,6 @@ public class ModConfiguredFeatures {
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> of(String id) {
-        return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(MoreOres.MOD_ID, id));
+        return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(MoreOresModInitializer.MOD_ID, id));
     }
 }

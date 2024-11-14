@@ -84,8 +84,8 @@
   "block.moreores.jade_ore": "Jade Ore",
   "block.moreores.deepslate_jade_ore": "Deepslate Jade Ore",
 
-  "item.moreores.ruby_upgrade_smithing_template": "Smithing Template",
-  "item.moreores.guardian_armor_trim": "Smithing Template",
+  "item.moreores.ruby_upgrade_smithing_template": "Smithing Armor Trim",
+  "item.moreores.guardian_armor_trim_smithing_template": "Guardian Armor Trim",
 
   "item.moreores.ruby_pickaxe": "Ruby Pickaxe",
   "item.moreores.ruby_sword": "Ruby Sword",

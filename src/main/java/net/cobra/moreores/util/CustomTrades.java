@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradedItem;
-import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.village.ModVillagerProfessions;
 
@@ -13,7 +13,7 @@ public class CustomTrades {
 
     public static void register() {
 
-        MoreOres.LOGGER.info("Loading CustomTrades for " + MoreOres.MOD_ID + " mod.");
+        MoreOresModInitializer.LOGGER.info("Loading CustomTrades for " + MoreOresModInitializer.MOD_ID + " mod.");
 
         TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
             factories.add((entity, random) -> new TradeOffer(

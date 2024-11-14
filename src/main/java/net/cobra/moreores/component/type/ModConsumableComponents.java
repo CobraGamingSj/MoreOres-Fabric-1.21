@@ -1,6 +1,6 @@
 package net.cobra.moreores.component.type;
 
-import net.cobra.moreores.MoreOres;
+import net.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.component.type.ConsumableComponent;
 import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -23,7 +23,7 @@ public class ModConsumableComponents {
             new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 200, 4)))).build();
 
     public static void register() {
-        MoreOres.LOGGER.info("Adding ConsumableComponents for " + MoreOres.MOD_ID + " mod.");
+        MoreOresModInitializer.LOGGER.info("Adding ConsumableComponents for " + MoreOresModInitializer.MOD_ID + " mod.");
     }
 
 }
