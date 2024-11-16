@@ -19,6 +19,7 @@ public class DynamicRegistry extends FabricDynamicRegistryProvider {
         entries.addAll(registries.getOrThrow(RegistryKeys.JUKEBOX_SONG));
         entries.addAll(registries.getOrThrow(RegistryKeys.TRIM_MATERIAL));
         entries.addAll(registries.getOrThrow(RegistryKeys.TRIM_PATTERN));
+        entries.addAll(registries.getOrThrow(RegistryKeys.ENCHANTMENT));
     }
 
     @Override
