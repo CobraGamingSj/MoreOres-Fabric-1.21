@@ -4,6 +4,7 @@ import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.component.type.ModConsumableComponents;
 import net.cobra.moreores.enchantment.ModEnchantments;
+import net.cobra.moreores.enchantment.entity.effect.EnchantmentEffects;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.recipe.ModRecipeSerializer;
 import net.cobra.moreores.recipe.ModRecipeType;
@@ -280,7 +281,7 @@ public class MoreOresModInitializer implements ModInitializer {
 		ModRecipeBookCategories.register();
 
 
-		//ModEnchantments Registry
-		ModEnchantments.register();
+		//EnchantmentEffects Registry
+		EnchantmentEffects.register();
 	}
 }

@@ -73,12 +73,16 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     //Renamed method form getRenderStack to getStackRenderer
-    public ItemStack getRenderStack() {
+    public ItemStack getOutputStackRenderer() {
         if (this.getStack(ITEM_OUTPUT_SLOT).isEmpty()) {
             return this.getStack(ITEM_INPUT_SLOT);
         } else {
             return this.getStack(ITEM_OUTPUT_SLOT);
         }
+    }
+
+    public ItemStack getInputStackRenderer() {
+        return this.getStack(ITEM_INPUT_SLOT);
     }
 
     @Override
@@ -157,29 +161,21 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     //Renamed method from craftItem to craftResultItem
     private void craftResultItem() {
         RecipeEntry<GemPolisherRecipe> recipe = currentRecipe().orElseThrow();
+        ItemStack energySlot = getStack(ENERGY_SOURCE_SLOT);
 
-//        if (currentRecipe().isEmpty() || getEnergySlot().isEmpty()) {
-//            return;
-//        }
 
-        ItemStack energyStack = getStack(ENERGY_SOURCE_SLOT);
-        if (!energyStack.isEmpty() && energyStack.getDamage() < energyStack.getMaxDamage()) {
-            energyStack.setDamage(energyStack.getDamage() + 5);
-        } else {
-            // Remove the stack from the energy slot if it’s empty or maxed out on damage
+        this.removeStack(ITEM_INPUT_SLOT, 1);
+        if (energySlot.getItem() == ModItems.ENERGY_INGOT) {
+            if (energySlot.getDamage() < energySlot.getMaxDamage()) {
+                energySlot.setDamage(energySlot.getDamage() + 5);
+            }
+        }else {
             this.removeStack(ENERGY_SOURCE_SLOT);
         }
 
-        // Set the result in the output slot, adjusting for existing items
-        ItemStack outputStack = this.getStack(ITEM_OUTPUT_SLOT);
-        int newCount = outputStack.getCount() + recipe.value().output.getCount();
 
-        if (newCount <= outputStack.getMaxCount()) {
-            this.setStack(ITEM_OUTPUT_SLOT, new ItemStack(recipe.value().output.getItem(), newCount));
-        } else {
-            // Handle overflow if needed (adjust this as per your mod’s design)
-            outputStack.setCount(outputStack.getMaxCount());
-        }
+        this.setStack(ITEM_OUTPUT_SLOT, new ItemStack(recipe.value().getResult().getItem(),
+                getStack(ITEM_OUTPUT_SLOT).getCount() + recipe.value().getResult().getCount()));
     }
 
 //    private void craftItem() {

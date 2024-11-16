@@ -23,7 +23,7 @@ public class GemPolisherBlockEntityRenderer implements BlockEntityRenderer<GemPo
     @Override
     public void render(GemPolisherBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-        ItemStack stack = entity.getRenderStack();
+        ItemStack stack = entity.getOutputStackRenderer();
         matrices.push();
         matrices.translate(0.5f, 0.9f, 0.5f);
         matrices.scale(0.35f, 0.35f, 0.35f);

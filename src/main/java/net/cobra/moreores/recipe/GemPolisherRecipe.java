@@ -17,8 +17,8 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.List;
 
 public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
     public final Ingredient ingredient;
@@ -34,13 +34,17 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
 
     @Override
     public ItemStack craft(SingleStackRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
-        return output.copy();
+        return this.output.copy();
+    }
+
+    public ItemStack getResult() {
+        return this.output;
     }
 
     @Override
     public boolean matches(SingleStackRecipeInput input, World world) {
         if (world.isClient) return false;
-        return ingredient.test(input.item());
+        return this.ingredient.test(input.item());
     }
 
     @Override
@@ -56,17 +60,17 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
     @Override
     public List<RecipeDisplay> getDisplays() {
         return List.of(
-               new GemPolishingRecipeDisplay(
-                       Ingredient.toDisplay(Optional.of(this.ingredient)),
-                       new SlotDisplay.StackSlotDisplay(this.output),
-                       new SlotDisplay.ItemSlotDisplay(ModBlocks.GEM_POLISHER_BLOCK.asItem())
-               )
+                new GemPolishingRecipeDisplay(
+                        Ingredient.toDisplay(Optional.of(this.ingredient)),
+                        new SlotDisplay.StackSlotDisplay(this.output),
+                        new SlotDisplay.ItemSlotDisplay(ModBlocks.GEM_POLISHER_BLOCK.asItem())
+                )
         );
     }
 
     @Override
     public IngredientPlacement getIngredientPlacement() {
-        if(this.ingredientPlacement == null) {
+        if (this.ingredientPlacement == null) {
             this.ingredientPlacement = IngredientPlacement.forSingleSlot(this.ingredient);
         }
         return this.ingredientPlacement;
@@ -97,13 +101,13 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
         ).apply(instance, GemPolisherRecipe::new));
 
         //PACKET_CODEC
-        public static final PacketCodec<RegistryByteBuf, GemPolisherRecipe> PACKET_CODEC = PacketCodec.tuple(
-                Ingredient.PACKET_CODEC,
-                recipe -> recipe.ingredient,
-                ItemStack.PACKET_CODEC,
-                recipe -> recipe.output,
-                GemPolisherRecipe::new
-        );
+//        public static final PacketCodec<RegistryByteBuf, GemPolisherRecipe> PACKET_CODEC = PacketCodec.tuple(
+//                Ingredient.PACKET_CODEC,
+//                recipe -> recipe.ingredient,
+//                ItemStack.PACKET_CODEC,
+//                recipe -> recipe.output,
+//                GemPolisherRecipe::new
+//        );
 
         @Override
         public MapCodec<GemPolisherRecipe> codec() {
@@ -112,18 +116,18 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
 
         @Override
         public PacketCodec<RegistryByteBuf, GemPolisherRecipe> packetCodec() {
-            return PACKET_CODEC;
+            return PacketCodec.ofStatic(Serializer::write, Serializer::read);
         }
 
-//        private static void write(RegistryByteBuf buf, GemPolisherRecipe recipe) {
-//            Ingredient.PACKET_CODEC.encode(buf, recipe.ingredient);
-//            ItemStack.PACKET_CODEC.encode(buf, recipe.output);
-//        }
-//
-//        private static GemPolisherRecipe read(RegistryByteBuf buf) {
-//            Ingredient ingredient = Ingredient.PACKET_CODEC.decode(buf);
-//            ItemStack result = ItemStack.PACKET_CODEC.decode(buf);
-//            return new GemPolisherRecipe(ingredient, result);
-//        }
+        private static void write(RegistryByteBuf buf, GemPolisherRecipe recipe) {
+            Ingredient.PACKET_CODEC.encode(buf, recipe.ingredient);
+            ItemStack.PACKET_CODEC.encode(buf, recipe.output);
+        }
+
+        private static GemPolisherRecipe read(RegistryByteBuf buf) {
+            Ingredient ingredient = Ingredient.PACKET_CODEC.decode(buf);
+            ItemStack result = ItemStack.PACKET_CODEC.decode(buf);
+            return new GemPolisherRecipe(ingredient, result);
+        }
     }
 }

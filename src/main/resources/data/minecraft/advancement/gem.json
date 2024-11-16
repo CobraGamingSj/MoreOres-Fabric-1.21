@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:a_gem",
+  "parent": "minecraft:is_that_a_gem",
   "criteria": {
     "blue_garnet": {
       "conditions": {
