@@ -53,11 +53,11 @@ public class GemPolisherScreenHandler extends ScreenHandler {
     }
 
 
-    public boolean isCrafting() {
+    public boolean isPolishing() {
         return propertyDelegate.get(0) > 0;
     }
 
-    public int getScaledProgress() {
+    public int progressGetter() {
         int progress = this.propertyDelegate.get(0);
         int maxProgress = this.propertyDelegate.get(1);  // Max Progress
         int progressArrowSize = 26; // This is the width in pixels of your arrow

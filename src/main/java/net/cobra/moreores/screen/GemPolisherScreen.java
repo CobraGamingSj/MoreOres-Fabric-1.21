@@ -11,7 +11,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
-    private static final Identifier TEXTURE = Identifier.of(MoreOresModInitializer.MOD_ID, "textures/gui/container/gem_polisher_gui.png");
+    public static final Identifier PROGRESS_ARROW_TEXTURE = Identifier.of(MoreOresModInitializer.MOD_ID, "textures/gui/containers/gem_polisher/progress_arrow");
+    private static final Identifier TEXTURE = Identifier.of(MoreOresModInitializer.MOD_ID, "textures/gui/container/gem_polisher/gem_polisher_gui.png");
 
     public GemPolisherScreen(GemPolisherScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -25,8 +26,10 @@ public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
     }
 
     private void renderProgressArrow(DrawContext context, int x, int y) {
-        if(handler.isCrafting()) {
-            context.drawTexture(RenderLayer::getGuiTextured, TEXTURE, x + 88, y + 31, 176, 0, 8, handler.getScaledProgress(), 256, 256);
+        int textureHeight = 26;
+        int textureWidth = 8;
+        if(handler.isPolishing()) {
+            context.drawGuiTexture(RenderLayer::getGuiTextured, PROGRESS_ARROW_TEXTURE, x + 88, y + 31, 176, 0, 8, handler.progressGetter(), textureWidth, textureHeight);
         }
     }
 
