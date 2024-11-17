@@ -11,7 +11,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
-    public static final Identifier PROGRESS_ARROW_TEXTURE = Identifier.of(MoreOresModInitializer.MOD_ID, "textures/gui/containers/gem_polisher/progress_arrow");
+    public static final Identifier PROGRESS_ARROW_TEXTURE = Identifier.of(MoreOresModInitializer.MOD_ID, "textures/gui/containers/gem_polisher/progress_arrow.png");
     private static final Identifier TEXTURE = Identifier.of(MoreOresModInitializer.MOD_ID, "textures/gui/container/gem_polisher/gem_polisher_gui.png");
 
     public GemPolisherScreen(GemPolisherScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -29,7 +29,7 @@ public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
         int textureHeight = 26;
         int textureWidth = 8;
         if(handler.isPolishing()) {
-            context.drawGuiTexture(RenderLayer::getGuiTextured, PROGRESS_ARROW_TEXTURE, x + 88, y + 31, 176, 0, 8, handler.progressGetter(), textureWidth, textureHeight);
+            context.drawTexture(RenderLayer::getGuiTextured, PROGRESS_ARROW_TEXTURE, x + 88, y + 31, 176, 0, 8, handler.progressGetter(), textureWidth, textureHeight);
         }
     }
 
@@ -43,12 +43,6 @@ public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
 
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
-        RenderSystem.setShader(ShaderProgramKeys.POSITION_TEX_COLOR);
-        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
-        RenderSystem.setShaderTexture(0, TEXTURE);
-        int x = (width - backgroundWidth) / 2;
-        int y = (height - backgroundHeight) / 2;
-
         context.drawTexture(RenderLayer::getGuiTextured, TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight, 256, 256);
 
         renderProgressArrow(context, x, y);

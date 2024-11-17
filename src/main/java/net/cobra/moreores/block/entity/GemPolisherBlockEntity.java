@@ -33,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(15, ItemStack.EMPTY); // Changed size to 15(3 existing slots, 12 new slots added)
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(15, ItemStack.EMPTY);
 
     public static final int ITEM_INPUT_SLOT = 0;
     public static final int ITEM_OUTPUT_SLOT = 1;
