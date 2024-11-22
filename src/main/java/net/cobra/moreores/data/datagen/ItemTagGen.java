@@ -1,4 +1,4 @@
-package net.cobra.moreores.datagen;
+package net.cobra.moreores.data.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -150,7 +150,7 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .forceAddTag(ItemTags.LEG_ARMOR_ENCHANTABLE)
                 .forceAddTag(ItemTags.FOOT_ARMOR_ENCHANTABLE);
 
-        getOrCreateTagBuilder(ModItemTags.IS_GEMSTONE)
+        getOrCreateTagBuilder(ModItemTags.GEMSTONE)
                 .add(ModItems.RUBY)
                 .add(ModItems.RADIANT)
                 .add(ModItems.SAPPHIRE)
@@ -163,16 +163,31 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.PERIDOT)
                 .add(ModItems.JADE)
                 .add(ModItems.PYROPE)
+                .add(Items.LAPIS_LAZULI)
+                .add(Items.QUARTZ)
                 .add(Items.DIAMOND);
 
-        getOrCreateTagBuilder(ModItemTags.IS_METAL)
+        getOrCreateTagBuilder(ModItemTags.RAW_GEMSTONE)
+                .add(ModItems.RAW_RUBY)
+                .add(ModItems.RAW_SAPPHIRE)
+                .add(ModItems.RAW_GREEN_SAPPHIRE)
+                .add(ModItems.RAW_BLUE_GARNET)
+                .add(ModItems.RAW_PINK_GARNET)
+                .add(ModItems.RAW_GREEN_GARNET)
+                .add(ModItems.RAW_TOPAZ)
+                .add(ModItems.RAW_WHITE_TOPAZ)
+                .add(ModItems.RAW_PERIDOT)
+                .add(ModItems.RAW_JADE)
+                .add(ModItems.RAW_PYROPE);
+
+        getOrCreateTagBuilder(ModItemTags.METAL)
                 .add(Items.IRON_INGOT)
                 .add(Items.COPPER_INGOT)
                 .add(Items.GOLD_INGOT);
 
-        getOrCreateTagBuilder(ModItemTags.IS_RARE)
-                .forceAddTag(ModItemTags.IS_GEMSTONE)
-                .forceAddTag(ModItemTags.IS_METAL);
+        getOrCreateTagBuilder(ModItemTags.RARE)
+                .forceAddTag(ModItemTags.GEMSTONE)
+                .forceAddTag(ModItemTags.METAL);
 
         getOrCreateTagBuilder(ModItemTags.JUKEBOX_PLAYABLE_DISCS)
                 .add(ModItems.MUSIC_DISC_ARIA_MATH)

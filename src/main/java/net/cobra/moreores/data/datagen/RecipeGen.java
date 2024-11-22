@@ -1,4 +1,4 @@
-package net.cobra.moreores.datagen;
+package net.cobra.moreores.data.datagen;
 
 import net.cobra.moreores.data.server.recipe.GemPolishingRecipeJsonBuilder;
 import net.cobra.moreores.block.ModBlocks;
@@ -207,7 +207,7 @@ public class RecipeGen extends FabricRecipeProvider {
                         ModBlocks.RAW_PYROPE_BLOCK);
 
                 GemPolishingRecipeJsonBuilder.create(
-                                Ingredient.ofItems(ModItems.RAW_RUBY), new ItemStack(ModItems.RUBY), RecipeCategory.MISC
+                                Ingredient.ofItem(ModItems.RAW_RUBY), new ItemStack(ModItems.RUBY), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_RUBY), conditionsFromItem(ModItems.RAW_RUBY))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RUBY) + "_polishing")));

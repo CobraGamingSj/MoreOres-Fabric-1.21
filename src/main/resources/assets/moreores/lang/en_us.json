@@ -176,5 +176,6 @@
   "trim_material.moreores.peridot": "Peridot Material",
   "trim_material.moreores.topaz": "Topaz Material",
   "trim_material.moreores.white_topaz": "White Topaz Material",
-  "trim_material.moreores.pink_garnet": "Pink Garnet Material"
+  "trim_material.moreores.pink_garnet": "Pink Garnet Material",
+  "block.moreores.gemstone_storage_block": "Gem Storage  Block"
 }

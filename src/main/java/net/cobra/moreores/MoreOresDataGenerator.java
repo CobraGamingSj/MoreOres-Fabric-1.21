@@ -1,12 +1,12 @@
 package net.cobra.moreores;
 
+import net.cobra.moreores.data.datagen.*;
 import net.cobra.moreores.enchantment.ModEnchantments;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
 import net.cobra.moreores.block.jukebox.ModJukeboxSongs;
-import net.cobra.moreores.datagen.*;
 import net.cobra.moreores.item.equipment.trim.ModArmorTrimMaterials;
 import net.cobra.moreores.item.equipment.trim.ModArmorTrimPatterns;
 import net.cobra.moreores.world.gen.feature.ModConfiguredFeatures;

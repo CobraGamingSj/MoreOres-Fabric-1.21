@@ -1,4 +1,4 @@
-package net.cobra.moreores.datagen;
+package net.cobra.moreores.data.datagen;
 
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.PineappleCropBlock;

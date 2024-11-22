@@ -3,8 +3,10 @@ package net.cobra.moreores.block.entity;
 import net.cobra.moreores.block.data.GemPolisherData;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.recipe.GemPolisherRecipe;
+import net.cobra.moreores.registry.ModItemTags;
 import net.cobra.moreores.screen.GemPolisherScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,14 +31,22 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 import java.util.Optional;
 
-public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
+public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<GemPolisherData>, ImplementedInventory, TickableBlockEntity {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(15, ItemStack.EMPTY);
 
-    public static final int ITEM_INPUT_SLOT = 0;
-    public static final int ITEM_OUTPUT_SLOT = 1;
+    public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(1_000_000, 0,1_000_000) {
+        @Override
+        public void onFinalCommit() {
+            markDirty();
+        }
+    };
+
+    public static final int INGREDIENT_SLOT = 0;
+    public static final int RESULT_SLOT = 1;
     public static final int ENERGY_SOURCE_SLOT = 2;
 
     protected final PropertyDelegate propertyDelegate;
@@ -72,22 +82,39 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         };
     }
 
-    //Renamed method form getRenderStack to getStackRenderer
+    public SimpleEnergyStorage getEnergyStorage() {
+        return this.energyStorage;
+    }
+
+    public SimpleEnergyStorage getEnergyCapacity() {
+        return this.energyStorage;
+    }
+
     public ItemStack getOutputStackRenderer() {
-        if (this.getStack(ITEM_OUTPUT_SLOT).isEmpty()) {
-            return this.getStack(ITEM_INPUT_SLOT);
-        } else {
-            return this.getStack(ITEM_OUTPUT_SLOT);
-        }
+        if (this.getStack(RESULT_SLOT).isEmpty()) return ItemStack.EMPTY;
+        return this.getStack(RESULT_SLOT);
     }
 
     public ItemStack getInputStackRenderer() {
-        return this.getStack(ITEM_INPUT_SLOT);
+        if (this.getStack(INGREDIENT_SLOT).isEmpty()) return ItemStack.EMPTY;
+        return this.getStack(INGREDIENT_SLOT);
+    }
+
+    public ItemStack getEnergyStackRenderer() {
+        if(this.getStack(ENERGY_SOURCE_SLOT).isEmpty()) return ItemStack.EMPTY;
+        return this.getStack(ENERGY_SOURCE_SLOT);
+    }
+
+    private void update() {
+        markDirty();
+        if(world != null) {
+            world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
+        }
     }
 
     @Override
     public void markDirty() {
-        world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+        if(world != null) world.updateListeners(pos, getCachedState(), getCachedState(), 3);
         super.markDirty();
     }
 
@@ -117,11 +144,6 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     @Override
-    public Object getScreenOpeningData(ServerPlayerEntity player) {
-        return new GemPolisherData(this.pos);
-    }
-
-    @Override
     public Text getDisplayName() {
         return Text.translatable("block.moreores.gem_polisher_block");
     }
@@ -133,18 +155,24 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     @Override
+    public GemPolisherData getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
+        return new GemPolisherData(this.pos);
+    }
+
+    @Override
     public DefaultedList<ItemStack> getItems() {
         return inventory;
     }
 
+    @Override
     public void tick(World world, BlockPos pos, BlockState state) {
-        if (world.isClient()) {
+        if ( world == null ||world.isClient) {
             return;
         }
-        if (isOutputSlotEmptyOrReceivable() && hasRecipe() && hasEnergySource()) {
+        if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnergySource()) {
             this.increaseProgress();
             if (hasPolishingFinished()) {
-                this.craftResultItem();
+                this.getPolishedGemstone();
                 this.resetProgress();
             }
             markDirty(world, pos, state);
@@ -155,147 +183,68 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void resetProgress() {
-        this.maxProgress = 0;
+        this.progress = 0;
     }
 
-    //Renamed method from craftItem to craftResultItem
-    private void craftResultItem() {
+    private void getPolishedGemstone() {
         RecipeEntry<GemPolisherRecipe> recipe = currentRecipe().orElseThrow();
         ItemStack energySlot = getStack(ENERGY_SOURCE_SLOT);
 
 
-        this.removeStack(ITEM_INPUT_SLOT, 1);
+        this.removeStack(INGREDIENT_SLOT, 1);
         if (energySlot.getItem() == ModItems.ENERGY_INGOT) {
             if (energySlot.getDamage() < energySlot.getMaxDamage()) {
                 energySlot.setDamage(energySlot.getDamage() + 5);
             }
-        }else {
+        } else {
             this.removeStack(ENERGY_SOURCE_SLOT);
         }
 
-
-        this.setStack(ITEM_OUTPUT_SLOT, new ItemStack(recipe.value().getResult().getItem(),
-                getStack(ITEM_OUTPUT_SLOT).getCount() + recipe.value().getResult().getCount()));
+        this.setStack(RESULT_SLOT, new ItemStack(recipe.value().output.getItem(),
+                getStack(RESULT_SLOT).getCount() + recipe.value().output.getCount()));
     }
 
-//    private void craftItem() {
-//        ItemStack inputStack = getStack(INPUT_SLOT);
-//        ItemStack energySource;
-//
-//        if (inputStack.getItem() == ModItems.RAW_RUBY) {
-//            energySource = new ItemStack(ModItems.RUBY);
-//        } else if (inputStack.getItem() == ModItems.RAW_SAPPHIRE) {
-//            energySource = new ItemStack(ModItems.SAPPHIRE);
-//        } else if (inputStack.getItem() == ModItems.RAW_GREEN_SAPPHIRE) {
-//            energySource = new ItemStack(ModItems.GREEN_SAPPHIRE);
-//        } else if (inputStack.getItem() == ModItems.RAW_BLUE_GARNET) {
-//            energySource = new ItemStack(ModItems.BLUE_GARNET);
-//        } else if (inputStack.getItem() == ModItems.RAW_PINK_GARNET) {
-//            energySource = new ItemStack(ModItems.PINK_GARNET);
-//        } else if (inputStack.getItem() == ModItems.RAW_GREEN_GARNET) {
-//            energySource = new ItemStack(ModItems.GREEN_GARNET);
-//        } else if (inputStack.getItem() == ModItems.RAW_TOPAZ) {
-//            energySource = new ItemStack(ModItems.TOPAZ);
-//        } else if (inputStack.getItem() == ModItems.RAW_WHITE_TOPAZ) {
-//            energySource = new ItemStack(ModItems.WHITE_TOPAZ);
-//        } else if (inputStack.getItem() == ModItems.RAW_PERIDOT) {
-//            energySource = new ItemStack(ModItems.PERIDOT);
-//        } else if (inputStack.getItem() == ModItems.RAW_JADE) {
-//            energySource = new ItemStack(ModItems.JADE);
-//        } else if (inputStack.getItem() == ModItems.RAW_PYROPE) {
-//            energySource = new ItemStack(ModItems.PYROPE);
-//        } else {
-//            return; // No valid input, so don't craft anything
-//        }
-//
-//        this.removeStack(INPUT_SLOT, 1);
-//
-//        ItemStack energyStack = getStack(ENERGY_SLOT);
-//        if (energyStack.getItem() == ModItems.ENERGY_INGOT) {
-//            if (energyStack.getDamage() < energyStack.getMaxDamage()) {
-//                energyStack.setDamage(energyStack.getDamage() + 5);
-//            } else {
-//                this.removeStack(ENERGY_SLOT);
-//            }
-//        }
-//
-//        this.setStack(OUTPUT_SLOT, new ItemStack(energySource.getItem(), getStack(OUTPUT_SLOT).getCount() + energySource.getCount()));
-//    }
-
-    //Renamed method from hasCraftingFinished to hasPolishingFinished
     private boolean hasPolishingFinished() {
         return progress >= maxProgress;
     }
 
-    //Renamed method from increaseCraftProgress to increaseProgress
     private void increaseProgress() {
         progress ++;
     }
 
     private boolean hasRecipe() {
         Optional<RecipeEntry<GemPolisherRecipe>> recipe = currentRecipe();
-//        Optional<RecipeEntry<GemPolisherRecipe>> energySlot = getEnergySlot();
 
-        return recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().output)
-                && canInsertItemIntoOutputSlot(recipe.get().value().output.getItem());
+        return recipe.isPresent() && canInsertCountIntoResultSlot(recipe.get().value().output)
+                && canInsertItemIntoResultSlot(recipe.get().value().output.getItem()) && canInsertItemIntoIngredientSlot() && canInsertCountIntoIngredientSlot(recipe.get().value().output);
+    }
+
+    private boolean canInsertCountIntoIngredientSlot(ItemStack result) {
+        return this.getStack(INGREDIENT_SLOT).getCount() + result.getCount() <= this.getStack(INGREDIENT_SLOT).getMaxCount();
     }
 
     private boolean hasEnergySource() {
         return this.getStack(ENERGY_SOURCE_SLOT).isOf(ModItems.ENERGY_INGOT);
     }
 
-    //Renamed method from getCurrentRecipe to currentRecipe
     private Optional<RecipeEntry<GemPolisherRecipe>> currentRecipe() {
-        ServerWorld server = world.getServer().getOverworld();
-        return this.matchGetter.getFirstMatch(new SingleStackRecipeInput(this.getStack(ITEM_INPUT_SLOT)), server);
+        if(this.world instanceof ServerWorld server) return this.matchGetter.getFirstMatch(new SingleStackRecipeInput(this.getStack(INGREDIENT_SLOT)), server);
+        return Optional.empty();
     }
 
-//    private Optional<RecipeEntry<GemPolisherRecipe>> getEnergySlot() {
-//        ServerWorld serverWorld = world.getServer().getOverworld();
-//        return this.matchGetter.getFirstMatch(new SingleStackRecipeInput(this.getStack(ENERGY_SOURCE_SLOT)), serverWorld);
-//    }
-
-//    private boolean hasRecipe() {
-//
-//        ItemStack hasInput = getStack(INPUT_SLOT);
-//        ItemStack energySource = null;
-//
-//        if (hasInput.getItem() == ModItems.RAW_RUBY) {
-//            energySource = new ItemStack(ModItems.RUBY);
-//        } else if (hasInput.getItem() == ModItems.RAW_SAPPHIRE) {
-//            energySource = new ItemStack(ModItems.SAPPHIRE);
-//        } else if (hasInput.getItem() == ModItems.RAW_GREEN_SAPPHIRE) {
-//            energySource = new ItemStack(ModItems.GREEN_SAPPHIRE);
-//        } else if (hasInput.getItem() == ModItems.RAW_BLUE_GARNET) {
-//            energySource = new ItemStack(ModItems.BLUE_GARNET);
-//        } else if (hasInput.getItem() == ModItems.RAW_PINK_GARNET) {
-//            energySource = new ItemStack(ModItems.PINK_GARNET);
-//        } else if (hasInput.getItem() == ModItems.RAW_GREEN_GARNET) {
-//            energySource = new ItemStack(ModItems.GREEN_GARNET);
-//        } else if (hasInput.getItem() == ModItems.RAW_TOPAZ) {
-//            energySource = new ItemStack(ModItems.TOPAZ);
-//        } else if (hasInput.getItem() == ModItems.RAW_WHITE_TOPAZ) {
-//            energySource = new ItemStack(ModItems.WHITE_TOPAZ);
-//        } else if (hasInput.getItem() == ModItems.RAW_PERIDOT) {
-//            energySource = new ItemStack(ModItems.PERIDOT);
-//        } else if (hasInput.getItem() == ModItems.RAW_JADE) {
-//            energySource = new ItemStack(ModItems.JADE);
-//        } else if (hasInput.getItem() == ModItems.RAW_PYROPE) {
-//            energySource = new ItemStack(ModItems.PYROPE);
-//        }
-//
-//        return energySource != null && canInsertAmountIntoOutputSlot(energySource) && canInsertItemIntoOutputSlot(energySource.getItem());
-//    }
-
-    private boolean canInsertItemIntoOutputSlot(Item item) {
-        return this.getStack(ITEM_OUTPUT_SLOT).getItem() == item || this.getStack(ITEM_OUTPUT_SLOT).isEmpty();
+    private boolean canInsertItemIntoResultSlot(Item item) {
+        return this.getStack(RESULT_SLOT).getItem() == item || this.getStack(RESULT_SLOT).isEmpty() || this.getStack(RESULT_SLOT).isIn(ModItemTags.GEMSTONE);
     }
 
-    private boolean canInsertAmountIntoOutputSlot(ItemStack result) {
-        return this.getStack(ITEM_OUTPUT_SLOT).getCount() + result.getCount() <= getStack(ITEM_OUTPUT_SLOT).getMaxCount();
+    private boolean canInsertCountIntoResultSlot(ItemStack result) {
+        return this.getStack(RESULT_SLOT).getCount() + result.getCount() <= getStack(RESULT_SLOT).getMaxCount();
     }
 
-    private boolean isOutputSlotEmptyOrReceivable() {
-        return this.getStack(ITEM_OUTPUT_SLOT).isEmpty() || this.getStack(ITEM_OUTPUT_SLOT).getCount() < this.getStack(ITEM_OUTPUT_SLOT).getMaxCount();
+    private boolean canInsertItemIntoIngredientSlot() {
+        return this.getStack(INGREDIENT_SLOT).isEmpty() || this.getStack(INGREDIENT_SLOT).isIn(ModItemTags.GEMSTONE) || this.getStack(INGREDIENT_SLOT).isIn(ModItemTags.RAW_GEMSTONE);
+    }
+
+    private boolean isResultSlotEmptyOrReceivable() {
+        return this.getStack(RESULT_SLOT).isEmpty() || this.getStack(RESULT_SLOT).getCount() < this.getStack(RESULT_SLOT).getMaxCount();
     }
 }

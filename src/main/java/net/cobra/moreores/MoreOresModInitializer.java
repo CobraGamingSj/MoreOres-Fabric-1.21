@@ -3,13 +3,12 @@ package net.cobra.moreores;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.component.type.ModConsumableComponents;
-import net.cobra.moreores.enchantment.ModEnchantments;
 import net.cobra.moreores.enchantment.entity.effect.EnchantmentEffects;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.recipe.ModRecipeSerializer;
 import net.cobra.moreores.recipe.ModRecipeType;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
-import net.cobra.moreores.screen.ModScreenHandlers;
+import net.cobra.moreores.screen.ModScreenHandlerType;
 import net.cobra.moreores.sound.ModBlockSoundGroup;
 import net.cobra.moreores.sound.ModSoundEvents;
 import net.cobra.moreores.util.CustomTrades;
@@ -37,6 +36,10 @@ public class MoreOresModInitializer implements ModInitializer {
 	public static final String MOD_ID = "moreores";
 	public static final String ID = "minecraft";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+	public static Identifier getId(String id) {
+		return Identifier.of(MOD_ID, id);
+	}
 
 
 	// Gemstones Item Group
@@ -261,7 +264,7 @@ public class MoreOresModInitializer implements ModInitializer {
 
 
 		//ModScreenHandlers Registry
-		ModScreenHandlers.register();
+		ModScreenHandlerType.register();
 
 
 		//ModRecipes Registry

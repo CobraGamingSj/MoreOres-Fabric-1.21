@@ -1,4 +1,4 @@
-package net.cobra.moreores.datagen;
+package net.cobra.moreores.data.datagen;
 
 import net.minecraft.data.DataOutput;
 import net.minecraft.data.server.tag.TagProvider;

@@ -81,6 +81,10 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
         return ModRecipeBookCategories.GEM_POLISHING;
     }
 
+    public Ingredient getIngredients() {
+        return this.ingredient;
+    }
+
     public static class Type implements RecipeType<GemPolisherRecipe> {
 
         //RECIPE PROPERTIES

@@ -22,11 +22,41 @@ public class GemPolisherBlockEntityRenderer implements BlockEntityRenderer<GemPo
     }
     @Override
     public void render(GemPolisherBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+
+        this.renderInputStack(entity, matrices, vertexConsumers);
+        this.renderEnergyStack(entity, matrices, vertexConsumers);
+
         ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
         ItemStack stack = entity.getOutputStackRenderer();
         matrices.push();
-        matrices.translate(0.5f, 0.9f, 0.5f);
-        matrices.scale(0.35f, 0.35f, 0.35f);
+        matrices.translate(0.685f, 0.9f, 0.5f);
+        matrices.scale(0.3f, 0.3f, 0.3f);
+        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
+
+        itemRenderer.renderItem(stack, ModelTransformationMode.GUI, getLightLevel(entity.getWorld(), entity.getPos()), OverlayTexture.DEFAULT_UV, matrices, vertexConsumers,
+                entity.getWorld(), 1);
+        matrices.pop();
+    }
+
+    private void renderInputStack(GemPolisherBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
+        ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
+        ItemStack stack = entity.getInputStackRenderer();
+        matrices.push();
+        matrices.translate(0.25f, 0.9f, 0.25f);
+        matrices.scale(0.25f, 0.25f, 0.25f);
+        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
+
+        itemRenderer.renderItem(stack, ModelTransformationMode.GUI, getLightLevel(entity.getWorld(), entity.getPos()), OverlayTexture.DEFAULT_UV, matrices, vertexConsumers,
+                entity.getWorld(), 1);
+        matrices.pop();
+    }
+
+    private void renderEnergyStack(GemPolisherBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
+        ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
+        ItemStack stack = entity.getEnergyStackRenderer();
+        matrices.push();
+        matrices.translate(0.25f, 0.9f, 0.75f);
+        matrices.scale(0.25f, 0.25f, 0.25f);
         matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
 
         itemRenderer.renderItem(stack, ModelTransformationMode.GUI, getLightLevel(entity.getWorld(), entity.getPos()), OverlayTexture.DEFAULT_UV, matrices, vertexConsumers,

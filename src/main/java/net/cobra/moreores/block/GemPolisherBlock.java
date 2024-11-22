@@ -1,6 +1,7 @@
 package net.cobra.moreores.block;
 
 import com.mojang.serialization.MapCodec;
+import net.cobra.moreores.block.entity.TickableBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -82,7 +83,7 @@ public class GemPolisherBlock extends BlockWithEntity implements BlockEntityProv
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return validateTicker(type, ModBlockEntityType.GEM_POLISHER_BLOCK_ENTITY, (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
+        return TickableBlockEntity.getTicker(world, state, type);
     }
 
     @Override

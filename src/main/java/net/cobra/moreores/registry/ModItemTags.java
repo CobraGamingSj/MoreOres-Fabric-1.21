@@ -10,9 +10,10 @@ public class ModItemTags {
 
     private static final String MINECRAFT = "minecraft";
 
-    public static final TagKey<Item> IS_GEMSTONE = of("rare/is_gemstone");
-    public static final TagKey<Item> IS_METAL = ofVanilla("is_metal");
-    public static final TagKey<Item> IS_RARE = ofVanilla("rare/is_rare");
+    public static final TagKey<Item> GEMSTONE = of("rare/gemstone");
+    public static final TagKey<Item> RAW_GEMSTONE = of("rare/raw_gemstone");
+    public static final TagKey<Item> METAL = ofVanilla("is_metal");
+    public static final TagKey<Item> RARE = ofVanilla("rare/rare");
     public static final TagKey<Item> JUKEBOX_PLAYABLE_DISCS = ofVanilla("jukebox_playable_discs");
     public static final TagKey<Item> REPAIRS_RUBY_ARMOR = ofVanilla("repairs_ruby_armor");
     public static final TagKey<Item> REPAIRS_SAPPHIRE_ARMOR = ofVanilla("repairs_sapphire_armor");
