@@ -1,11 +1,15 @@
 package net.cobra.moreores.block.entity;
 
+import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.data.GemPolisherData;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.recipe.GemPolisherRecipe;
 import net.cobra.moreores.registry.ModItemTags;
 import net.cobra.moreores.screen.GemPolisherScreenHandler;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -38,10 +42,16 @@ import java.util.Optional;
 public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<GemPolisherData>, ImplementedInventory, TickableBlockEntity {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(15, ItemStack.EMPTY);
 
-    public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(1_000_000, 0,1_000_000) {
+    public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(1000000, 16,64) {
         @Override
         public void onFinalCommit() {
+            super.onFinalCommit();
+
             markDirty();
+
+            for(ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
+                ServerPlayNetworking.send(user, new GemPolisherData(this.amount, getPos()));
+            }
         }
     };
 
@@ -82,12 +92,8 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         };
     }
 
-    public SimpleEnergyStorage getEnergyStorage() {
-        return this.energyStorage;
-    }
-
-    public SimpleEnergyStorage getEnergyCapacity() {
-        return this.energyStorage;
+    public void setEnergyLevel(long energyLevel) {
+        this.energyStorage.amount = energyLevel;
     }
 
     public ItemStack getOutputStackRenderer() {
@@ -105,16 +111,9 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         return this.getStack(ENERGY_SOURCE_SLOT);
     }
 
-    private void update() {
-        markDirty();
-        if(world != null) {
-            world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
-        }
-    }
-
     @Override
     public void markDirty() {
-        if(world != null) world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+        world.updateListeners(pos, getCachedState(), getCachedState(), 3);
         super.markDirty();
     }
 
@@ -134,6 +133,7 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         super.readNbt(nbt, registryLookup);
         Inventories.readNbt(nbt, inventory, registryLookup);
         progress = nbt.getInt("gem_polisher.progress");
+        energyStorage.amount = nbt.getLong("gem_polisher.energy");
     }
 
     @Override
@@ -141,6 +141,7 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         super.writeNbt(nbt, registryLookup);
         Inventories.writeNbt(nbt, inventory, registryLookup);
         nbt.putInt("gem_polisher.progress", progress);
+        nbt.putLong("gem_polisher.energy", energyStorage.amount);
     }
 
     @Override
@@ -156,7 +157,7 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 
     @Override
     public GemPolisherData getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
-        return new GemPolisherData(this.pos);
+        return new GemPolisherData(this.energyStorage.amount, this.pos);
     }
 
     @Override
@@ -166,11 +167,31 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 
     @Override
     public void tick(World world, BlockPos pos, BlockState state) {
-        if ( world == null ||world.isClient) {
+        if (world.isClient()) {
             return;
         }
-        if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnergySource()) {
+
+        if(hasEnergySourceProviderItem()) {
+            try(Transaction transaction = Transaction.openOuter()) {
+                this.energyStorage.insert(8, transaction);
+                transaction.commit();
+            }
+        }
+
+
+        if (this.energyStorage.amount == 250000) {
+            this.removeStack(ENERGY_SOURCE_SLOT, 1);
+        } else if (this.energyStorage.amount == 500000) {
+            this.removeStack(ENERGY_SOURCE_SLOT, 1);
+        } else if (this.energyStorage.amount == 750000) {
+            this.removeStack(ENERGY_SOURCE_SLOT, 1);
+        } else if(this.energyStorage.amount >= this.energyStorage.capacity) {
+            this.removeStack(ENERGY_SOURCE_SLOT, 1);
+        }
+
+        if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy()) {
             this.increaseProgress();
+            this.extractEnergy();
             if (hasPolishingFinished()) {
                 this.getPolishedGemstone();
                 this.resetProgress();
@@ -182,26 +203,33 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         }
     }
 
+    private void extractEnergy() {
+        try(Transaction transaction = Transaction.openOuter()) {
+            this.energyStorage.extract(16, transaction);
+            transaction.commit();
+        }
+    }
+
+    private boolean hasEnoughEnergy() {
+        return this.energyStorage.amount >= 16;
+    }
+
     private void resetProgress() {
         this.progress = 0;
     }
 
     private void getPolishedGemstone() {
         RecipeEntry<GemPolisherRecipe> recipe = currentRecipe().orElseThrow();
-        ItemStack energySlot = getStack(ENERGY_SOURCE_SLOT);
-
 
         this.removeStack(INGREDIENT_SLOT, 1);
-        if (energySlot.getItem() == ModItems.ENERGY_INGOT) {
-            if (energySlot.getDamage() < energySlot.getMaxDamage()) {
-                energySlot.setDamage(energySlot.getDamage() + 5);
-            }
+        if (this.getStack(ENERGY_SOURCE_SLOT).isEmpty()) {
+            return;
         } else {
-            this.removeStack(ENERGY_SOURCE_SLOT);
+            this.removeStack(ENERGY_SOURCE_SLOT, 1);
         }
 
-        this.setStack(RESULT_SLOT, new ItemStack(recipe.value().output.getItem(),
-                getStack(RESULT_SLOT).getCount() + recipe.value().output.getCount()));
+        this.setStack(RESULT_SLOT, new ItemStack(recipe.value().getResult().getItem(),
+                getStack(RESULT_SLOT).getCount() + recipe.value().getResult().getCount()));
     }
 
     private boolean hasPolishingFinished() {
@@ -209,39 +237,30 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void increaseProgress() {
-        progress ++;
+        progress++;
     }
 
     private boolean hasRecipe() {
         Optional<RecipeEntry<GemPolisherRecipe>> recipe = currentRecipe();
 
-        return recipe.isPresent() && canInsertCountIntoResultSlot(recipe.get().value().output)
-                && canInsertItemIntoResultSlot(recipe.get().value().output.getItem()) && canInsertItemIntoIngredientSlot() && canInsertCountIntoIngredientSlot(recipe.get().value().output);
+        return recipe.isPresent() && canInsertCountIntoResultSlot(recipe.get().value().getResult())
+                && canInsertItemIntoResultSlot(recipe.get().value().getResult().getItem());
     }
 
-    private boolean canInsertCountIntoIngredientSlot(ItemStack result) {
-        return this.getStack(INGREDIENT_SLOT).getCount() + result.getCount() <= this.getStack(INGREDIENT_SLOT).getMaxCount();
-    }
-
-    private boolean hasEnergySource() {
-        return this.getStack(ENERGY_SOURCE_SLOT).isOf(ModItems.ENERGY_INGOT);
+    private boolean hasEnergySourceProviderItem() {
+        return this.getStack(ENERGY_SOURCE_SLOT).isOf(ModItems.ENERGY_INGOT) || this.getStack(ENERGY_SOURCE_SLOT).isOf(ModBlocks.ENERGY_BLOCK.asItem());
     }
 
     private Optional<RecipeEntry<GemPolisherRecipe>> currentRecipe() {
-        if(this.world instanceof ServerWorld server) return this.matchGetter.getFirstMatch(new SingleStackRecipeInput(this.getStack(INGREDIENT_SLOT)), server);
-        return Optional.empty();
+        return this.matchGetter.getFirstMatch(new SingleStackRecipeInput(this.getStack(INGREDIENT_SLOT)), (ServerWorld) world);
     }
 
     private boolean canInsertItemIntoResultSlot(Item item) {
-        return this.getStack(RESULT_SLOT).getItem() == item || this.getStack(RESULT_SLOT).isEmpty() || this.getStack(RESULT_SLOT).isIn(ModItemTags.GEMSTONE);
+        return this.getStack(RESULT_SLOT).getItem() == item || this.getStack(RESULT_SLOT).isEmpty() || this.getStack(RESULT_SLOT).isIn(ModItemTags.GEMSTONE) || this.getStack(RESULT_SLOT).isIn(ModItemTags.RAW_GEMSTONE);
     }
 
     private boolean canInsertCountIntoResultSlot(ItemStack result) {
         return this.getStack(RESULT_SLOT).getCount() + result.getCount() <= getStack(RESULT_SLOT).getMaxCount();
-    }
-
-    private boolean canInsertItemIntoIngredientSlot() {
-        return this.getStack(INGREDIENT_SLOT).isEmpty() || this.getStack(INGREDIENT_SLOT).isIn(ModItemTags.GEMSTONE) || this.getStack(INGREDIENT_SLOT).isIn(ModItemTags.RAW_GEMSTONE);
     }
 
     private boolean isResultSlotEmptyOrReceivable() {

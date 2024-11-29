@@ -1,10 +1,13 @@
 package net.cobra.moreores;
 
 import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.block.entity.GemPolisherBlockEntity;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.component.type.ModConsumableComponents;
 import net.cobra.moreores.enchantment.entity.effect.EnchantmentEffects;
 import net.cobra.moreores.item.ModItems;
+import net.cobra.moreores.networking.ModNetworkingPackets;
+import net.cobra.moreores.networking.ModS2CNetworks;
 import net.cobra.moreores.recipe.ModRecipeSerializer;
 import net.cobra.moreores.recipe.ModRecipeType;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
@@ -30,6 +33,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import team.reborn.energy.api.EnergyStorage;
 
 public class MoreOresModInitializer implements ModInitializer {
 
@@ -147,6 +151,10 @@ public class MoreOresModInitializer implements ModInitializer {
 			combat.addAfter(ModItems.SAPPHIRE_HELMET, ModItems.SAPPHIRE_CHESTPLATE);
 			combat.addAfter(ModItems.SAPPHIRE_CHESTPLATE, ModItems.SAPPHIRE_LEGGINGS);
 			combat.addAfter(ModItems.SAPPHIRE_LEGGINGS, ModItems.SAPPHIRE_BOOTS);
+			combat.addAfter(ModItems.SAPPHIRE_BOOTS, ModItems.RADIANT_HELMET);
+			combat.addAfter(ModItems.RADIANT_HELMET, ModItems.RADIANT_CHESTPLATE);
+			combat.addAfter(ModItems.RADIANT_CHESTPLATE, ModItems.RADIANT_LEGGINGS);
+			combat.addAfter(ModItems.RADIANT_LEGGINGS, ModItems.RADIANT_BOOTS);
 		});
 
 
@@ -272,8 +280,9 @@ public class MoreOresModInitializer implements ModInitializer {
 		ModRecipeSerializer.register();
 
 
-		//ModGameRules Registry
-//		ModGameRules.register();
+		//Networking Registry
+		ModS2CNetworks.register();
+		ModNetworkingPackets.registerS2CPackets();
 
 
 		//ModConsumableComponents Registry
