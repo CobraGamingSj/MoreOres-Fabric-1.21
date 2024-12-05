@@ -84,7 +84,8 @@
   "block.moreores.jade_ore": "Jade Ore",
   "block.moreores.deepslate_jade_ore": "Deepslate Jade Ore",
 
-  "item.moreores.ruby_upgrade_smithing_template": "Smithing Armor Trim",
+  "item.moreores.ruby_upgrade_smithing_template": "Ruby Upgrade",
+  "item.moreores.radiant_upgrade_smithing_template": "Radiant Upgrade",
   "item.moreores.guardian_armor_trim_smithing_template": "Guardian Armor Trim",
 
   "item.moreores.ruby_pickaxe": "Ruby Pickaxe",
@@ -106,6 +107,10 @@
   "item.moreores.sapphire_chestplate": "Sapphire Chestplate",
   "item.moreores.sapphire_leggings": "Sapphire Leggings",
   "item.moreores.sapphire_boots": "Sapphire Boots",
+  "item.moreores.radiant_helmet": "Radiant Helmet",
+  "item.moreores.radiant_chestplate": "Radiant Chestplate",
+  "item.moreores.radiant_leggings": "Radiant Leggings",
+  "item.moreores.radiant_boots": "Radiant Boots",
   "item.moreores.topaz_helmet": "Topaz Helmet",
   "item.moreores.topaz_chestplate": "Topaz Chestplate",
   "item.moreores.topaz_leggings": "Topaz Leggings",
@@ -145,11 +150,14 @@
   "moreores.tooltip.gem": "Gem",
   "tooltip.moreores.gem_polisher": "Polish gemstones",
 
-  "upgrade.moreores.ruby_upgrade": "Ruby Upgrade",
+  "upgrade.moreores.ruby_upgrade": "Smithing Template",
+  "upgrade.moreores.radiant_upgrade": "Smithing Template",
   "item.moreores.smithing_template.applies_to": "Applies to:",
   "item.moreores.smithing_template.ruby_upgrade.applies_to": "Netherite Equipment",
+  "item.moreores.smithing_template.radiant_upgrade.applies_to": "Sapphire Equipment",
   "item.moreores.smithing_template.ingredients": "Ingredients:",
   "item.moreores.smithing_template.ruby_upgrade.ingredients": "Ruby",
+  "item.moreores.smithing_template.radiant_upgrade.ingredients": "Ruby",
 
   "advancement.moreores.gems": "Is that a gem?",
   "advancement.moreores.gems.desc": "Collect a gemstone",

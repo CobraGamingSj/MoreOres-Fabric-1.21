@@ -1,7 +1,7 @@
 {
-  "type": "moreores:polish_gem",
-  "ingredient": "moreores:raw_peridot",
-  "result": {
+  "type": "moreores:gem_polishing",
+  "ingredientGem": "moreores:raw_peridot",
+  "resultGem": {
     "count": 1,
     "id": "moreores:peridot"
   }

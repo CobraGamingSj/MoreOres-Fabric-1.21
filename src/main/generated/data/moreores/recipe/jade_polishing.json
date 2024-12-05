@@ -1,7 +1,7 @@
 {
-  "type": "moreores:polish_gem",
-  "ingredient": "moreores:raw_jade",
-  "result": {
+  "type": "moreores:gem_polishing",
+  "ingredientGem": "moreores:raw_jade",
+  "resultGem": {
     "count": 1,
     "id": "moreores:jade"
   }

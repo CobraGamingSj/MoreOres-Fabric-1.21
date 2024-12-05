@@ -4,6 +4,5 @@
     "color": "#1700C2",
     "translate": "trim_material.moreores.blue_garnet"
   },
-  "ingredient": "moreores:blue_garnet",
-  "item_model_index": 1.0
+  "ingredient": "moreores:blue_garnet"
 }

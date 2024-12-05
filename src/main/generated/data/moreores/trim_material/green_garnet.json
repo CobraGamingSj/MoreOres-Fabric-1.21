@@ -4,6 +4,5 @@
     "color": "#00FF33",
     "translate": "trim_material.moreores.green_garnet"
   },
-  "ingredient": "moreores:green_garnet",
-  "item_model_index": 0.7
+  "ingredient": "moreores:green_garnet"
 }

@@ -1,7 +1,7 @@
 {
-  "type": "moreores:polish_gem",
-  "ingredient": "moreores:raw_sapphire",
-  "result": {
+  "type": "moreores:gem_polishing",
+  "ingredientGem": "moreores:raw_sapphire",
+  "resultGem": {
     "count": 1,
     "id": "moreores:sapphire"
   }
