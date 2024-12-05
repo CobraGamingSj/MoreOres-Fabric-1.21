@@ -8,7 +8,7 @@ import static net.cobra.moreores.MoreOresModInitializer.LOGGER;
 
 public class ModS2CNetworks {
 
-    static {
+    public static void registerClientS2C(){
         ClientPlayNetworking.registerGlobalReceiver(GemPolisherData.ID, GemPolisherData::handlePacket);
     }
 

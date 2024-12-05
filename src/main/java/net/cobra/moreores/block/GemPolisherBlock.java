@@ -1,6 +1,7 @@
 package net.cobra.moreores.block;
 
 import com.mojang.serialization.MapCodec;
+import net.cobra.moreores.block.entity.GemPolisherBlockEntity;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -20,8 +21,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.cobra.moreores.block.entity.GemPolisherBlockEntity;
-import net.cobra.moreores.block.entity.ModBlockEntityType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -38,11 +37,6 @@ public class GemPolisherBlock extends BlockWithEntity implements BlockEntityProv
     @Override
     protected MapCodec<? extends BlockWithEntity> getCodec() {
         return CODEC;
-    }
-
-    @Override
-    protected BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
     }
 
     @Override
@@ -70,7 +64,7 @@ public class GemPolisherBlock extends BlockWithEntity implements BlockEntityProv
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (!world.isClient()) {
+        if (!world.isClient) {
             NamedScreenHandlerFactory screenHandlerFactory = ((GemPolisherBlockEntity) world.getBlockEntity(pos));
 
             if (screenHandlerFactory != null) {
@@ -83,7 +77,7 @@ public class GemPolisherBlock extends BlockWithEntity implements BlockEntityProv
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return TickableBlockEntity.getTicker(world, state, type);
+        return TickableBlockEntity.createTicker(world, state, type);
     }
 
     @Override

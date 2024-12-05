@@ -10,7 +10,6 @@ import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -177,7 +176,6 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
                 transaction.commit();
             }
         }
-
 
         if (this.energyStorage.amount == 250000) {
             this.removeStack(ENERGY_SOURCE_SLOT, 1);

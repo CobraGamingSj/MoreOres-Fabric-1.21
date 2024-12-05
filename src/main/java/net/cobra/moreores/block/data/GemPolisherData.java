@@ -17,22 +17,19 @@ public record GemPolisherData(long energy, BlockPos blockPos) implements CustomP
     public void handlePacket(ClientPlayNetworking.Context context) {
         ClientWorld world = context.client().world;
         if (world == null) return;
-        long energy = this.energy();
-        BlockPos pos = this.blockPos();
 
-        if (world.getBlockEntity(pos) instanceof GemPolisherBlockEntity blockEntity) {
-            blockEntity.setEnergyLevel(energy);
+        if (world.getBlockEntity(this.blockPos) instanceof GemPolisherBlockEntity blockEntity) {
+            blockEntity.setEnergyLevel(this.energy);
 
-
-            if (context.player().currentScreenHandler instanceof GemPolisherScreenHandler screenHandler && screenHandler.blockEntity.getPos().equals(pos)) {
-                blockEntity.setEnergyLevel(energy);
+            if (context.player().currentScreenHandler instanceof GemPolisherScreenHandler screenHandler && screenHandler.blockEntity.getPos().equals(this.blockPos)) {
+                blockEntity.setEnergyLevel(this.energy);
             }
         }
     }
 
     public static final PacketCodec<RegistryByteBuf, GemPolisherData> PACKET_CODEC =
             PacketCodec.tuple(
-                    PacketCodecs.VAR_LONG, GemPolisherData::energy,
+                    PacketCodecs.LONG, GemPolisherData::energy,
                     BlockPos.PACKET_CODEC, GemPolisherData::blockPos,
                     GemPolisherData::new
             );
