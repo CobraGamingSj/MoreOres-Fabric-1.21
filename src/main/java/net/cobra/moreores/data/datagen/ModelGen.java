@@ -6,8 +6,6 @@ import net.cobra.moreores.block.RubyLampBlock;
 import net.cobra.moreores.block.TomatoCropBlock;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.item.equipment.ModEquipmentAssetKeys;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.*;

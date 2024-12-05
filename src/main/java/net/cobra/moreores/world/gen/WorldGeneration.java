@@ -7,7 +7,7 @@ import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.world.gen.feature.ModOrePlacedFeatures;
 
 public class WorldGeneration {
-    public static void generateOres() {
+    public static void generate() {
 
         MoreOresModInitializer.LOGGER.info("Setting Up world generation for Custom Ores for " + MoreOresModInitializer.MOD_ID + " mod.");
 

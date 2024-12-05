@@ -37,8 +37,6 @@ public class ModEnchantments {
                         2,
                         AttributeModifierSlot.MAINHAND
                 )
-        ).exclusiveSet(
-                enchantments.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE_SET)
         ).addEffect(EnchantmentEffectComponentTypes.POST_ATTACK, EnchantmentEffectTarget.ATTACKER, EnchantmentEffectTarget.VICTIM, new ThunderSummonEnchantmentEffect()));
     }
 

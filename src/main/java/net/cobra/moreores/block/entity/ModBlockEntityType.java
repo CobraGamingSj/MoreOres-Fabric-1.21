@@ -8,6 +8,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import team.reborn.energy.api.EnergyStorage;
 
 public class ModBlockEntityType {
 
@@ -20,6 +21,7 @@ public class ModBlockEntityType {
 
         public static void register() {
 
-            MoreOresModInitializer.LOGGER.info("Loading ModBlockEntityTypes for " + MoreOresModInitializer.MOD_ID + " mod.");
+        EnergyStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.energyStorage, GEM_POLISHER_BLOCK_ENTITY);
+        MoreOresModInitializer.LOGGER.info("Loading ModBlockEntityTypes for " + MoreOresModInitializer.MOD_ID + " mod.");
         }
     }

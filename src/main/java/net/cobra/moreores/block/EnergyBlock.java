@@ -15,27 +15,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
-public class EnergyBlock extends Block{
+public class EnergyBlock extends Block {
+
     public EnergyBlock(Settings settings) {
         super(settings);
     }
-
-//    @Nullable
-//    @Override
-//    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-//        return new EnergyBlockEntity(pos, state);
-//    }
-//
-//    @Nullable
-//    @Override
-//    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-//        return world.isClient ? null : (BlockEntityTicker<T>) (world1, pos, state1, blockEntity) -> {
-//            if (blockEntity instanceof EnergyBlockEntity energyBlockEntity) {
-//                EnergyBlockEntity.tick(world1, pos, state1, energyBlockEntity);
-//            }
-//        };
-//    }
-
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         if (!world.isClient && world instanceof ServerWorld serverWorld) {
@@ -67,10 +51,4 @@ public class EnergyBlock extends Block{
 
         super.onSteppedOn(world, pos, state, entity);
     }
-
-//    @Override
-//    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
-//        tooltip.add(Text.translatable("tooltip.moreores.energy_block").formatted(Formatting.GRAY));
-//        super.appendTooltip(stack, context, tooltip, options);
-//    }
 }

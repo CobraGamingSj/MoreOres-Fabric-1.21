@@ -15,6 +15,7 @@ import net.cobra.moreores.item.ModItems;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
+
 public class AdvancementGen extends FabricAdvancementProvider {
     public AdvancementGen(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(output, registryLookup);

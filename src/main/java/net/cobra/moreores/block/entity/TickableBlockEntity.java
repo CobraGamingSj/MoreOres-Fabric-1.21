@@ -11,11 +11,7 @@ public interface TickableBlockEntity {
 
     void tick(World world, BlockPos pos, BlockState state);
 
-    static <T extends BlockEntity> BlockEntityTicker<T> getTicker(World Pworld, BlockState pState, BlockEntityType<T> type) {
-        return Pworld.isClient ? null : (world, pos, state, blockEntity) -> {
-            if (blockEntity instanceof TickableBlockEntity tickableBlockEntity) {
-                tickableBlockEntity.tick(world, pos, state);
-            }
-        };
+    static <T extends BlockEntity> BlockEntityTicker<T> createTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return !world.isClient ? (world0, blockPos, blockState, blockEntity) -> ((TickableBlockEntity) blockEntity).tick(world0, blockPos, blockState) : null;
     }
 }

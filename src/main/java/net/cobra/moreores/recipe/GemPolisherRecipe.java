@@ -41,6 +41,10 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
         return this.output;
     }
 
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
     @Override
     public boolean matches(SingleStackRecipeInput input, World world) {
         if (world.isClient) return false;
@@ -88,30 +92,22 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
     public static class Type implements RecipeType<GemPolisherRecipe> {
 
         //RECIPE PROPERTIES
+        private Type() {}
         public static final Type GEM_POLISHING = new Type();
-        public static final String ID = "polish_gem"; //Recipe ID
+        public static final String ID = "gem_polishing"; //Recipe ID
     }
 
     public static class Serializer implements RecipeSerializer<GemPolisherRecipe> {
 
         //RECIPE PROPERTIES
         public static final Serializer GEM_POLISHING = new Serializer();
-        public static final String ID = "polish_gem"; //Recipe ID
+        public static final String ID = "gem_polishing"; //Recipe ID
 
         //CODEC
         private static final MapCodec<GemPolisherRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                Ingredient.CODEC.fieldOf("ingredient").forGetter(r -> r.ingredient),
-                ItemStack.VALIDATED_CODEC.fieldOf("result").forGetter(r -> r.output)
+                Ingredient.CODEC.fieldOf("ingredientGem").forGetter(GemPolisherRecipe::getIngredient),
+                ItemStack.VALIDATED_CODEC.fieldOf("resultGem").forGetter(GemPolisherRecipe::getResult)
         ).apply(instance, GemPolisherRecipe::new));
-
-        //PACKET_CODEC
-//        public static final PacketCodec<RegistryByteBuf, GemPolisherRecipe> PACKET_CODEC = PacketCodec.tuple(
-//                Ingredient.PACKET_CODEC,
-//                recipe -> recipe.ingredient,
-//                ItemStack.PACKET_CODEC,
-//                recipe -> recipe.output,
-//                GemPolisherRecipe::new
-//        );
 
         @Override
         public MapCodec<GemPolisherRecipe> codec() {
@@ -124,8 +120,8 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
         }
 
         private static void write(RegistryByteBuf buf, GemPolisherRecipe recipe) {
-            Ingredient.PACKET_CODEC.encode(buf, recipe.ingredient);
-            ItemStack.PACKET_CODEC.encode(buf, recipe.output);
+            Ingredient.PACKET_CODEC.encode(buf, recipe.getIngredient());
+            ItemStack.PACKET_CODEC.encode(buf, recipe.getResult());
         }
 
         private static GemPolisherRecipe read(RegistryByteBuf buf) {

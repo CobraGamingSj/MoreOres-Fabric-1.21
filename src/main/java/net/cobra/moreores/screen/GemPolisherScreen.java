@@ -1,10 +1,8 @@
 package net.cobra.moreores.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.cobra.moreores.MoreOresModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.gl.ShaderProgramKeys;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.RenderLayer;
@@ -17,7 +15,6 @@ import net.minecraft.util.math.MathHelper;
 public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
-    private static final Identifier PROGRESS_ARROW = MoreOresModInitializer.getId("textures/gui/container/gem_polisher/arrow.png");
     private static final Identifier TEXTURE = MoreOresModInitializer.getId("textures/gui/container/gem_polisher/gem_polisher_gui.png");
 
     public GemPolisherScreen(GemPolisherScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -25,7 +22,7 @@ public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
     }
 
     @Override
-    protected void init() {
+    public void init() {
         super.init();
         titleY = 1000;
         playerInventoryTitleY = 1000;
@@ -33,9 +30,6 @@ public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
 
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if(this.handler.isPolishing()) {
-            // Scale progress based on maximum height of 26
-
-            // Draw the progress arrow
             context.drawTexture(RenderLayer::getGuiTextured, TEXTURE, x + 87, y + 31, 176, 0, 8, this.handler.progressGetter(), TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
     }
@@ -44,7 +38,8 @@ public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
     public void drawForeground(DrawContext context, int mouseX, int mouseY) {
         String name = this.handler.blockEntity.getDisplayName().getString();
         int x = 10;
-        context.drawText(this.textRenderer, name, x, 6, 4210752, false);
+        int y = 5;
+        context.drawText(this.textRenderer, name, x, y, 4210752, false);
         super.drawForeground(context, mouseX, mouseY);
     }
 
@@ -55,13 +50,21 @@ public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
         context.drawTexture(RenderLayer::getGuiTextured, TEXTURE, i, j, 0.0F, 0.0F, this.backgroundWidth, this.backgroundHeight, TEXTURE_WIDTH, TEXTURE_HEIGHT);
 
         renderProgressArrow(context, i, j);
+
+        int energyBarSize = MathHelper.ceil(this.handler.getEnergyPercent() * 66);
+        int gradientStart = 0XFF0000FF;
+        int gradientEnd = 0XFF800080;
+        context.fillGradient(i + 10, j + 14 + 66 - energyBarSize, i + 10 + 20, j + 14 + 66, gradientStart, gradientEnd);
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        if(this.client == null || this.client.player == null || this.handler == null) return;
         renderBackground(context, mouseX, mouseY, delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
+        int energyBarSize = MathHelper.ceil(this.handler.getEnergyPercent() * 66);
+        if (isPointWithinBounds(10, 14 + 66 - energyBarSize, 25, energyBarSize, mouseX, mouseY)) {
+            context.drawTooltip(this.textRenderer, Text.literal(this.handler.getEnergy() + " / " + this.handler.getMaxEnergy() + " J"), mouseX, mouseY);
+        }
     }
 }

@@ -136,7 +136,7 @@ public interface ImplementedInventory extends SidedInventory{
     * @return true is this inventory has full stack, false otherwise
      */
 
-     default boolean isFull() {
+    default boolean isFull() {
          for (int i  = 0; i < size(); i++) {
              ItemStack stack = getStack(i);
              if (!stack.isEmpty()) {

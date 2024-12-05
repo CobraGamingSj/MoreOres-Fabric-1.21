@@ -1,5 +1,6 @@
 package net.cobra.moreores.item;
 
+import net.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.equipment.trim.ArmorTrimPattern;
@@ -13,9 +14,9 @@ import net.minecraft.util.Util;
 
 import java.util.List;
 
-public class RubyUpgradeSmithingTemplate extends Item {
+public class ModSmithingTemplateItem extends Item {
 
-    public RubyUpgradeSmithingTemplate(Text appliesToText, Text ingredientsText, Text titleText, Text baseSlotDescriptionText, Text additionsSlotDescriptionText, List<Identifier> emptyBaseSlotTextures, List<Identifier> emptyAdditionsSlotTextures, Item.Settings settings) {
+    public ModSmithingTemplateItem(Text appliesToText, Text ingredientsText, Text titleText, Text baseSlotDescriptionText, Text additionsSlotDescriptionText, List<Identifier> emptyBaseSlotTextures, List<Identifier> emptyAdditionsSlotTextures, Item.Settings settings) {
         super(settings);
         this.appliesToText = appliesToText;
         this.ingredientsText = ingredientsText;
@@ -27,17 +28,24 @@ public class RubyUpgradeSmithingTemplate extends Item {
     }
     public static final Formatting TITLE_FORMATTING = Formatting.GRAY;
     public static final Formatting DESCRIPTION_FORMATTING = Formatting.BLUE;
-    public static final Text INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of("moreores", "smithing_template.ingredients"))).formatted(TITLE_FORMATTING);
-    public static final Text APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of("moreores", "smithing_template.applies_to"))).formatted(TITLE_FORMATTING);
-    private static final Text RUBY_UPGRADE_TEXT = Text.translatable(Util.createTranslationKey("upgrade", Identifier.of("moreores", "ruby_upgrade"))).formatted(TITLE_FORMATTING);
+    public static final Text INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.ingredients"))).formatted(TITLE_FORMATTING);
+    public static final Text APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.applies_to"))).formatted(TITLE_FORMATTING);
+    private static final Text RUBY_UPGRADE_TEXT = Text.translatable(Util.createTranslationKey("upgrade", MoreOresModInitializer.getId("ruby_upgrade"))).formatted(TITLE_FORMATTING);
+    private static final Text RADIANT_UPGRADE_TEXT = Text.translatable(Util.createTranslationKey("upgrade", MoreOresModInitializer.getId("radiant_upgrade"))).formatted(TITLE_FORMATTING);
     private static final Text ARMOR_TRIM_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.ofVanilla("smithing_template.armor_trim.applies_to"))).formatted(DESCRIPTION_FORMATTING);
     private static final Text ARMOR_TRIM_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.ofVanilla("smithing_template.armor_trim.ingredients"))).formatted(DESCRIPTION_FORMATTING);
     private static final Text ARMOR_TRIM_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.ofVanilla("smithing_template.armor_trim.base_slot_description")));
     private static final Text ARMOR_TRIM_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.ofVanilla("smithing_template.armor_trim.additions_slot_description")));
-    private static final Text RUBY_UPGRADE_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of("moreores", "smithing_template.ruby_upgrade.applies_to"))).formatted(DESCRIPTION_FORMATTING);
-    private static final Text RUBY_UPGRADE_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of("moreores", "smithing_template.ruby_upgrade.ingredients"))).formatted(DESCRIPTION_FORMATTING);
-    private static final Text RUBY_UPGRADE_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of("moreores", "smithing_template.netherite_upgrade.base_slot_description")));
-    private static final Text RUBY_UPGRADE_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of("moreores", "smithing_template.netherite_upgrade.additions_slot_description")));
+    private static final Text RUBY_UPGRADE_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.ruby_upgrade.applies_to"))).formatted(DESCRIPTION_FORMATTING);
+    private static final Text RUBY_UPGRADE_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.ruby_upgrade.ingredients"))).formatted(DESCRIPTION_FORMATTING);
+    private static final Text RUBY_UPGRADE_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.netherite_upgrade.base_slot_description")));
+    private static final Text RUBY_UPGRADE_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.netherite_upgrade.additions_slot_description")));
+
+    private static final Text RADIANT_UPGRADE_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.radiant_upgrade.applies_to"))).formatted(DESCRIPTION_FORMATTING);
+    private static final Text RADIANT_UPGRADE_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.radiant_upgrade.ingredients"))).formatted(DESCRIPTION_FORMATTING);
+    private static final Text RADIANT_UPGRADE_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.radiant_upgrade.base_slot_description")));
+    private static final Text RADIANT_UPGRADE_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.radiant_upgrade.additions_slot_description")));
+
     private static final Identifier EMPTY_ARMOR_SLOT_HELMET_TEXTURE = Identifier.ofVanilla("item/empty_armor_slot_helmet");
     private static final Identifier EMPTY_ARMOR_SLOT_CHESTPLATE_TEXTURE = Identifier.ofVanilla("item/empty_armor_slot_chestplate");
     private static final Identifier EMPTY_ARMOR_SLOT_LEGGINGS_TEXTURE = Identifier.ofVanilla("item/empty_armor_slot_leggings");
@@ -62,20 +70,20 @@ public class RubyUpgradeSmithingTemplate extends Item {
     private final List<Identifier> emptyBaseSlotTextures;
     private final List<Identifier> emptyAdditionsSlotTextures;
 
-    public static RubyUpgradeSmithingTemplate of(RegistryKey<ArmorTrimPattern> trimPattern) {
-        return RubyUpgradeSmithingTemplate.of(trimPattern.getValue());
+    public static ModSmithingTemplateItem of(RegistryKey<ArmorTrimPattern> trimPattern) {
+        return ModSmithingTemplateItem.of(trimPattern.getValue());
     }
 
-    public static RubyUpgradeSmithingTemplate of(Identifier trimPatternIn) {
-        return new RubyUpgradeSmithingTemplate(ARMOR_TRIM_APPLIES_TO_TEXT, ARMOR_TRIM_INGREDIENTS_TEXT, Text.translatable(Util.createTranslationKey("trim_pattern", trimPatternIn)).formatted(TITLE_FORMATTING), ARMOR_TRIM_BASE_SLOT_DESCRIPTION_TEXT, ARMOR_TRIM_ADDITIONS_SLOT_DESCRIPTION_TEXT, RubyUpgradeSmithingTemplate.getArmorTrimEmptyBaseSlotTextures(), RubyUpgradeSmithingTemplate.getArmorTrimEmptyAdditionsSlotTextures(), new Settings());
+    public static ModSmithingTemplateItem of(Identifier trimPatternIn) {
+        return new ModSmithingTemplateItem(ARMOR_TRIM_APPLIES_TO_TEXT, ARMOR_TRIM_INGREDIENTS_TEXT, Text.translatable(Util.createTranslationKey("trim_pattern", trimPatternIn)).formatted(TITLE_FORMATTING), ARMOR_TRIM_BASE_SLOT_DESCRIPTION_TEXT, ARMOR_TRIM_ADDITIONS_SLOT_DESCRIPTION_TEXT, ModSmithingTemplateItem.getArmorTrimEmptyBaseSlotTextures(), ModSmithingTemplateItem.getArmorTrimEmptyAdditionsSlotTextures(), new Settings());
     }
 
     private static List<Identifier> getArmorTrimEmptyBaseSlotTextures() {
         return List.of(EMPTY_ARMOR_SLOT_HELMET_TEXTURE, EMPTY_ARMOR_SLOT_CHESTPLATE_TEXTURE, EMPTY_ARMOR_SLOT_LEGGINGS_TEXTURE, EMPTY_ARMOR_SLOT_BOOTS_TEXTURE);
     }
 
-    public static RubyUpgradeSmithingTemplate createRubyUpgrade(Item.Settings settings) {
-        return new RubyUpgradeSmithingTemplate(
+    public static ModSmithingTemplateItem createRubyUpgrade(Item.Settings settings) {
+        return new ModSmithingTemplateItem(
                 RUBY_UPGRADE_APPLIES_TO_TEXT,
                 RUBY_UPGRADE_INGREDIENTS_TEXT,
                 RUBY_UPGRADE_TEXT,
@@ -83,6 +91,18 @@ public class RubyUpgradeSmithingTemplate extends Item {
                 RUBY_UPGRADE_ADDITIONS_SLOT_DESCRIPTION_TEXT,
                 getRubyUpgradeEmptyBaseSlotTextures(),
                 getRubyUpgradeEmptyAdditionsSlotTextures(),
+                settings);
+    }
+
+    public static ModSmithingTemplateItem createRadiantUpgrade(Item.Settings settings) {
+        return new ModSmithingTemplateItem(
+                RADIANT_UPGRADE_APPLIES_TO_TEXT,
+                RADIANT_UPGRADE_INGREDIENTS_TEXT,
+                RADIANT_UPGRADE_TEXT,
+                RADIANT_UPGRADE_BASE_SLOT_DESCRIPTION_TEXT,
+                RADIANT_UPGRADE_ADDITIONS_SLOT_DESCRIPTION_TEXT,
+                getRadiantUpgradeEmptyBaseSlotTextures(),
+                getRadiantUpgradeEmptyAdditionsSlotTextures(),
                 settings);
     }
 
@@ -94,7 +114,15 @@ public class RubyUpgradeSmithingTemplate extends Item {
         return List.of(EMPTY_ARMOR_SLOT_HELMET_TEXTURE, EMPTY_SLOT_SWORD_TEXTURE, EMPTY_ARMOR_SLOT_CHESTPLATE_TEXTURE, EMPTY_SLOT_PICKAXE_TEXTURE, EMPTY_ARMOR_SLOT_LEGGINGS_TEXTURE, EMPTY_SLOT_AXE_TEXTURE, EMPTY_ARMOR_SLOT_BOOTS_TEXTURE, EMPTY_SLOT_HOE_TEXTURE, EMPTY_SLOT_SHOVEL_TEXTURE);
     }
 
+    public static List<Identifier> getRadiantUpgradeEmptyBaseSlotTextures() {
+        return List.of(EMPTY_ARMOR_SLOT_HELMET_TEXTURE, EMPTY_SLOT_SWORD_TEXTURE, EMPTY_ARMOR_SLOT_CHESTPLATE_TEXTURE, EMPTY_SLOT_PICKAXE_TEXTURE, EMPTY_ARMOR_SLOT_LEGGINGS_TEXTURE, EMPTY_SLOT_AXE_TEXTURE, EMPTY_ARMOR_SLOT_BOOTS_TEXTURE, EMPTY_SLOT_HOE_TEXTURE, EMPTY_SLOT_SHOVEL_TEXTURE);
+    }
+
     public static List<Identifier> getRubyUpgradeEmptyAdditionsSlotTextures() {
+        return List.of(EMPTY_SLOT_INGOT_TEXTURE);
+    }
+
+    public static List<Identifier> getRadiantUpgradeEmptyAdditionsSlotTextures() {
         return List.of(EMPTY_SLOT_INGOT_TEXTURE);
     }
 

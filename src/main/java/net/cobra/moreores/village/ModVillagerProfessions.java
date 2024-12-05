@@ -16,23 +16,23 @@ import net.cobra.moreores.block.ModBlocks;
 
 public class ModVillagerProfessions {
     public static final RegistryKey<PointOfInterestType> JEWEL_POI = poiKey("jewel_poi");
-    public static final PointOfInterestType JEWEL = registerPoi("jewel_poi", ModBlocks.RUBY_BLOCK);
+    public static final PointOfInterestType JEWEL = registerPoi("jewel_poi", ModBlocks.GEM_POLISHER_BLOCK);
 
     public static final VillagerProfession JEWELLER = registerProfession("jeweller", JEWEL_POI);
 
 
-    private static VillagerProfession registerProfession(String name, RegistryKey<PointOfInterestType> type) {
-        return Registry.register(Registries.VILLAGER_PROFESSION, Identifier.of(MoreOresModInitializer.MOD_ID, name),
-                new VillagerProfession(name, entry -> entry.matchesKey(type), entry -> entry.matchesKey(type),
+    private static VillagerProfession registerProfession(String id, RegistryKey<PointOfInterestType> type) {
+        return Registry.register(Registries.VILLAGER_PROFESSION, MoreOresModInitializer.getId(id),
+                new VillagerProfession(id, entry -> entry.matchesKey(type), entry -> entry.matchesKey(type),
                         ImmutableSet.of(), ImmutableSet.of(), SoundEvents.ENTITY_VILLAGER_WORK_SHEPHERD));
     }
 
-    private static PointOfInterestType registerPoi(String name, Block block) {
-        return PointOfInterestHelper.register(Identifier.of(MoreOresModInitializer.MOD_ID, name), 1, 1, block);
+    private static PointOfInterestType registerPoi(String id, Block block) {
+        return PointOfInterestHelper.register(MoreOresModInitializer.getId(id), 1, 1, block);
     }
 
-    private static RegistryKey<PointOfInterestType> poiKey(String name) {
-        return RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, name));
+    private static RegistryKey<PointOfInterestType> poiKey(String id) {
+        return RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE, MoreOresModInitializer.getId(id));
     }
 
     public static void register() {

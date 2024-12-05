@@ -43,9 +43,6 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.JADE)
                 .add(ModItems.PYROPE);
 
-        getOrCreateTagBuilder(ItemTags.TRIM_TEMPLATES)
-                .add(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE);
-
         getOrCreateTagBuilder(ItemTags.VILLAGER_PLANTABLE_SEEDS)
                 .add(ModItems.TOMATO_SEEDS);
 
@@ -108,19 +105,23 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ItemTags.FOOT_ARMOR)
                 .add(ModItems.RUBY_BOOTS)
-                .add(ModItems.SAPPHIRE_BOOTS);
+                .add(ModItems.SAPPHIRE_BOOTS)
+                .add(ModItems.RADIANT_BOOTS);
 
         getOrCreateTagBuilder(ItemTags.LEG_ARMOR)
                 .add(ModItems.RUBY_LEGGINGS)
-                .add(ModItems.SAPPHIRE_LEGGINGS);
+                .add(ModItems.SAPPHIRE_LEGGINGS)
+                .add(ModItems.RADIANT_LEGGINGS);
 
         getOrCreateTagBuilder(ItemTags.HEAD_ARMOR)
                 .add(ModItems.RUBY_HELMET)
-                .add(ModItems.SAPPHIRE_HELMET);
+                .add(ModItems.SAPPHIRE_HELMET)
+                .add(ModItems.RADIANT_HELMET);
 
         getOrCreateTagBuilder(ItemTags.CHEST_ARMOR)
                 .add(ModItems.RUBY_CHESTPLATE)
-                .add(ModItems.SAPPHIRE_CHESTPLATE);
+                .add(ModItems.SAPPHIRE_CHESTPLATE)
+                .add(ModItems.RADIANT_CHESTPLATE);
 
         getOrCreateTagBuilder(ItemTags.FOOT_ARMOR_ENCHANTABLE)
                 .forceAddTag(ItemTags.FOOT_ARMOR);
@@ -142,7 +143,11 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.SAPPHIRE_HELMET)
                 .add(ModItems.SAPPHIRE_CHESTPLATE)
                 .add(ModItems.SAPPHIRE_LEGGINGS)
-                .add(ModItems.SAPPHIRE_BOOTS);
+                .add(ModItems.SAPPHIRE_BOOTS)
+                .add(ModItems.RADIANT_HELMET)
+                .add(ModItems.RADIANT_CHESTPLATE)
+                .add(ModItems.RADIANT_LEGGINGS)
+                .add(ModItems.RADIANT_BOOTS);
 
         getOrCreateTagBuilder(ItemTags.ARMOR_ENCHANTABLE)
                 .forceAddTag(ItemTags.CHEST_ARMOR_ENCHANTABLE)
@@ -205,6 +210,9 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ModItemTags.REPAIRS_SAPPHIRE_ARMOR)
                 .add(ModItems.SAPPHIRE);
+
+        getOrCreateTagBuilder(ModItemTags.REPAIRS_RADIANT_ARMOR)
+                .add(ModItems.RADIANT);
 
         getOrCreateTagBuilder(ModItemTags.RUBY_TOOL_MATERIALS)
                 .add(ModItems.RUBY);

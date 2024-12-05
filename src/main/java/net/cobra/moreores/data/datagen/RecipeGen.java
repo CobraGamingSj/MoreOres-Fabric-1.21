@@ -1,5 +1,6 @@
 package net.cobra.moreores.data.datagen;
 
+import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.data.server.recipe.GemPolishingRecipeJsonBuilder;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.item.ModItems;
@@ -7,9 +8,9 @@ import net.cobra.moreores.registry.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.data.server.recipe.RecipeGenerator;
-import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;
+import net.minecraft.data.recipe.RecipeExporter;
+import net.minecraft.data.recipe.RecipeGenerator;
+import net.minecraft.data.recipe.SmithingTransformRecipeJsonBuilder;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -440,12 +441,49 @@ public class RecipeGen extends FabricRecipeProvider {
                         .criterion(hasItem(ModItems.RUBY), conditionsFromItem(ModItems.RUBY))
                         .criterion(hasItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE))));
+
+                // Radiant Helmet
+                createShaped(RecipeCategory.COMBAT, ModItems.RADIANT_HELMET, 1).group("radiant")
+                        .pattern("   ")
+                        .pattern("aaa")
+                        .pattern("a a")
+                        .input('a', ModBlocks.RADIANT_BLOCK)
+                        .criterion(hasItem(ModBlocks.RADIANT_BLOCK), conditionsFromItem(ModBlocks.RADIANT_BLOCK))
+                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RADIANT_HELMET))));
+
+                // Radiant Chestplate
+                createShaped(RecipeCategory.COMBAT, ModItems.RADIANT_CHESTPLATE, 1).group("radiant")
+                        .pattern("a a")
+                        .pattern("aaa")
+                        .pattern("aaa")
+                        .input('a', ModBlocks.RADIANT_BLOCK)
+                        .criterion(hasItem(ModBlocks.RADIANT_BLOCK), conditionsFromItem(ModBlocks.RADIANT_BLOCK))
+                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RADIANT_CHESTPLATE))));
+
+                // Radiant Leggings
+                createShaped(RecipeCategory.COMBAT, ModItems.RADIANT_LEGGINGS, 1).group("radiant")
+                        .pattern("aaa")
+                        .pattern("a a")
+                        .pattern("a a")
+                        .input('a', ModBlocks.RADIANT_BLOCK)
+                        .criterion(hasItem(ModBlocks.RADIANT_BLOCK), conditionsFromItem(ModBlocks.RADIANT_BLOCK))
+                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RADIANT_LEGGINGS))));
+
+                // Radiant Boots
+                createShaped(RecipeCategory.COMBAT, ModItems.RADIANT_BOOTS, 1).group("radiant")
+                        .pattern("   ")
+                        .pattern("a a")
+                        .pattern("a a")
+                        .input('a', ModBlocks.RADIANT_BLOCK)
+                        .criterion(hasItem(ModBlocks.RADIANT_BLOCK), conditionsFromItem(ModBlocks.RADIANT_BLOCK))
+                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RADIANT_BOOTS))));
+
             }
         };
     }
 
     @Override
     public String getName() {
-        return "Mod Recipe Gen!";
+        return "Mod Recipes Gen for " + MoreOresModInitializer.MOD_ID;
     }
 }
