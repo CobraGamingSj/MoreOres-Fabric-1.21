@@ -4,6 +4,5 @@
     "color": "#FF0000",
     "translate": "trim_material.moreores.ruby"
   },
-  "ingredient": "moreores:ruby",
-  "item_model_index": 0.4
+  "ingredient": "moreores:ruby"
 }

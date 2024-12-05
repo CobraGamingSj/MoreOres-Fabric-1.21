@@ -4,6 +4,5 @@
     "color": "#00CC0E",
     "translate": "trim_material.moreores.peridot"
   },
-  "ingredient": "moreores:peridot",
-  "item_model_index": 0.7
+  "ingredient": "moreores:peridot"
 }

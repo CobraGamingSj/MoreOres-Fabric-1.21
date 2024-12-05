@@ -2,8 +2,11 @@ package net.cobra.moreores;
 
 import net.cobra.moreores.data.datagen.*;
 import net.cobra.moreores.enchantment.ModEnchantments;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
 import net.cobra.moreores.block.jukebox.ModJukeboxSongs;

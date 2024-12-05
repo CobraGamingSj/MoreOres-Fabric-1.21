@@ -4,6 +4,5 @@
     "color": "#B30000",
     "translate": "trim_material.moreores.radiant"
   },
-  "ingredient": "moreores:radiant",
-  "item_model_index": 0.4
+  "ingredient": "moreores:radiant"
 }

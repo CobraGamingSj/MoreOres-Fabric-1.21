@@ -4,6 +4,5 @@
     "color": "#C20F0F",
     "translate": "trim_material.moreores.pyrope"
   },
-  "ingredient": "moreores:pyrope",
-  "item_model_index": 0.4
+  "ingredient": "moreores:pyrope"
 }

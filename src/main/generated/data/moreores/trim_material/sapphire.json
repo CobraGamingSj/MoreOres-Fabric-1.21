@@ -4,6 +4,5 @@
     "color": "#001ADB",
     "translate": "trim_material.moreores.sapphire"
   },
-  "ingredient": "moreores:sapphire",
-  "item_model_index": 0.9
+  "ingredient": "moreores:sapphire"
 }
