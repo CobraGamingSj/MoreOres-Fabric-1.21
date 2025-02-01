@@ -23,7 +23,7 @@ public class ModConsumableComponents {
             new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 200, 4)))).build();
 
     public static void register() {
-        MoreOresModInitializer.LOGGER.info("Adding ConsumableComponents for " + MoreOresModInitializer.MOD_ID + " mod.");
+        MoreOresModInitializer.LOGGER.info("Loading ConsumableComponents for " + MoreOresModInitializer.MOD_ID + " mod.");
     }
 
 }

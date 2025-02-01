@@ -1,5 +1,6 @@
 package net.cobra.moreores.client.render.block.entity;
 
+import net.cobra.moreores.block.GemPolisherBlock;
 import net.cobra.moreores.block.entity.GemPolisherBlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.LightmapTextureManager;
@@ -11,7 +12,9 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ModelTransformationMode;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
@@ -23,45 +26,49 @@ public class GemPolisherBlockEntityRenderer implements BlockEntityRenderer<GemPo
     @Override
     public void render(GemPolisherBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 
-        this.renderInputStack(entity, matrices, vertexConsumers);
-        this.renderEnergyStack(entity, matrices, vertexConsumers);
+        if(entity == null || entity.getWorld() == null) return;
 
-        ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-        ItemStack stack = entity.getOutputStackRenderer();
-        matrices.push();
-        matrices.translate(0.685f, 0.9f, 0.5f);
-        matrices.scale(0.3f, 0.3f, 0.3f);
-        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
+        ItemStack inputStack = entity.getStack(GemPolisherBlockEntity.INGREDIENT_SLOT);
+        ItemStack energyStack = entity.getStack(GemPolisherBlockEntity.ENERGY_SOURCE_SLOT);
+        ItemStack outputStack = entity.getStack(GemPolisherBlockEntity.RESULT_SLOT);
 
-        itemRenderer.renderItem(stack, ModelTransformationMode.GUI, getLightLevel(entity.getWorld(), entity.getPos()), OverlayTexture.DEFAULT_UV, matrices, vertexConsumers,
-                entity.getWorld(), 1);
-        matrices.pop();
+        float rotationAngles = getRotationAngle(entity);
+
+        renderItem(entity, inputStack, matrices, vertexConsumers, 0.75f, 0.9f, 0.25f, rotationAngles);
+        renderItem(entity, energyStack, matrices, vertexConsumers, 0.25f, 0.9f, 0.25f, rotationAngles);
+        renderItem(entity, outputStack, matrices, vertexConsumers, 0.5f, 0.9f, 0.685f, rotationAngles);
     }
 
-    private void renderInputStack(GemPolisherBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
-        ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-        ItemStack stack = entity.getInputStackRenderer();
-        matrices.push();
-        matrices.translate(0.25f, 0.9f, 0.25f);
-        matrices.scale(0.25f, 0.25f, 0.25f);
-        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
+    private void renderItem(GemPolisherBlockEntity entity, ItemStack stack, MatrixStack matrices,
+                            VertexConsumerProvider vertexConsumers, float x, float y, float z, float rotationAngle) {
+        if (!stack.isEmpty()) {
+            ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
+            matrices.push();
 
-        itemRenderer.renderItem(stack, ModelTransformationMode.GUI, getLightLevel(entity.getWorld(), entity.getPos()), OverlayTexture.DEFAULT_UV, matrices, vertexConsumers,
-                entity.getWorld(), 1);
-        matrices.pop();
+            matrices.translate(0.5, 0, 0.5);
+            matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(rotationAngle));
+            matrices.translate(-0.5, 0, -0.5);
+
+            matrices.translate(x, y, z);
+            matrices.scale(0.25f, 0.25f, 0.25f);
+            matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
+            matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(270));
+
+            itemRenderer.renderItem(stack, ModelTransformationMode.GUI, getLightLevel(entity.getWorld(), entity.getPos()), OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, entity.getWorld(), 1);
+            matrices.pop();
+        }
     }
 
-    private void renderEnergyStack(GemPolisherBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
-        ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-        ItemStack stack = entity.getEnergyStackRenderer();
-        matrices.push();
-        matrices.translate(0.25f, 0.9f, 0.75f);
-        matrices.scale(0.25f, 0.25f, 0.25f);
-        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
-
-        itemRenderer.renderItem(stack, ModelTransformationMode.GUI, getLightLevel(entity.getWorld(), entity.getPos()), OverlayTexture.DEFAULT_UV, matrices, vertexConsumers,
-                entity.getWorld(), 1);
-        matrices.pop();
+    private float getRotationAngle(GemPolisherBlockEntity entity) {
+        if (entity.getWorld() != null) {
+            return switch (entity.getCachedState().get(GemPolisherBlock.FACING)) {
+                case NORTH -> 180f;
+                case EAST -> 90f;
+                case WEST -> -90f;
+                default -> 0f;
+            };
+        }
+        return 0f;
     }
 
     private int getLightLevel(World world, BlockPos pos) {

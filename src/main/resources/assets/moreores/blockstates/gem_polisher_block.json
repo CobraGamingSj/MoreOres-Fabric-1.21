@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "moreores:block/gem_polisher_block",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "moreores:block/gem_polisher_block",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "moreores:block/gem_polisher_block"
+    },
+    "facing=west": {
+      "model": "moreores:block/gem_polisher_block",
+      "y": 90
+    }
+  }
+}

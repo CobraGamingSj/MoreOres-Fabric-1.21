@@ -1,6 +1,5 @@
 package net.cobra.moreores.world.gen.feature;
 
-import net.cobra.moreores.world.gen.placementmodifier.DistHeightRangePlacementModifier;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;

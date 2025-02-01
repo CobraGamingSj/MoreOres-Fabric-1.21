@@ -25,49 +25,8 @@ public class EnergyIngotItem extends Item {
         return true;
     }
 
-//    public TypedActionResult<ItemStack> useItem(World world, PlayerEntity user, Hand hand) {
-//        HitResult hitResult = user.raycast(5.0, 0.0f, false); // Raycast to detect entities in range
-//        if (hitResult.getType() == HitResult.Type.ENTITY) {
-//            EntityHitResult entityHitResult = (EntityHitResult) hitResult;
-//            if (entityHitResult.getEntity() instanceof ArmorStandEntity) {
-//                ArmorStandEntity armorStand = (ArmorStandEntity) entityHitResult.getEntity();
-//                // Perform your custom action, for example, equip the armor stand
-//                armorStand.setCustomName(Text.literal("Custom Name"));
-//
-//                return new TypedActionResult<>(ActionResult.SUCCESS, user.getStackInHand(hand));
-//            }
-//        }
-//        return new TypedActionResult<>(ActionResult.SUCCESS, user.getStackInHand(hand));
-//    }
-
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         World world = attacker.getWorld();
-
-//        if(attacker instanceof ServerPlayerEntity serverPlayerEntity) {
-//            if (shouldDealAdditionalDamage(serverPlayerEntity)) {
-//                ServerWorld serverWorld = ((ServerWorld) attacker.getWorld());
-//                if (serverPlayerEntity.shouldIgnoreFallDamageFromCurrentExplosion() && serverPlayerEntity.currentExplosionImpactPos !=null) {
-//                    if (serverPlayerEntity.currentExplosionImpactPos.y > serverPlayerEntity.getPos().y) {
-//                        serverPlayerEntity.currentExplosionImpactPos = serverPlayerEntity.getPos();
-//                    }else {
-//                        serverPlayerEntity.currentExplosionImpactPos = serverPlayerEntity.getPos();
-//                    }
-//                    serverPlayerEntity.setIgnoreFallDamageFromCurrentExplosion(true);
-//                    serverPlayerEntity.setVelocity(serverPlayerEntity.getVelocity().withAxis(Direction.Axis.Y, 0.009999999776482582));
-//                    serverPlayerEntity.networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(serverPlayerEntity));
-//                    if (target.isOnGround()) {
-//                        serverPlayerEntity.setSpawnExtraParticlesOnFall(true);
-//                        SoundEvent soundEvent = serverPlayerEntity.fallDistance > 5.0F ? SoundEvents.ITEM_MACE_SMASH_GROUND_HEAVY : SoundEvents.ITEM_MACE_SMASH_GROUND;
-//                        serverWorld.playSound((PlayerEntity)null, serverPlayerEntity.getX(), serverPlayerEntity.getY(), serverPlayerEntity.getZ(), soundEvent, serverPlayerEntity.getSoundCategory(), 1.0F, 1.0F);
-//                    }else {
-//                        serverWorld.playSound((PlayerEntity)null, serverPlayerEntity.getX(), serverPlayerEntity.getY(), serverPlayerEntity.getZ(), SoundEvents.ITEM_MACE_SMASH_AIR, serverPlayerEntity.getSoundCategory(), 1.0F, 1.0F);
-//                    }
-//
-//                    knockbackNearbyEntities(serverWorld, serverPlayerEntity, target);
-//
-//                }
-//            }
-//        }
 
         if(!world.isClient()) {
 
@@ -126,68 +85,4 @@ public class EnergyIngotItem extends Item {
 
         return super.use(world, user, hand);
     }
-
-//    private static void knockbackNearbyEntities(World world, PlayerEntity player, Entity attacked) {
-//        world.syncWorldEvent(2013, attacked.getSteppingPos(), 750);
-//        world.getEntitiesByClass(LivingEntity.class, attacked.getBoundingBox().expand(3.5), getKnockbackPredicate(player, attacked)).forEach((entity) -> {
-//            Vec3d vec3d = entity.getPos().subtract(attacked.getPos());
-//            double d = getKnockback(player, entity, vec3d);
-//            Vec3d vec3d2 = vec3d.normalize().multiply(d);
-//            if (d > 0.0) {
-//                entity.addVelocity(vec3d2.x, 0.699999988079071, vec3d2.z);
-//                if (entity instanceof ServerPlayerEntity) {
-//                    ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)entity;
-//                    serverPlayerEntity.networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(serverPlayerEntity));
-//                }
-//            }
-//
-//        });
-//    }
-
-//    private static Predicate<LivingEntity> getKnockbackPredicate(PlayerEntity player, Entity attacked) {
-//        return (entity) -> {
-//            boolean var10000;
-//            boolean bl;
-//            boolean bl2;
-//            boolean bl3;
-//            label62: {
-//                bl = !entity.isSpectator();
-//                bl2 = entity != player && entity != attacked;
-//                bl3 = !player.isTeammate(entity);
-//                if (entity instanceof TameableEntity tameableEntity) {
-//                    if (tameableEntity.isTamed() && player.getUuid().equals(tameableEntity.getOwnerUuid())) {
-//                        var10000 = true;
-//                        break label62;
-//                    }
-//                }
-//
-//                var10000 = false;
-//            }
-//
-//            boolean bl4;
-//            label55: {
-//                bl4 = !var10000;
-//                if (entity instanceof ArmorStandEntity armorStandEntity) {
-//                    if (armorStandEntity.isMarker()) {
-//                        var10000 = false;
-//                        break label55;
-//                    }
-//                }
-//
-//                var10000 = true;
-//            }
-//
-//            boolean bl5 = var10000;
-//            boolean bl6 = attacked.squaredDistanceTo(entity) <= Math.pow(3.5, 2.0);
-//            return bl && bl2 && bl3 && bl4 && bl5 && bl6;
-//        };
-//    }
-
-//    private static double getKnockback(PlayerEntity player, LivingEntity attacked, Vec3d distance) {
-//        return (3.5 - distance.length()) * 0.699999988079071 * (double)(player.fallDistance > 5.0F ? 2 : 1) * (1.0 - attacked.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
-//    }
-//
-//   public static boolean shouldDealAdditionalDamage(LivingEntity attacker) {
-//        return attacker.fallDistance > 1.5F && !attacker.isFallFlying();
-//    }
 }

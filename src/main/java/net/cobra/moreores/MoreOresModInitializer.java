@@ -17,7 +17,6 @@ import net.cobra.moreores.util.CustomTrades;
 import net.cobra.moreores.util.VanillaLootTableModifier;
 import net.cobra.moreores.village.ModVillagerProfessions;
 import net.cobra.moreores.world.gen.WorldGeneration;
-import net.cobra.moreores.world.gen.placementmodifier.ModPlacementModifierType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -144,7 +143,6 @@ public class MoreOresModInitializer implements ModInitializer {
 			combat.addAfter(Items.NETHERITE_AXE, ModItems.RUBY_AXE);
 			combat.addAfter(ModItems.RUBY_AXE, ModItems.SAPPHIRE_AXE);
 			combat.addAfter(ModItems.RUBY_SWORD, ModItems.SAPPHIRE_SWORD);
-			combat.addAfter(ModItems.RUBY_SWORD, ModItems.RADIANT_SWORD);
 			combat.addAfter(Items.NETHERITE_BOOTS, ModItems.RUBY_HELMET);
 			combat.addAfter(ModItems.RUBY_HELMET, ModItems.RUBY_CHESTPLATE);
 			combat.addAfter(ModItems.RUBY_CHESTPLATE, ModItems.RUBY_LEGGINGS);
@@ -153,10 +151,6 @@ public class MoreOresModInitializer implements ModInitializer {
 			combat.addAfter(ModItems.SAPPHIRE_HELMET, ModItems.SAPPHIRE_CHESTPLATE);
 			combat.addAfter(ModItems.SAPPHIRE_CHESTPLATE, ModItems.SAPPHIRE_LEGGINGS);
 			combat.addAfter(ModItems.SAPPHIRE_LEGGINGS, ModItems.SAPPHIRE_BOOTS);
-			combat.addAfter(ModItems.SAPPHIRE_BOOTS, ModItems.RADIANT_HELMET);
-			combat.addAfter(ModItems.RADIANT_HELMET, ModItems.RADIANT_CHESTPLATE);
-			combat.addAfter(ModItems.RADIANT_CHESTPLATE, ModItems.RADIANT_LEGGINGS);
-			combat.addAfter(ModItems.RADIANT_LEGGINGS, ModItems.RADIANT_BOOTS);
 		});
 
 
@@ -255,7 +249,6 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		// WorldGeneration Registry
 		WorldGeneration.generate();
-		ModPlacementModifierType.register();
 
 
 		//Villagers Registry
@@ -276,10 +269,6 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		//ModScreenHandlers Registry
 		ModScreenHandlerType.register();
-
-
-		//ModPlacementModifierType Registry
-		ModPlacementModifierType.register();
 
 
 		//ModRecipes Registry

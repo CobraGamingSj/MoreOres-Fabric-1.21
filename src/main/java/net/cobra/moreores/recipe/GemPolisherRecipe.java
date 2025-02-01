@@ -5,6 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
 import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
+import net.cobra.moreores.recipe.input.GemPolishingRecipeInput;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -12,7 +13,6 @@ import net.minecraft.recipe.*;
 import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.recipe.display.RecipeDisplay;
 import net.minecraft.recipe.display.SlotDisplay;
-import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 import java.util.List;
 
-public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
+public class GemPolisherRecipe implements Recipe<GemPolishingRecipeInput> {
     public final Ingredient ingredient;
     public final ItemStack output;
 
@@ -33,7 +33,7 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
     }
 
     @Override
-    public ItemStack craft(SingleStackRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
+    public ItemStack craft(GemPolishingRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
         return this.output.copy();
     }
 
@@ -46,18 +46,18 @@ public class GemPolisherRecipe implements Recipe<SingleStackRecipeInput> {
     }
 
     @Override
-    public boolean matches(SingleStackRecipeInput input, World world) {
+    public boolean matches(GemPolishingRecipeInput input, World world) {
         if (world.isClient) return false;
-        return this.ingredient.test(input.item());
+        return this.ingredient.test(input.inputStack());
     }
 
     @Override
-    public RecipeSerializer<? extends Recipe<SingleStackRecipeInput>> getSerializer() {
+    public RecipeSerializer<? extends Recipe<GemPolishingRecipeInput>> getSerializer() {
         return Serializer.GEM_POLISHING;
     }
 
     @Override
-    public RecipeType<? extends Recipe<SingleStackRecipeInput>> getType() {
+    public RecipeType<? extends Recipe<GemPolishingRecipeInput>> getType() {
         return Type.GEM_POLISHING;
     }
 

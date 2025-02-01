@@ -31,26 +31,4 @@ public interface ModArmorMaterials {
         map.put(EquipmentType.HELMET, 15);
         map.put(EquipmentType.BODY, 23);
     }), 23, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 7.0F, 0.8F, ModItemTags.REPAIRS_RADIANT_ARMOR, ModEquipmentAssetKeys.RADIANT);
-//    public static final RegistryEntry<ArmorMaterial> GREEN_GARNET = register("green_garnet", Util.make(new EnumMap(EquipmentType.class), map -> {
-//        map.put(EquipmentType.BOOTS, 9);
-//        map.put(EquipmentType.LEGGINGS, 12);
-//        map.put(EquipmentType.CHESTPLATE, 14);
-//        map.put(EquipmentType.HELMET, 9);
-//        map.put(EquipmentType.BODY, 17);
-//    }), 15, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.55F, 0.35F, () -> Ingredient.ofItems(ModItems.GREEN_GARNET));
-//    public static final RegistryEntry<ArmorMaterial> TOPAZ = register("topaz", Util.make(new EnumMap(EquipmentType.class), map -> {
-//        map.put(EquipmentType.BOOTS, 10);
-//        map.put(EquipmentType.LEGGINGS, 13);
-//        map.put(EquipmentType.CHESTPLATE, 15);
-//        map.put(EquipmentType.HELMET, 10);
-//        map.put(EquipmentType.BODY, 18);
-//    }), 17, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.75F, 0.375F, () -> Ingredient.ofItems(ModItems.TOPAZ));
-//
-//    public static final RegistryEntry<ArmorMaterial> AMETHYST = register("amethyst", Util.make(new EnumMap(EquipmentType.class), map -> {
-//        map.put(EquipmentType.BOOTS, 3);
-//        map.put(EquipmentType.LEGGINGS, 6);
-//        map.put(EquipmentType.CHESTPLATE, 7);
-//        map.put(EquipmentType.HELMET, 3);
-//        map.put(EquipmentType.BODY, 6);
-//    }), 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1.0F, 1.0F, () -> Ingredient.ofItems(Items.AMETHYST_SHARD));
 }

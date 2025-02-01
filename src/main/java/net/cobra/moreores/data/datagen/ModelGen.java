@@ -11,6 +11,8 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.*;
 import net.minecraft.util.Identifier;
 
+import static net.minecraft.client.data.BlockStateModelGenerator.createBooleanModelMap;
+
 public class ModelGen extends FabricModelProvider {
     public ModelGen(FabricDataOutput output) {
         super(output);
@@ -59,12 +61,10 @@ public class ModelGen extends FabricModelProvider {
         blockStateModelGenerator.registerCrop(ModBlocks.PINEAPPLE_CROP, PineappleCropBlock.AGE, 0, 1, 2, 3, 4);
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ENERGY_BLOCK);
-        blockStateModelGenerator.registerSimpleState(ModBlocks.GEM_POLISHER_BLOCK);
 
-        Identifier lampOffIdentifier = TexturedModel.CUBE_ALL.upload(ModBlocks.RUBY_LAMP, "_off", blockStateModelGenerator.modelCollector);
+        Identifier lampOffIdentifier = TexturedModel.CUBE_ALL.upload(ModBlocks.RUBY_LAMP, blockStateModelGenerator.modelCollector);
         Identifier lampOnIdentifier = blockStateModelGenerator.createSubModel(ModBlocks.RUBY_LAMP, "_on", Models.CUBE_ALL, TextureMap::all);
-        blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(ModBlocks.RUBY_LAMP)
-                .coordinate(BlockStateModelGenerator.createBooleanModelMap(RubyLampBlock.LIT, lampOnIdentifier, lampOffIdentifier)));
+        blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(ModBlocks.RUBY_LAMP).coordinate(createBooleanModelMap(RubyLampBlock.LIT, lampOnIdentifier, lampOffIdentifier)));
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_RUBY_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_SAPPHIRE_BLOCK);
@@ -123,9 +123,9 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ENERGY_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.WOOD_PELLET, Models.GENERATED);
 
-        itemModelGenerator.register(ModItems.PINEAPPLE);
-        itemModelGenerator.register(ModItems.TOMATO);
-        itemModelGenerator.register(ModItems.DIAMOND_APPLE);
+        itemModelGenerator.register(ModItems.PINEAPPLE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.TOMATO, Models.GENERATED);
+        itemModelGenerator.register(ModItems.DIAMOND_APPLE, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.RUBY_SWORD, Models.HANDHELD);
         itemModelGenerator.register(ModItems.RUBY_PICKAXE, Models.HANDHELD);
@@ -137,11 +137,6 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.register(ModItems.SAPPHIRE_AXE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.SAPPHIRE_HOE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.SAPPHIRE_SHOVEL, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.RADIANT_SWORD, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.RADIANT_PICKAXE, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.RADIANT_AXE, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.RADIANT_HOE, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.RADIANT_SHOVEL, Models.HANDHELD);
 
         itemModelGenerator.registerArmor(ModItems.RUBY_HELMET, ModEquipmentAssetKeys.RUBY,  "helmet", false);
         itemModelGenerator.registerArmor((ModItems.RUBY_CHESTPLATE), ModEquipmentAssetKeys.RUBY, "chestplate", false);
@@ -151,9 +146,5 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.registerArmor(ModItems.SAPPHIRE_CHESTPLATE,  ModEquipmentAssetKeys.SAPPHIRE, "chestplate", false);
         itemModelGenerator.registerArmor(ModItems.SAPPHIRE_LEGGINGS,  ModEquipmentAssetKeys.SAPPHIRE, "leggings", false);
         itemModelGenerator.registerArmor(ModItems.SAPPHIRE_BOOTS, ModEquipmentAssetKeys.SAPPHIRE,  "boots", false);
-        itemModelGenerator.registerArmor(ModItems.RADIANT_HELMET, ModEquipmentAssetKeys.RADIANT, "helmet", false);
-        itemModelGenerator.registerArmor((ModItems.RADIANT_CHESTPLATE), ModEquipmentAssetKeys.RADIANT, "chestplate", false);
-        itemModelGenerator.registerArmor(ModItems.RADIANT_LEGGINGS, ModEquipmentAssetKeys.RADIANT, "leggings", false);
-        itemModelGenerator.registerArmor(ModItems.RADIANT_BOOTS, ModEquipmentAssetKeys.RADIANT, "boots", false);
     }
 }

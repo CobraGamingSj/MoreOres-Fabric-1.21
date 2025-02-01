@@ -1,0 +1,15 @@
+package net.cobra.moreores.item;
+
+import net.cobra.moreores.MoreOresModInitializer;
+import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.Identifier;
+
+public class AliasedBlockItem extends BlockItem {
+    public AliasedBlockItem(String pathKey, Block block) {
+        super(block, new net.minecraft.item.Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MoreOresModInitializer.MOD_ID, pathKey))).useItemPrefixedTranslationKey());
+    }
+}

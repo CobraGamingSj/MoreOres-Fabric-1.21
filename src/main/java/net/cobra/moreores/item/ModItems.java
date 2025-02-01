@@ -200,33 +200,6 @@ public class ModItems {
     public static final Item SAPPHIRE_HOE = register("sapphire_hoe", new HoeItem(ModToolMaterials.SAPPHIRE,  4, -3.0f, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, MoreOresModInitializer.getId("sapphire_hoe")))));
     public static final Item SAPPHIRE_SHOVEL = register("sapphire_shovel", new ShovelItem(ModToolMaterials.SAPPHIRE,  3.5F, -3.0F, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, MoreOresModInitializer.getId("sapphire_shovel")))));
 
-    
-    //    Radiant Armor
-    public static final Item RADIANT_HELMET = register(
-            "radiant_helmet",
-            new ArmorItem(ModArmorMaterials.RADIANT, EquipmentType.HELMET, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, MoreOresModInitializer.getId("radiant_helmet"))))
-    );
-    public static final Item RADIANT_CHESTPLATE = register(
-            "radiant_chestplate",
-            new ArmorItem(ModArmorMaterials.RADIANT, EquipmentType.CHESTPLATE, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, MoreOresModInitializer.getId("radiant_chestplate"))))
-    );
-    public static final Item RADIANT_LEGGINGS = register(
-            "radiant_leggings",
-            new ArmorItem(ModArmorMaterials.RADIANT, EquipmentType.LEGGINGS, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, MoreOresModInitializer.getId("radiant_leggings"))))
-    );
-    public static final Item RADIANT_BOOTS = register(
-            "radiant_boots",
-            new ArmorItem(ModArmorMaterials.RADIANT, EquipmentType.BOOTS, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, MoreOresModInitializer.getId("radiant_boots"))))
-    );
-
-
-    //    Radiant Tools & Weapons
-    public static final Item RADIANT_SWORD = register("radiant_sword", new SwordItem(ModToolMaterials.RADIANT,  32, -1.0f, new Item.Settings().rarity(Rarity.EPIC).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, MoreOresModInitializer.getId("radiant_sword")))));
-    public static final Item RADIANT_PICKAXE = register("radiant_pickaxe", new PickaxeItem(ModToolMaterials.RADIANT, 24, -1.8f, new Item.Settings().rarity(Rarity.RARE).fireproof().registryKey(MoreOresModInitializer.setRegistryKey("radiant_pickaxe"))));
-    public static final Item RADIANT_AXE = register("radiant_axe", new AxeItem(ModToolMaterials.RADIANT, 32, -1.0f, new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(MoreOresModInitializer.setRegistryKey("radiant_axe"))));
-    public static final Item RADIANT_HOE = register("radiant_hoe", new HoeItem(ModToolMaterials.RADIANT, 24, -1.8f, new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(MoreOresModInitializer.setRegistryKey("radiant_hoe"))));
-    public static final Item RADIANT_SHOVEL = register("radiant_shovel", new ShovelItem(ModToolMaterials.RADIANT, 21.5f, -3.0f, new Item.Settings().fireproof().registryKey(MoreOresModInitializer.setRegistryKey("radiant_shovel"))));
-
 
     //    Smithing Templates
     public static final Item RUBY_UPGRADE_SMITHING_TEMPLATE = register("ruby_upgrade_smithing_template", ModSmithingTemplateItem.createRubyUpgrade(new Item.Settings().rarity(Rarity.UNCOMMON).registryKey(RegistryKey.of(RegistryKeys.ITEM, MoreOresModInitializer.getId("ruby_upgrade_smithing_template")))));
