@@ -201,6 +201,10 @@ public class ModItems {
     public static final Item SAPPHIRE_SHOVEL = register("sapphire_shovel", new ShovelItem(ModToolMaterials.SAPPHIRE,  3.5F, -3.0F, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, MoreOresModInitializer.getId("sapphire_shovel")))));
 
 
+    //    Radiant Tools & Weapons
+    public static final Item RADIANT_SWORD = register("radiant_sword", new SwordItem(ModToolMaterials.RADIANT,  32, -1.0f, new Item.Settings().rarity(Rarity.EPIC).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, MoreOresModInitializer.getId("radiant_sword")))));
+
+
     //    Smithing Templates
     public static final Item RUBY_UPGRADE_SMITHING_TEMPLATE = register("ruby_upgrade_smithing_template", ModSmithingTemplateItem.createRubyUpgrade(new Item.Settings().rarity(Rarity.UNCOMMON).registryKey(RegistryKey.of(RegistryKeys.ITEM, MoreOresModInitializer.getId("ruby_upgrade_smithing_template")))));
     public static final Item RADIANT_UPGRADE_SMITHING_TEMPLATE = register("radiant_upgrade_smithing_template", ModSmithingTemplateItem.createRadiantUpgrade(new Item.Settings().rarity(Rarity.UNCOMMON).registryKey(RegistryKey.of(RegistryKeys.ITEM, MoreOresModInitializer.getId("radiant_upgrade_smithing_template")))));

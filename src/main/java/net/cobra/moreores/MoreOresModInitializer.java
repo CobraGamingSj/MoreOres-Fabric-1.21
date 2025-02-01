@@ -143,6 +143,7 @@ public class MoreOresModInitializer implements ModInitializer {
 			combat.addAfter(Items.NETHERITE_AXE, ModItems.RUBY_AXE);
 			combat.addAfter(ModItems.RUBY_AXE, ModItems.SAPPHIRE_AXE);
 			combat.addAfter(ModItems.RUBY_SWORD, ModItems.SAPPHIRE_SWORD);
+			combat.addAfter(ModItems.SAPPHIRE_SWORD, ModItems.RADIANT_SWORD);
 			combat.addAfter(Items.NETHERITE_BOOTS, ModItems.RUBY_HELMET);
 			combat.addAfter(ModItems.RUBY_HELMET, ModItems.RUBY_CHESTPLATE);
 			combat.addAfter(ModItems.RUBY_CHESTPLATE, ModItems.RUBY_LEGGINGS);

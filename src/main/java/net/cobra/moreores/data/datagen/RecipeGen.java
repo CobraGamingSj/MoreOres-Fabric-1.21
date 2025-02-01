@@ -34,7 +34,6 @@ public class RecipeGen extends FabricRecipeProvider {
         return new RecipeGenerator(wrapperLookup, recipeExporter) {
             @Override
             public void generate() {
-                Ingredient ENERGY_ITEM = Ingredient.ofItem(ModItems.ENERGY_INGOT);
                 int defaultSmeltingTime = 1500;
                 int defaultBlastingTime = 750;
                 List<ItemConvertible> RUBY_SMELTABLES = List.of(ModBlocks.RUBY_ORE, ModBlocks.DEEPSLATE_RUBY_ORE, ModItems.RAW_RUBY);
@@ -443,42 +442,6 @@ public class RecipeGen extends FabricRecipeProvider {
                         .criterion(hasItem(ModItems.RUBY), conditionsFromItem(ModItems.RUBY))
                         .criterion(hasItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE))));
-
-                // Radiant Helmet
-                createShaped(RecipeCategory.COMBAT, ModItems.RADIANT_HELMET, 1).group("radiant")
-                        .pattern("   ")
-                        .pattern("aaa")
-                        .pattern("a a")
-                        .input('a', ModBlocks.RADIANT_BLOCK)
-                        .criterion(hasItem(ModBlocks.RADIANT_BLOCK), conditionsFromItem(ModBlocks.RADIANT_BLOCK))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RADIANT_HELMET))));
-
-                // Radiant Chestplate
-                createShaped(RecipeCategory.COMBAT, ModItems.RADIANT_CHESTPLATE, 1).group("radiant")
-                        .pattern("a a")
-                        .pattern("aaa")
-                        .pattern("aaa")
-                        .input('a', ModBlocks.RADIANT_BLOCK)
-                        .criterion(hasItem(ModBlocks.RADIANT_BLOCK), conditionsFromItem(ModBlocks.RADIANT_BLOCK))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RADIANT_CHESTPLATE))));
-
-                // Radiant Leggings
-                createShaped(RecipeCategory.COMBAT, ModItems.RADIANT_LEGGINGS, 1).group("radiant")
-                        .pattern("aaa")
-                        .pattern("a a")
-                        .pattern("a a")
-                        .input('a', ModBlocks.RADIANT_BLOCK)
-                        .criterion(hasItem(ModBlocks.RADIANT_BLOCK), conditionsFromItem(ModBlocks.RADIANT_BLOCK))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RADIANT_LEGGINGS))));
-
-                // Radiant Boots
-                createShaped(RecipeCategory.COMBAT, ModItems.RADIANT_BOOTS, 1).group("radiant")
-                        .pattern("   ")
-                        .pattern("a a")
-                        .pattern("a a")
-                        .input('a', ModBlocks.RADIANT_BLOCK)
-                        .criterion(hasItem(ModBlocks.RADIANT_BLOCK), conditionsFromItem(ModBlocks.RADIANT_BLOCK))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RADIANT_BOOTS))));
             }
         };
     }
