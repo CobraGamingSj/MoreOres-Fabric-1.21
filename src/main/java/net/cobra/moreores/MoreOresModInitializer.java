@@ -1,12 +1,14 @@
 package net.cobra.moreores;
 
 import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.block.data.GemPolisherButtonClick;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.component.type.ModConsumableComponents;
 import net.cobra.moreores.enchantment.entity.effect.EnchantmentEffects;
 import net.cobra.moreores.item.ModItems;
-import net.cobra.moreores.networking.ModNetworkingPackets;
+import net.cobra.moreores.networking.ModC2SNetworks;
 import net.cobra.moreores.networking.ModS2CNetworks;
+import net.cobra.moreores.networking.ModS2CPayloadRegistry;
 import net.cobra.moreores.recipe.ModRecipeSerializer;
 import net.cobra.moreores.recipe.ModRecipeType;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
@@ -20,6 +22,7 @@ import net.cobra.moreores.world.gen.WorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.*;
@@ -279,8 +282,10 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		//Networking Registry
 		ModS2CNetworks.register();
-		ModNetworkingPackets.registerS2CPackets();
-
+		ModC2SNetworks.register();
+		ModS2CPayloadRegistry.registerS2CPackets();
+		PayloadTypeRegistry.playC2S().register(GemPolisherButtonClick.ID, GemPolisherButtonClick.PACKET_CODEC);
+		ModC2SNetworks.registerServerC2S();
 
 		//ModConsumableComponents Registry
 		ModConsumableComponents.register();

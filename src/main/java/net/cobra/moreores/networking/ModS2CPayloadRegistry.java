@@ -10,7 +10,7 @@ import net.minecraft.network.packet.CustomPayload;
 import static net.cobra.moreores.MoreOresModInitializer.LOGGER;
 
 @SuppressWarnings("Same PaR VAL")
-public class ModNetworkingPackets {
+public class ModS2CPayloadRegistry {
     static {
        registerS2C(GemPolisherData.ID, GemPolisherData.PACKET_CODEC);
     }
@@ -22,5 +22,4 @@ public class ModNetworkingPackets {
     public static void registerS2CPackets() {
         LOGGER.info("Loading ModNetworkingPackets for " + MoreOresModInitializer.MOD_ID + " mod.");
     }
-
 }

@@ -42,6 +42,7 @@ import java.util.Optional;
 
 public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<GemPolisherData>, ImplementedInventory, TickableBlockEntity {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(15, ItemStack.EMPTY);
+    private PolishingState polishingState = PolishingState.IDLE;
 
     public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(1000000, 64,128) {
         @Override
@@ -99,19 +100,8 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         this.energyStorage.amount = energyLevel;
     }
 
-    public ItemStack getOutputStackRenderer() {
-        if (this.getStack(RESULT_SLOT).isEmpty()) return ItemStack.EMPTY;
-        return this.getStack(RESULT_SLOT);
-    }
-
-    public ItemStack getInputStackRenderer() {
-        if (this.getStack(INGREDIENT_SLOT).isEmpty()) return ItemStack.EMPTY;
-        return this.getStack(INGREDIENT_SLOT);
-    }
-
-    public ItemStack getEnergyStackRenderer() {
-        if(this.getStack(ENERGY_SOURCE_SLOT).isEmpty()) return ItemStack.EMPTY;
-        return this.getStack(ENERGY_SOURCE_SLOT);
+    public void setProgress(int maxProgress) {
+        this.initialProgress = maxProgress;
     }
 
     @Nullable
@@ -133,6 +123,9 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         Inventories.readNbt(nbt, inventory, registryLookup);
         if(nbt.contains("gem_polisher.progress", NbtElement.INT_TYPE)) initialProgress = nbt.getInt("gem_polisher.progress");
         if(nbt.contains("gem_polisher.energy", NbtElement.LONG_TYPE)) energyStorage.amount = nbt.getLong("gem_polisher.energy");
+        if(nbt.contains("PolishingState", NbtElement.STRING_TYPE)) {
+            polishingState = PolishingState.valueOf(nbt.getString("PolishingState"));
+        }
     }
 
     @Override
@@ -141,6 +134,7 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         Inventories.writeNbt(nbt, inventory, registryLookup);
         nbt.putInt("gem_polisher.progress", initialProgress);
         nbt.putLong("gem_polisher.energy", energyStorage.amount);
+        nbt.putString("PolishingState", polishingState.name());
     }
 
     @Override
@@ -192,31 +186,35 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
             return;
         }
 
-        if(hasEnergySourceProviderItem()) {
-            try(Transaction transaction = Transaction.openOuter()) {
-                this.energyStorage.insert(32, transaction);
+        if(polishingState == PolishingState.RUNNING) {
+            if (hasEnergySourceProviderItem()) {
+                try (Transaction transaction = Transaction.openOuter()) {
+                    this.energyStorage.insert(32, transaction);
 
-                if(this.world.isReceivingRedstonePower(this.pos)) {
-                    this.energyStorage.insert(1024, transaction);
+                    if (this.world.isReceivingRedstonePower(this.pos)) {
+                        this.energyStorage.insert(1024, transaction);
+                    }
+
+                    transaction.commit();
                 }
-
-                transaction.commit();
             }
-        }
 
-        checkForEnoughEnergyAndRemoveItem();
+            checkForEnoughEnergyAndRemoveItem();
 
-        if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy()) {
-            this.increaseProgress();
-            this.extractEnergy();
-            if (hasPolishingFinished()) {
-                this.getPolishedGemstone();
+            if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy()) {
+                this.increaseProgress();
+                this.extractEnergy();
+                if (hasPolishingFinished()) {
+                    this.getPolishedGemstone();
+                    this.resetProgress();
+                    this.polishingState = PolishingState.IDLE;
+                }
+                markDirty(world, pos, state);
+            } else {
                 this.resetProgress();
+                this.polishingState = PolishingState.IDLE;
+                markDirty(world, pos, state);
             }
-            markDirty(world, pos, state);
-        } else {
-            this.resetProgress();
-            markDirty(world, pos, state);
         }
     }
 
@@ -262,10 +260,11 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         return initialProgress >= maxProgressTick;
     }
 
-    private void increaseProgress() {
+    public void increaseProgress() {
         if(this.world.isReceivingRedstonePower(this.pos)) {
             initialProgress += 5;
         } else {
+
             initialProgress++;
         }
     }
@@ -296,5 +295,36 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 
     private boolean isResultSlotEmptyOrReceivable() {
         return this.getStack(RESULT_SLOT).isEmpty() || this.getStack(RESULT_SLOT).getCount() < this.getStack(RESULT_SLOT).getMaxCount();
+    }
+
+    public void startPolish() {
+        if(polishingState == PolishingState.IDLE && hasRecipe() && hasEnoughEnergy()) {
+            polishingState = PolishingState.RUNNING;
+        }
+    }
+
+    public void pausePolish() {
+        if(polishingState == PolishingState.RUNNING) {
+            polishingState = PolishingState.PAUSED;
+        }
+    }
+
+    public void resumePolish() {
+        if(polishingState == PolishingState.PAUSED) {
+            polishingState = PolishingState.RUNNING;
+        }
+    }
+
+    public void stopPolish() {
+        if(polishingState != PolishingState.IDLE) {
+            polishingState = PolishingState.IDLE;
+            resetProgress();
+        }
+    }
+
+    enum PolishingState {
+        IDLE,
+        RUNNING,
+        PAUSED
     }
 }

@@ -83,11 +83,11 @@ public class GemPolisherBlock extends BlockWithEntity implements BlockEntityProv
         return ActionResult.SUCCESS;
     }
 
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return TickableBlockEntity.createTicker(world, state, type);
-    }
+//    @Nullable
+//    @Override
+//    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+//        return TickableBlockEntity.createTicker(world, state, type);
+//    }
 
     @Override
     public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
