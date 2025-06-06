@@ -100,10 +100,6 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
         this.energyStorage.amount = energyLevel;
     }
 
-    public void setProgress(int maxProgress) {
-        this.initialProgress = maxProgress;
-    }
-
     @Nullable
     @Override
     public Packet<ClientPlayPacketListener> toUpdatePacket() {
@@ -186,20 +182,21 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
             return;
         }
 
-        if(polishingState == PolishingState.RUNNING) {
-            if (hasEnergySourceProviderItem()) {
-                try (Transaction transaction = Transaction.openOuter()) {
-                    this.energyStorage.insert(32, transaction);
+        if (hasEnergySourceProviderItem()) {
+            try (Transaction transaction = Transaction.openOuter()) {
+                this.energyStorage.insert(32, transaction);
 
-                    if (this.world.isReceivingRedstonePower(this.pos)) {
-                        this.energyStorage.insert(1024, transaction);
-                    }
-
-                    transaction.commit();
+                if (this.world.isReceivingRedstonePower(this.pos)) {
+                    this.energyStorage.insert(1024, transaction);
                 }
-            }
 
-            checkForEnoughEnergyAndRemoveItem();
+                transaction.commit();
+            }
+        }
+
+        checkForEnoughEnergyAndRemoveItem();
+
+        if(polishingState == PolishingState.RUNNING) {
 
             if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy()) {
                 this.increaseProgress();
@@ -207,7 +204,6 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
                 if (hasPolishingFinished()) {
                     this.getPolishedGemstone();
                     this.resetProgress();
-                    this.polishingState = PolishingState.IDLE;
                 }
                 markDirty(world, pos, state);
             } else {
@@ -316,15 +312,9 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     public void stopPolish() {
-        if(polishingState != PolishingState.IDLE) {
+        if (polishingState != PolishingState.IDLE) {
             polishingState = PolishingState.IDLE;
             resetProgress();
         }
-    }
-
-    enum PolishingState {
-        IDLE,
-        RUNNING,
-        PAUSED
     }
 }

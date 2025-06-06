@@ -17,8 +17,8 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
 
 public class GemPolisherRecipe implements Recipe<GemPolishingRecipeInput> {
     public final Ingredient ingredient;

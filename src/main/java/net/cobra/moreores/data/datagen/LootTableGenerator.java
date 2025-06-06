@@ -1,13 +1,13 @@
 package net.cobra.moreores.data.datagen;
 
+import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.block.TomatoCropBlock;
+import net.cobra.moreores.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
 import net.minecraft.predicate.StatePredicate;
 import net.minecraft.registry.RegistryWrapper;
-import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.TomatoCropBlock;
-import net.cobra.moreores.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 

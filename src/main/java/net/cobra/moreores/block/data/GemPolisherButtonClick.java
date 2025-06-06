@@ -2,6 +2,7 @@ package net.cobra.moreores.block.data;
 
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.entity.GemPolisherBlockEntity;
+import net.cobra.moreores.block.entity.PolishingState;
 import net.cobra.moreores.screen.GemPolisherScreenHandler;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.RegistryByteBuf;
@@ -41,6 +42,9 @@ public record GemPolisherButtonClick(int buttonID, BlockPos pos) implements Cust
                     }
                 }
             }
+
+        System.out.println("Received button click with ID: " + buttonID + " at " + pos);
+
         }
 
 

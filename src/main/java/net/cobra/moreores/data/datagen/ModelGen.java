@@ -127,6 +127,7 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.register(ModItems.TOMATO, Models.GENERATED);
         itemModelGenerator.register(ModItems.DIAMOND_APPLE, Models.GENERATED);
 
+        itemModelGenerator.register(ModItems.RADIANT_SWORD, Models.HANDHELD);
         itemModelGenerator.register(ModItems.RUBY_SWORD, Models.HANDHELD);
         itemModelGenerator.register(ModItems.RUBY_PICKAXE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.RUBY_AXE, Models.HANDHELD);

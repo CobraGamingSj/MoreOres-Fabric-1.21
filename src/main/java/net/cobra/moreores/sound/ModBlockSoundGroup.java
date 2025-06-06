@@ -1,8 +1,8 @@
 package net.cobra.moreores.sound;
 
+import net.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
-import net.cobra.moreores.MoreOresModInitializer;
 
 public class ModBlockSoundGroup {
 

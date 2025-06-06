@@ -1,8 +1,8 @@
 package net.cobra.moreores.data.datagen;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.client.recipe.GemPolishingRecipeJsonBuilder;
 import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.client.recipe.GemPolishingRecipeJsonBuilder;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;

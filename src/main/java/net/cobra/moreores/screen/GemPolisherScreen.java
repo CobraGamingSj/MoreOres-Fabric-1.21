@@ -43,15 +43,15 @@ public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
 
         pause = this.addButton("gui.button.gp.pause", button -> {
             ClientPlayNetworking.send(new GemPolisherButtonClick(1, handler.blockEntity.getPos()));
-        }, x + 132, y + 92, "Pause Polishing");
+        }, x + 50, y + 92, "Pause Polishing");
 
         resume = this.addButton("gui.button.gp.resume", button -> {
             ClientPlayNetworking.send(new GemPolisherButtonClick(2, handler.blockEntity.getPos()));
-        }, this.x + 40, this.y + 92, "Resume Polishing");
+        }, this.x + 93, this.y + 92, "Resume Polishing");
 
         stop = this.addButton("gui.button.gp.stop", button -> {
             ClientPlayNetworking.send(new GemPolisherButtonClick(3, handler.blockEntity.getPos()));
-        }, x + 70, y + 92, "Stop Polishing");
+        }, x + 135, y + 92, "Stop Polishing");
 
         start.visible = true;
         pause.visible = true;
@@ -62,22 +62,6 @@ public class GemPolisherScreen extends HandledScreen<GemPolisherScreenHandler> {
     private ButtonWidget addButton(String translation, ButtonWidget.PressAction pressAction, int x, int y, String tooltip) {
         return this.addDrawableChild(ButtonWidget.builder(Text.translatable(translation), pressAction).dimensions(x, y, 32, 20).tooltip(Tooltip.of(Text.literal(tooltip))).build());
     }
-
-//    private void onPauseClick() {
-//        handler.pause();
-//    }
-//
-//    private void onResumeClick() {
-//        handler.resume();
-//    }
-//
-//    private void onStopClick() {
-//        handler.stop();
-//    }
-//
-//    private void onStartClick() {
-//        handler.start();
-//    }
 
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if(this.handler.isPolishing()) {

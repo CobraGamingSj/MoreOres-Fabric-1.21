@@ -1,11 +1,11 @@
 package net.cobra.moreores.world.gen.feature;
 
+import net.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.cobra.moreores.MoreOresModInitializer;
 
 public class ModConfiguredFeatures {
 

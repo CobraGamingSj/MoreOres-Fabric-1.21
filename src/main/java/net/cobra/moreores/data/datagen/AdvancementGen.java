@@ -1,5 +1,6 @@
 package net.cobra.moreores.data.datagen;
 
+import net.cobra.moreores.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.minecraft.advancement.Advancement;
@@ -10,7 +11,6 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import net.cobra.moreores.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;

@@ -185,5 +185,10 @@
   "trim_material.moreores.topaz": "Topaz Material",
   "trim_material.moreores.white_topaz": "White Topaz Material",
   "trim_material.moreores.pink_garnet": "Pink Garnet Material",
-  "block.moreores.gemstone_storage_block": "Gem Storage  Block"
+  "block.moreores.gemstone_storage_block": "Gem Storage  Block",
+
+  "gui.button.gp.start": "Start",
+  "gui.button.gp.stop": "Stop",
+  "gui.button.gp.pause": "Pause",
+  "gui.button.gp.resume": "Resume"
 }

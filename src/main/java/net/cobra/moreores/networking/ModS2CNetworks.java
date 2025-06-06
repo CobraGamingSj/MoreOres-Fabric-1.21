@@ -1,6 +1,7 @@
 package net.cobra.moreores.networking;
 
 import net.cobra.moreores.MoreOresModInitializer;
+import net.cobra.moreores.block.data.GemPolisherButtonClick;
 import net.cobra.moreores.block.data.GemPolisherData;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 

@@ -13,7 +13,9 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
@@ -21,9 +23,11 @@ import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.block.WireOrientation;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -31,6 +35,7 @@ import java.util.List;
 public class GemPolisherBlock extends BlockWithEntity implements BlockEntityProvider {
     private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 14, 16);
     public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
+    public static final BooleanProperty REDSTONE_POWERED = BooleanProperty.of("redstone_powered");
     public static final MapCodec<GemPolisherBlock> CODEC = GemPolisherBlock.createCodec(GemPolisherBlock::new);
 
     @Override
@@ -40,12 +45,12 @@ public class GemPolisherBlock extends BlockWithEntity implements BlockEntityProv
 
     protected GemPolisherBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH));
+        this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(REDSTONE_POWERED, false));
     }
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().rotateYClockwise());
+        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().rotateYClockwise()).with(REDSTONE_POWERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()));
     }
 
     @Override
@@ -72,6 +77,27 @@ public class GemPolisherBlock extends BlockWithEntity implements BlockEntityProv
     }
 
     @Override
+    protected void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, @Nullable WireOrientation wireOrientation, boolean notify) {
+        if (!world.isClient) {
+            boolean bl = state.get(REDSTONE_POWERED);
+            if (bl != world.isReceivingRedstonePower(pos)) {
+                if (bl) {
+                    world.scheduleBlockTick(pos, this, 4);
+                } else {
+                    world.setBlockState(pos, state.cycle(REDSTONE_POWERED), Block.NOTIFY_LISTENERS);
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if(state.get(REDSTONE_POWERED) && !world.isReceivingRedstonePower(pos)) {
+            world.setBlockState(pos, state.cycle(REDSTONE_POWERED), Block.NOTIFY_LISTENERS);
+        }
+    }
+
+    @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient) {
             NamedScreenHandlerFactory screenHandlerFactory = ((GemPolisherBlockEntity) world.getBlockEntity(pos));
@@ -83,11 +109,11 @@ public class GemPolisherBlock extends BlockWithEntity implements BlockEntityProv
         return ActionResult.SUCCESS;
     }
 
-//    @Nullable
-//    @Override
-//    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-//        return TickableBlockEntity.createTicker(world, state, type);
-//    }
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return TickableBlockEntity.createTicker(world, state, type);
+    }
 
     @Override
     public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
@@ -108,5 +134,6 @@ public class GemPolisherBlock extends BlockWithEntity implements BlockEntityProv
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
+        builder.add(REDSTONE_POWERED);
     }
 }

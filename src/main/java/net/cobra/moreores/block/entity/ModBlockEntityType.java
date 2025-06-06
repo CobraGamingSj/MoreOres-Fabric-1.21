@@ -10,7 +10,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import team.reborn.energy.api.EnergyStorage;
 
-public class ModBlockEntityType {
+public class    ModBlockEntityType {
 
     public static final BlockEntityType<GemPolisherBlockEntity> GEM_POLISHER_BLOCK_ENTITY =
             register("gem_polisher", FabricBlockEntityTypeBuilder.create(GemPolisherBlockEntity::new, ModBlocks.GEM_POLISHER_BLOCK));

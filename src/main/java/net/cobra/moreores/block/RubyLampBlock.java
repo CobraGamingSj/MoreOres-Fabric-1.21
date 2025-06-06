@@ -12,6 +12,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.minecraft.world.block.WireOrientation;
 import org.jetbrains.annotations.Nullable;
 
 public class RubyLampBlock extends Block {
@@ -28,14 +29,15 @@ public class RubyLampBlock extends Block {
         return this.getDefaultState().with(LIT, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()));
     }
 
-    protected void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
+    @Override
+    protected void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, @Nullable WireOrientation wireOrientation, boolean notify) {
         if (!world.isClient) {
             boolean bl = state.get(LIT);
             if (bl != world.isReceivingRedstonePower(pos)) {
                 if (bl) {
                     world.scheduleBlockTick(pos, this, 4);
                 } else {
-                    world.setBlockState(pos, (BlockState)state.cycle(LIT), 2);
+                    world.setBlockState(pos, state.cycle(LIT), Block.NOTIFY_LISTENERS);
                 }
             }
         }
@@ -43,7 +45,7 @@ public class RubyLampBlock extends Block {
 
     protected void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (state.get(LIT) && !world.isReceivingRedstonePower(pos)) {
-            world.setBlockState(pos, (BlockState)state.cycle(LIT), 2);
+            world.setBlockState(pos, state.cycle(LIT), 2);
         }
     }
 

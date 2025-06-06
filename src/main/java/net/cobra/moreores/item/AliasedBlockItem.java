@@ -3,7 +3,6 @@ package net.cobra.moreores.item;
 import net.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;

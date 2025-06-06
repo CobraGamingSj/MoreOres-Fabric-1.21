@@ -1,11 +1,11 @@
 package net.cobra.moreores.sound;
 
+import net.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.cobra.moreores.MoreOresModInitializer;
 
 public class ModSoundEvents {
 

@@ -269,6 +269,7 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		//ModBlockEntityType Registry
 		ModBlockEntityType.register();
+		LOGGER.info("Registering Buttons for GemPolisher");
 
 
 		//ModScreenHandlers Registry

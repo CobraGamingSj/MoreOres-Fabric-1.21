@@ -3,6 +3,8 @@ package net.cobra.moreores.screen;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.data.GemPolisherData;
 import net.cobra.moreores.block.entity.GemPolisherBlockEntity;
+import net.cobra.moreores.item.ModItems;
+import net.cobra.moreores.registry.ModItemTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -77,7 +79,53 @@ public class GemPolisherScreenHandler extends ScreenHandler implements ScreenHan
 
     @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {
-        return ItemStack.EMPTY;
+        ItemStack stack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(invSlot);
+
+        if(slot != null && slot.hasStack()) {
+            ItemStack originalStack = slot.getStack();
+            stack = originalStack.copy();
+
+            if(invSlot == 2) {
+                if(!this.insertItem(originalStack, 15, 51, true)) {
+                    return ItemStack.EMPTY;
+                }
+                slot.onQuickTransfer(originalStack, stack);
+            } else if(invSlot >= 15 && invSlot < 51) {
+                if(isValidInput(originalStack)) {
+                    if(!this.insertItem(originalStack, 0, 1, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (isValidEnergyItem(originalStack)) {
+                    if(!this.insertItem(originalStack, 2, 3, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else {
+                    if(!this.insertItem(originalStack, 3, 15, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                }
+            } else {
+                if(!this.insertItem(originalStack, 15, 51, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+
+            if(originalStack.isEmpty()) {
+                slot.setStack(ItemStack.EMPTY);
+            } else {
+                slot.markDirty();
+            }
+        }
+        return stack;
+    }
+
+    private boolean isValidInput(ItemStack stack) {
+        return stack.isIn(ModItemTags.RAW_GEMSTONE);
+    }
+
+    private boolean isValidEnergyItem(ItemStack stack) {
+        return stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
     }
 
     @Override

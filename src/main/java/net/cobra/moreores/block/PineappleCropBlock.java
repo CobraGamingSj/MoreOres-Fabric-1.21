@@ -1,5 +1,6 @@
 package net.cobra.moreores.block;
 
+import net.cobra.moreores.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
@@ -12,7 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
-import net.cobra.moreores.item.ModItems;
 
 public class PineappleCropBlock extends CropBlock {
     public static final int MAX_AGE = 4;
