@@ -196,7 +196,7 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 
         checkForEnoughEnergyAndRemoveItem();
 
-        if(polishingState == PolishingState.RUNNING) {
+        if(isPolishingStateRunning()) {
 
             if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy()) {
                 this.increaseProgress();
@@ -212,6 +212,10 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
                 markDirty(world, pos, state);
             }
         }
+    }
+
+    private boolean isPolishingStateRunning() {
+        return this.polishingState == PolishingState.RUNNING;
     }
 
     private void checkForEnoughEnergyAndRemoveItem() {
@@ -295,25 +299,25 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
 
     public void startPolish() {
         if(polishingState == PolishingState.IDLE && hasRecipe() && hasEnoughEnergy()) {
-            polishingState = PolishingState.RUNNING;
+            polishingState.setState(1);
         }
     }
 
     public void pausePolish() {
         if(polishingState == PolishingState.RUNNING) {
-            polishingState = PolishingState.PAUSED;
+            polishingState.setState(2);
         }
     }
 
     public void resumePolish() {
         if(polishingState == PolishingState.PAUSED) {
-            polishingState = PolishingState.RUNNING;
+            polishingState.setState(1);
         }
     }
 
     public void stopPolish() {
         if (polishingState != PolishingState.IDLE) {
-            polishingState = PolishingState.IDLE;
+            polishingState.setState(0);
             resetProgress();
         }
     }

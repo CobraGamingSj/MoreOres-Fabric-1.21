@@ -4,6 +4,7 @@ import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.world.gen.feature.ModOrePlacedFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
 
 public class WorldGeneration {
@@ -64,5 +65,50 @@ public class WorldGeneration {
 
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_GREEN_GARNET_LARGE);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_TOPAZ);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_TOPAZ_MEDIUM);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_TOPAZ_LARGE);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_WHITE_TOPAZ);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_WHITE_TOPAZ_MEDIUM);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_WHITE_TOPAZ_LARGE);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_PERIDOT);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_PERIDOT_MEDIUM);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_PERIDOT_LARGE);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_JADE);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_JADE_MEDIUM);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_JADE_LARGE);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_PYROPE);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_PYROPE_MEDIUM);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_PYROPE_LARGE);
     }
 }

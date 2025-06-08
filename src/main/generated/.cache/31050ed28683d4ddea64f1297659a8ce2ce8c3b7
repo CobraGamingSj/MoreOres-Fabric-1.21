@@ -1,4 +1,4 @@
-// 1.21.4	-999999999-01-01T00:00:00	§6MoreOres+§r/Block Loot Tables
+// 1.21.4	-999999999-01-01T00:00:00	MoreOres+/Block Loot Tables
 4844a99457d73760a1fcfb315df9225fda9fd6dc data/moreores/loot_table/blocks/blue_garnet_block.json
 cf672fabe0a5e8fac22fb8dcec90af0ddc90488c data/moreores/loot_table/blocks/blue_garnet_ore.json
 ea097439ac499485d4ac2ea723cec5ab5733965a data/moreores/loot_table/blocks/deepslate_blue_garnet_ore.json

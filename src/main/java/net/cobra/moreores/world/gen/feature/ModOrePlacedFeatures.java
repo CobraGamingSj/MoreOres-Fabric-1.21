@@ -100,166 +100,166 @@ public class ModOrePlacedFeatures {
                 placedFeatureRegisterable,
                 ORE_RUBY,
                 registryEntry20,
-                modifiersWithCount(7, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(60)))
+                modifiersWithCount(8,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(76)))
         );
         PlacedFeatures.register(
-                placedFeatureRegisterable, ORE_RUBY_MEDIUM, registryEntry21, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
+                placedFeatureRegisterable, ORE_RUBY_MEDIUM, registryEntry21, modifiersWithCount(9,HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_RUBY_LARGE,
                 registryEntry22,
-                modifiersWithRarity(13, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(63)))
+                modifiersWithRarity(6, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(72)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_SAPPHIRE,
                 registryEntry23,
-                modifiersWithCount(7, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(51)))
+                modifiersWithCount(5,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(76)))
         );
         PlacedFeatures.register(
-                placedFeatureRegisterable, ORE_SAPPHIRE_MEDIUM, registryEntry24, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
+                placedFeatureRegisterable, ORE_SAPPHIRE_MEDIUM, registryEntry24, modifiersWithCount(5,HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_SAPPHIRE_LARGE,
                 registryEntry25,
-                modifiersWithRarity(8, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(80)))
+                modifiersWithRarity(8, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(72)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_GREEN_SAPPHIRE,
                 registryEntry26,
-                modifiersWithCount(7, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(76)))
+                modifiersWithCount(5,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(76)))
         );
         PlacedFeatures.register(
-                placedFeatureRegisterable, ORE_GREEN_SAPPHIRE_MEDIUM, registryEntry27, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
+                placedFeatureRegisterable, ORE_GREEN_SAPPHIRE_MEDIUM, registryEntry25,modifiersWithCount(5,HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_GREEN_SAPPHIRE_LARGE,
                 registryEntry28,
-                modifiersWithRarity(6, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(77)))
+                modifiersWithRarity(6, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(77)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_BLUE_GARNET,
                 registryEntry29,
-                modifiersWithCount(7, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(68)))
+                modifiersWithCount(5,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(75)))
         );
         PlacedFeatures.register(
-                placedFeatureRegisterable, ORE_BLUE_GARNET_MEDIUM, registryEntry30, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
+                placedFeatureRegisterable, ORE_BLUE_GARNET_MEDIUM, registryEntry30, modifiersWithCount(5,HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_BLUE_GARNET_LARGE,
                 registryEntry31,
-                modifiersWithRarity(4, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(60)))
+                modifiersWithRarity(4, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(70)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_PINK_GARNET,
                 registryEntry32,
-                modifiersWithCount(7, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(70)))
+                modifiersWithCount(5,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(70)))
         );
         PlacedFeatures.register(
-                placedFeatureRegisterable, ORE_PINK_GARNET_MEDIUM, registryEntry33, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
+                placedFeatureRegisterable, ORE_PINK_GARNET_MEDIUM, registryEntry33, modifiersWithCount(7,HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_PINK_GARNET_LARGE,
                 registryEntry34,
-                modifiersWithRarity(10, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(60)))
+                modifiersWithRarity(4, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(75)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_GREEN_GARNET,
                 registryEntry35,
-                modifiersWithCount(7, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(71)))
+                modifiersWithCount(5,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(71)))
         );
         PlacedFeatures.register(
-                placedFeatureRegisterable, ORE_GREEN_GARNET_MEDIUM, registryEntry36, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
+                placedFeatureRegisterable, ORE_GREEN_GARNET_MEDIUM, registryEntry36, modifiersWithCount(7,HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_GREEN_GARNET_LARGE,
                 registryEntry37,
-                modifiersWithRarity(12, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(51)))
+                modifiersWithRarity(6, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(67)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_TOPAZ,
                 registryEntry38,
-                modifiersWithCount(7, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(52)))
+                modifiersWithCount(5,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(52)))
         );
         PlacedFeatures.register(
-                placedFeatureRegisterable, ORE_TOPAZ_MEDIUM, registryEntry39, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
+                placedFeatureRegisterable, ORE_TOPAZ_MEDIUM, registryEntry39, modifiersWithCount(7,HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_TOPAZ_LARGE,
                 registryEntry40,
-                modifiersWithRarity(2, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(56)))
+                modifiersWithRarity(7,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(56)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_WHITE_TOPAZ,
                 registryEntry41,
-                modifiersWithCount(7, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(57)))
+                modifiersWithCount(5,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(67)))
         );
         PlacedFeatures.register(
-                placedFeatureRegisterable, ORE_WHITE_TOPAZ_MEDIUM, registryEntry42, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
+                placedFeatureRegisterable, ORE_WHITE_TOPAZ_MEDIUM, registryEntry47,modifiersWithCount(7,HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_WHITE_TOPAZ_LARGE,
                 registryEntry43,
-                modifiersWithRarity(5, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(58)))
+                modifiersWithRarity(5, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(68)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_PERIDOT,
                 registryEntry44,
-                modifiersWithCount(7, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(59)))
+                modifiersWithCount(5,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(62)))
         );
         PlacedFeatures.register(
-                placedFeatureRegisterable, ORE_PERIDOT_MEDIUM, registryEntry45, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
+                placedFeatureRegisterable, ORE_PERIDOT_MEDIUM, registryEntry45, modifiersWithCount(7,HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_PERIDOT_LARGE,
                 registryEntry46,
-                modifiersWithRarity(3, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(68)))
+                modifiersWithRarity(3, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(68)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_JADE,
                 registryEntry47,
-                modifiersWithCount(7, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(73)))
+                modifiersWithCount(5,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(73)))
         );
         PlacedFeatures.register(
-                placedFeatureRegisterable, ORE_JADE_MEDIUM, registryEntry48, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
+                placedFeatureRegisterable, ORE_JADE_MEDIUM, registryEntry48, modifiersWithCount(7,HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_JADE_LARGE,
                 registryEntry49,
-                modifiersWithRarity(2, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(74)))
+                modifiersWithRarity(4,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(74)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_PYROPE,
                 registryEntry50,
-                modifiersWithCount(7, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(76)))
+                modifiersWithCount(5,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(76)))
         );
         PlacedFeatures.register(
-                placedFeatureRegisterable, ORE_PYROPE_MEDIUM, registryEntry51, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
+                placedFeatureRegisterable, ORE_PYROPE_MEDIUM, registryEntry51, modifiersWithCount(6, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
                 ORE_PYROPE_LARGE,
                 registryEntry52,
-                modifiersWithRarity(15, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(72)))
+                modifiersWithRarity(5, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(72)))
         );
     }
 }
