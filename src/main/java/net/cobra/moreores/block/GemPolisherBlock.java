@@ -1,6 +1,7 @@
 package net.cobra.moreores.block;
 
 import com.mojang.serialization.MapCodec;
+import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.entity.GemPolisherBlockEntity;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
 import net.minecraft.block.*;
@@ -85,6 +86,7 @@ public class GemPolisherBlock extends BlockWithEntity implements BlockEntityProv
                     world.scheduleBlockTick(pos, this, 4);
                 } else {
                     world.setBlockState(pos, state.cycle(REDSTONE_POWERED), Block.NOTIFY_LISTENERS);
+                    MoreOresModInitializer.LOGGER.info("Receiving Redstone Signal at BlockPos: '{}'", pos);
                 }
             }
         }

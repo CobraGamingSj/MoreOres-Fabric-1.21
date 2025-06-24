@@ -1,17 +1,32 @@
 package net.cobra.moreores.block.entity;
 
-public enum PolishingState{
-    IDLE(0),
-    RUNNING(1),
-    PAUSED(2);
+import net.minecraft.util.StringIdentifiable;
 
-    int id;
+public enum PolishingState implements StringIdentifiable {
+    IDLE("idle"),
+    RUNNING("running"),
+    PAUSED("paused");
 
-    PolishingState(int id) {
-        this.id = id;
+    private final String  name;
+
+    PolishingState(String name) {
+        this.name = name;
     }
 
-    public void setState(int id) {
-        this.id = id;
+    public boolean isIdle() {
+        return this == IDLE;
+    }
+
+    public boolean isRunning() {
+        return this == RUNNING;
+    }
+
+    public boolean isPaused() {
+        return this == PAUSED;
+    }
+
+    @Override
+    public String asString() {
+        return this.name;
     }
 }
