@@ -1,5 +1,6 @@
 package net.cobra.moreores.block.entity;
 
+import net.cobra.moreores.block.GemPolisherBlock;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.data.GemPolisherData;
 import net.cobra.moreores.item.ModItems;
@@ -11,6 +12,7 @@ import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -180,6 +182,12 @@ public class GemPolisherBlockEntity extends BlockEntity implements ExtendedScree
     public void tick(World world, BlockPos pos, BlockState state) {
         if (world.isClient()) {
             return;
+        }
+
+        if (this.energyStorage.amount > 0 && !getCachedState().get(GemPolisherBlock.HAS_ENERGY)) {
+            world.setBlockState(pos, getCachedState().with(GemPolisherBlock.HAS_ENERGY, true), Block.NOTIFY_ALL);
+        } else if (this.energyStorage.amount == 0 && getCachedState().get(GemPolisherBlock.HAS_ENERGY)) {
+            world.setBlockState(pos, getCachedState().with(GemPolisherBlock.HAS_ENERGY, false), Block.NOTIFY_ALL);
         }
 
         if (hasEnergySourceProviderItem()) {
