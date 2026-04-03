@@ -1,5 +1,6 @@
-package net.cobra.moreores.block.entity;
+package net.cobra.moreores.block.entity.gem_polisher;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.util.StringIdentifiable;
 
 public enum PolishingState implements StringIdentifiable {

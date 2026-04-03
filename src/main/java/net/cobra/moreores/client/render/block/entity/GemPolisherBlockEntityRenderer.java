@@ -1,14 +1,12 @@
 package net.cobra.moreores.client.render.block.entity;
 
-import net.cobra.moreores.block.GemPolisherBlock;
-import net.cobra.moreores.block.entity.GemPolisherBlockEntity;
+import net.cobra.moreores.block.GemPurifierBlock;
+import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.item.ItemRenderer;
@@ -24,7 +22,7 @@ import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import org.joml.Matrix4f;
 
-public class GemPolisherBlockEntityRenderer implements BlockEntityRenderer<GemPolisherBlockEntity> {
+public class GemPolisherBlockEntityRenderer implements BlockEntityRenderer<GemPurifierBlockEntity> {
 
     private final BlockEntityRendererFactory.Context context;
 
@@ -32,7 +30,7 @@ public class GemPolisherBlockEntityRenderer implements BlockEntityRenderer<GemPo
         this.context = context;
     }
 
-    private void renderItem(GemPolisherBlockEntity entity, ItemStack stack, MatrixStack matrices,
+    private void renderItem(GemPurifierBlockEntity entity, ItemStack stack, MatrixStack matrices,
                             VertexConsumerProvider vertexConsumers, float x, float y, float z, float rotationAngle) {
         if (!stack.isEmpty()) {
             ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
@@ -52,9 +50,9 @@ public class GemPolisherBlockEntityRenderer implements BlockEntityRenderer<GemPo
         }
     }
 
-    private float getRotationAngle(GemPolisherBlockEntity entity) {
+    private float getRotationAngle(GemPurifierBlockEntity entity) {
         if (entity.getWorld() != null) {
-            return switch (entity.getCachedState().get(GemPolisherBlock.FACING)) {
+            return switch (entity.getCachedState().get(GemPurifierBlock.FACING)) {
                 case NORTH -> 180f;
                 case EAST -> 90f;
                 case WEST -> -90f;
@@ -71,11 +69,11 @@ public class GemPolisherBlockEntityRenderer implements BlockEntityRenderer<GemPo
     }
 
     @Override
-    public void render(GemPolisherBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+    public void render(GemPurifierBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         if(entity == null || entity.getWorld() == null) return;
-        ItemStack inputStack = entity.getStack(GemPolisherBlockEntity.INGREDIENT_SLOT);
-        ItemStack energyStack = entity.getStack(GemPolisherBlockEntity.ENERGY_SOURCE_SLOT);
-        ItemStack outputStack = entity.getStack(GemPolisherBlockEntity.RESULT_SLOT);
+        ItemStack inputStack = entity.getStack(GemPurifierBlockEntity.INGREDIENT_SLOT);
+        ItemStack energyStack = entity.getStack(GemPurifierBlockEntity.ENERGY_SOURCE_SLOT);
+        ItemStack outputStack = entity.getStack(GemPurifierBlockEntity.RESULT_SLOT);
 
         float rotationAngles = getRotationAngle(entity);
 
@@ -86,7 +84,7 @@ public class GemPolisherBlockEntityRenderer implements BlockEntityRenderer<GemPo
         renderEnergyAmountText(entity, matrices, vertexConsumers, light);
     }
 
-    private void renderEnergyAmountText(GemPolisherBlockEntity be, MatrixStack matrices, VertexConsumerProvider provider, int light) {
+    private void renderEnergyAmountText(GemPurifierBlockEntity be, MatrixStack matrices, VertexConsumerProvider provider, int light) {
         if(be.getWorld() == null || !be.getWorld().isClient) return;
 
         long energy = be.energyStorage.amount;

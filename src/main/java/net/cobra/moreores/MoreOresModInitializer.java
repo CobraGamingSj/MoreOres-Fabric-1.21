@@ -1,7 +1,8 @@
 package net.cobra.moreores;
 
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.data.GemPolisherButtonClick;
+import net.cobra.moreores.block.data.GemPurifierButtonClick;
+import net.cobra.moreores.block.data.PolishingStateData;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.component.type.ModConsumableComponents;
 import net.cobra.moreores.enchantment.entity.effect.EnchantmentEffects;
@@ -12,7 +13,7 @@ import net.cobra.moreores.networking.ModS2CPayloadRegistry;
 import net.cobra.moreores.recipe.ModRecipeSerializer;
 import net.cobra.moreores.recipe.ModRecipeType;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
-import net.cobra.moreores.screen.ModScreenHandlerType;
+import net.cobra.moreores.client.gui.screen.ModScreenHandlerType;
 import net.cobra.moreores.sound.ModBlockSoundGroup;
 import net.cobra.moreores.sound.ModSoundEvents;
 import net.cobra.moreores.util.CustomTrades;
@@ -202,7 +203,7 @@ public class MoreOresModInitializer implements ModInitializer {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(FunctionalBlocks -> {
 			FunctionalBlocks.addAfter(Blocks.BLAST_FURNACE, ModBlocks.ENERGY_BLOCK);
 			FunctionalBlocks.addAfter(Blocks.REDSTONE_LAMP, ModBlocks.RUBY_LAMP);
-			FunctionalBlocks.addAfter(Blocks.SMITHING_TABLE, ModBlocks.GEM_POLISHER_BLOCK);
+			FunctionalBlocks.addAfter(Blocks.SMITHING_TABLE, ModBlocks.GEM_PURIFIER_BLOCK);
 		});
 
 
@@ -285,7 +286,8 @@ public class MoreOresModInitializer implements ModInitializer {
 		ModS2CNetworks.register();
 		ModC2SNetworks.register();
 		ModS2CPayloadRegistry.registerS2CPackets();
-		PayloadTypeRegistry.playC2S().register(GemPolisherButtonClick.ID, GemPolisherButtonClick.PACKET_CODEC);
+		PayloadTypeRegistry.playC2S().register(GemPurifierButtonClick.ID, GemPurifierButtonClick.PACKET_CODEC);
+		PayloadTypeRegistry.playC2S().register(PolishingStateData.ID, PolishingStateData.PACKET_CODEC);
 		ModC2SNetworks.registerServerC2S();
 
 		//ModConsumableComponents Registry

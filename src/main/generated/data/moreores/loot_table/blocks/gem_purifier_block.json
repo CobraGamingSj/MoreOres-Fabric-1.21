@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "moreores:gem_polisher_block"
+          "name": "moreores:gem_purifier_block"
         }
       ],
       "rolls": 1.0

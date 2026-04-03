@@ -4,8 +4,8 @@ import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.client.render.block.entity.GemPolisherBlockEntityRenderer;
 import net.cobra.moreores.networking.ModS2CNetworks;
-import net.cobra.moreores.screen.GemPolisherScreen;
-import net.cobra.moreores.screen.ModScreenHandlerType;
+import net.cobra.moreores.client.gui.screen.GemPurifierScreen;
+import net.cobra.moreores.client.gui.screen.ModScreenHandlerType;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
@@ -20,10 +20,10 @@ public class MoreOresClientModInitializer implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TOMATO_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PINEAPPLE_CROP, RenderLayer.getCutout());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GEM_POLISHER_BLOCK, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GEM_PURIFIER_BLOCK, RenderLayer.getTranslucent());
 
-        HandledScreens.register(ModScreenHandlerType.GEM_POLISHING_SCREEN_HANDLER, GemPolisherScreen::new);
+        HandledScreens.register(ModScreenHandlerType.GEM_PURIFYING_SCREEN_HANDLER, GemPurifierScreen::new);
 
-        BlockEntityRendererFactories.register(ModBlockEntityType.GEM_POLISHER_BLOCK_ENTITY, GemPolisherBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntityType.GEM_PURIFIER_BLOCK_ENTITY, GemPolisherBlockEntityRenderer::new);
     }
 }

@@ -23,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:gem_polisher_block"
+        "recipe": "minecraft:gem_purifier_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -37,7 +37,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:gem_polisher_block"
+      "minecraft:gem_purifier_block"
     ]
   }
 }

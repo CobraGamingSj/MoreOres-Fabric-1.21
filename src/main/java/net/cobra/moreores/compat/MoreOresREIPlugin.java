@@ -8,7 +8,7 @@
 //import me.shedaniel.rei.api.common.util.EntryStacks;
 //import net.cobra.moreores.block.ModBlocks;
 //import net.cobra.moreores.recipe.GemPolisherRecipe;
-//import net.cobra.moreores.screen.GemPolisherScreen;
+//import net.cobra.moreores.client.gui.screen.GemPolisherScreen;
 //
 //public class MoreOresREIPlugin implements REIClientPlugin {
 //
